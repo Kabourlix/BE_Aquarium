@@ -21,6 +21,9 @@ private :
    std::vector<Bestiole>   listeBestioles;
 
 public :
+
+   static Milieu singleton;
+
    Milieu( int _width, int _height );
    ~Milieu( void );
 
