@@ -6,13 +6,20 @@
 
 class ConcreteFactory : public Factory
 {
+	private:
+		float propGregaire;
+		float propPeureuse;
+		float propKamikaze;
+		float propPrevoyante;
+		float propMultiple;
+		int nbBestiole;
 	
 	public : 
-		ConcreteFactory();
+		ConcreteFactory(Milieu & milieu);
 		~ConcreteFactory();
 
-		Bestiole createBestiole();
-		Bestiole cloneBestiole();
+		Bestiole createBestiole(Milieu & milieu);
+		Bestiole cloneBestiole(Milieu & milieu, Bestiole bestiole);
 }
 
 #endif

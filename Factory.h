@@ -2,6 +2,7 @@
 #define _FACTORY_H_
 
 #include "Bestiole.h"
+#include "CreateHandler.h"
 
 
 class Factory
@@ -12,7 +13,7 @@ class Factory
 
 	virtual Bestiole cloneBestiole(Bestiole bestiole)=0;
 
-	virtual Bestiole createBestiole()=0;
+	virtual Bestiole createBestiole(Milieu milieu)=0;
 
 	virtual Bestiole createExtBestiole()=0;
 
