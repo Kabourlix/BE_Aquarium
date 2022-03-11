@@ -1,6 +1,8 @@
 #ifndef _STRATGREGAIRE_H_
 #define _STRATGREGAIRE_H_
 
+#include "BestioleStrategy.h"
+
 class StratGregaire
 {
 	
@@ -8,7 +10,7 @@ class StratGregaire
 		StratGregaire();
 		~StratGregaire();
 
-		void action(const Milieu & milieu, Bestiole bestiole);
-}
+		void action(Bestiole bestiole);
+};
 
 #endif

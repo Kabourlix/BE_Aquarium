@@ -108,7 +108,7 @@ void Bestiole::bouge( int xLim, int yLim )
 
 void Bestiole::action( Milieu & monMilieu )
 {
-
+   bestioleStrat->action(*this);
    bouge( monMilieu.getWidth(), monMilieu.getHeight() );
 
 }
@@ -145,3 +145,44 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
    return ( dist <= LIMITE_VUE );
 
 }
+
+bool Bestiole::detect(const Bestiole & b) const
+{ bool detected = false;
+// Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
+   for ( std::vector<Sensors>::iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
+   {
+      if (it->detection(*this,b)){ detected = true; }
+   }
+  return detected;
+}
+
+std::vector<Bestiole> Bestiole::getNearbyNeighbor() 
+{ std::vector<Bestiole> neighbors;
+   for ( std::vector<Bestiole>::iterator it = Milieu.singleton.getBestioles.begin() ; it != Milieu.singleton.getBestioles.end() ; ++it )
+   { if (!(*this == *it) && this->detect(*it))
+      {
+         neighbors.push_back(*it);
+      }
+   }
+   return neighbors;
+}
+
+// Attention n'appeler cette méthode que si getNearbyNeighbor() ne renvoie pas une liste vide.
+Bestiole Bestiole::getNearestBestiole()
+{ Bestiole nearestBestiole;
+  double currentMinDist2 = 0; 
+  int n = 0;
+   for ( std::vector<Bestiole>::iterator it = Milieu.singleton.getBestioles.begin() ; it != Milieu.singleton.getBestioles.end() ; ++it )
+   { if (!(*this == *it) && this->detect(*it))
+      { 
+         if ( n==0 || (pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2) ) < currentMinDist2)
+         {
+            nearestBestiole = *it;
+            currentMinDist2 = pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2);
+            n = 1;
+         }
+      }
+   }
+   if (n==1) { return nearestBestiole;}
+}
+;

@@ -1,6 +1,8 @@
 #ifndef _STRATPEUREUSE_H_
 #define _STRATPEUREUSE_H_
 
+#include "BestioleStrategy.h"
+
 class StratPeureuse
 {
 	
@@ -8,7 +10,7 @@ class StratPeureuse
 		StratPeureuse();
 		~StratPeureuse();
 
-		void action(const Milieu & milieu, Bestiole bestiole);
-}
+		void action(Bestiole bestiole);
+};
 
 #endif

@@ -1,6 +1,8 @@
 #ifndef _STRATPREVOYANTE_H_
 #define _STRATPREVOYANTE_H_
 
+#include "BestioleStrategy.h"
+
 class StratPrevoyante
 {
 	
@@ -8,7 +10,7 @@ class StratPrevoyante
 		StratPrevoyante();
 		~StratPrevoyante();
 
-		void action(const Milieu & milieu, Bestiole bestiole);
-}
+		void action(Bestiole bestiole);
+};
 
 #endif

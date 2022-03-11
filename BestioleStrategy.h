@@ -10,8 +10,8 @@ class BestioleStrategy
 
 	virtual ~BestioleStrategy();
 	
-	virtual void action(const Milieu & milieu,Bestiole bestiole)=0;
+	virtual void action(Bestiole bestiole)=0;
 
-}
+};
 
 #endif
