@@ -1,7 +1,9 @@
 #ifndef _STRATKAMIKAZE_H_
 #define _STRATKAMIKAZE_H_
 
-class StratKamikaze
+#include "BestioleStrategy.h"
+
+class StratKamikaze : public BestioleStrategy
 {
 	
 	public : 

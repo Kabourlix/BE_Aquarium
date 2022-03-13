@@ -1,7 +1,9 @@
 #ifndef _STRATPEUREUSE_H_
 #define _STRATPEUREUSE_H_
 
-class StratPeureuse
+#include "BestioleStrategy.h"
+
+class StratPeureuse : public BestioleStrategy
 {
 	
 	public : 

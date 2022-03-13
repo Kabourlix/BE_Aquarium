@@ -1,14 +1,16 @@
 #ifndef _STRATGREGAIRE_H_
 #define _STRATGREGAIRE_H_
 
-class StratGregaire
+#include "BestioleStrategy.h"
+
+class StratGregaire : public BestioleStrategy
 {
 	
 	public : 
 		StratGregaire();
 		~StratGregaire();
 
-		void action(const Milieu & milieu, Bestiole bestiole);
+		virtual void action(const Milieu & milieu, Bestiole bestiole);
 }
 
 #endif

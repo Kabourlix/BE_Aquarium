@@ -1,7 +1,9 @@
 #ifndef _STRATPREVOYANTE_H_
 #define _STRATPREVOYANTE_H_
 
-class StratPrevoyante
+#include "BestioleStrategy.h"
+
+class StratPrevoyante : public BestioleStrategy
 {
 	
 	public : 

@@ -1,14 +1,18 @@
 #ifndef _BESTIOLESTRATEGY_H_
 #define _BESTIOLESTRATEGY_H_
 
-#include "Bestiole.h"
+class Milieu;
+class Bestiole;
 
 class BestioleStrategy
 {
 	
 	public : 
 
+	BestioleStrategy(std::string name);
 	virtual ~BestioleStrategy();
+
+	std::string getName();
 	
 	virtual void action(const Milieu & milieu,Bestiole bestiole)=0;
 
