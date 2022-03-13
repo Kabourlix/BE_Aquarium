@@ -86,6 +86,10 @@ StratPtr Milieu::getStrategy(std::string name){
    }
 }  
 
+StratPtr Milieu::getStrategy(int index){
+   return stratVector[index];
+}
+
 StratPtr Milieu::getRandomStrategy(std::string previousStrat){
    //get a random int between 0 and 3 included
    int random = std::rand() % 4;

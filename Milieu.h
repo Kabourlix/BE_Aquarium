@@ -32,7 +32,7 @@ private :
 
 public :
 
-   Milieu* getInstance(int _width = 640, int _height = 480); // Initialize the Milieu safely.
+   static Milieu* getInstance(int _width = 640, int _height = 480); // Initialize the Milieu safely.
    ~Milieu( void );
 
    int getWidth( void ) const { return width; };
@@ -44,6 +44,7 @@ public :
    int nbVoisins( const Bestiole & b );
 
    StratPtr getStrategy(std::string name);
+   StratPtr getStrategy(int index);
    StratPtr getRandomStrategy(std::string previousStrat);
 
 };

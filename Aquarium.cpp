@@ -3,6 +3,7 @@
 #include "Milieu.h"
 
 
+
 Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
 {
 
@@ -12,7 +13,7 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
 
    cout << "const Aquarium" << endl;
 
-   flotte = new Milieu( width, height );
+   flotte = Milieu::getInstance( width, height );
    assign( *flotte, "Simulation d'ecosysteme" );
 
    move( static_cast<int>((screenWidth-width)/2), static_cast<int>((screenHeight-height)/2) );
@@ -29,6 +30,29 @@ Aquarium::~Aquarium( void )
 
 }
 
+
+void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
+   {
+      std::string toDisp = "ratios : ";
+      //Go through each ratio and get the associated proportion of the population.
+      for ( int i = 0; i < nbBestiole; ++i )
+      {
+         int nb = (int)(ratios[i] * nbBestiole);
+         bool multiple = (i == 0); //Multiple has to be the first ratio.
+         for ( int j = 0; j < nb; ++j )
+         {
+            //Create a new bestiole with the associated strategy.
+            BestioleStrategy* strat = flotte->getStrategy(i);
+            toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
+            Bestiole b(strat);
+            //Add it to the ecosystem.
+            flotte->addMember(b);
+         }
+      }
+      cout << "Initialize population with" + std::to_string(nbBestiole) + " bestioles." << endl;
+      cout << toDisp << endl;
+
+   }
 
 void Aquarium::run( void )
 {
@@ -52,5 +76,7 @@ void Aquarium::run( void )
       wait( delay );
 
    } // while
+
+   
 
 }
