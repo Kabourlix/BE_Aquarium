@@ -5,12 +5,10 @@
 
 class StratGregaire : public BestioleStrategy
 {
-	
 	public : 
 		StratGregaire();
 		~StratGregaire();
 
 		virtual void action(const Milieu & milieu, Bestiole bestiole);
-}
-
+};
 #endif

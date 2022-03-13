@@ -6,16 +6,13 @@ class Bestiole;
 
 class BestioleStrategy
 {
-	
 	public : 
+		BestioleStrategy(std::string name);
+		virtual ~BestioleStrategy();
 
-	BestioleStrategy(std::string name);
-	virtual ~BestioleStrategy();
+		std::string getName();
+		
+		virtual void action(const Milieu & milieu,Bestiole bestiole)=0;
 
-	std::string getName();
-	
-	virtual void action(const Milieu & milieu,Bestiole bestiole)=0;
-
-}
-
+};
 #endif
