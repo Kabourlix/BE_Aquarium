@@ -2,20 +2,21 @@
 #define _CREATEHANDLER_H_
 
 #include "Milieu.h"
-#include "Bestiole.h"
-
+#include "CreateFactory.h"
 
 class CreateHandler 
 {
+	private :
+		CreateFactory fact;
 	public : 
-	CreateHandler();
-	~CreateHandler();
+		CreateHandler();
+		~CreateHandler();
 
-	void spontaneousCreate(Milieu & milieu);
+		void spontaneousCreate(Milieu & milieu);
 
-	void cloneCreate(Milieu & milieu,Bestiole bestiole);
+		void cloneCreate(Milieu & milieu,Bestiole bestiole);
 
-	void extCreate(Milieu & milieu);
+		void extCreate(Milieu & milieu, int nb);
 }
 
 #endif

@@ -2,20 +2,19 @@
 #define _FACTORY_H_
 
 #include "Bestiole.h"
-#include "CreateHandler.h"
 
 
 class Factory
 {
 	public : 
 	
-	virtual ~Factory();
+		virtual ~Factory();
 
-	virtual Bestiole cloneBestiole(Bestiole bestiole)=0;
+		virtual Bestiole cloneBestiole(const Milieu & milieu,const Bestiole & bestiole)=0;
 
-	virtual Bestiole createBestiole(Milieu milieu)=0;
+		virtual Bestiole createBestiole(const Milieu & milieu)=0;
 
-	virtual Bestiole createExtBestiole()=0;
+		virtual Bestiole createExtBestiole(const Milieu & milieu)=0;
 
 };
 

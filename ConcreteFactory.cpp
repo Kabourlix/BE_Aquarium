@@ -5,21 +5,21 @@ int MIN = 0;
 int MAX = 100;
 
 
-ConcreteFactory::ConcreteFactory(Milieu & milieu) {
-	nbBestiole = milieu.getListeBestiole().lenght()
+ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
+	nbBestiole = milieu.getListeBestiole().size()
 	propGregaire, propPeureuse, propKamikaze, propPrevoyante, propMultiple =0, 0, 0, 0, 0;
-	for (bestiole in milieu.getListeBestiole()) {
+	for (Bestiole bestiole : milieu.getListeBestiole()) {
 		if (bestiole.getMutliple()) {
 			++propMultiple;
-		} else { if  (bestiole.getStrat() instaceof StratGregaire) {
+		} else { if  (bestiole.getStrat().getName() == "Gregaire") {
 				++propGregaire;
-		} else { if (bestiole.getStrat() instaceof StratPeureuse) {
+		} else { if (bestiole.getStrat().getName() == "Peureuse") {
 					++propPeureuse;
 			}
-		} else { if (bestiole.getStrat() instaceof StratKamikaze) {
+		} else { if (bestiole.getStrat().getName() == "Kamikaze") {
 					++propKamikaze;
 			}
-		} else { if (bestiole.getStrat() instaceof StratPrevoyante) {
+		} else { if (bestiole.getStrat().getName() == "Prevoyante") {
 					++propPrevoyante;
 				}
 			}
@@ -44,8 +44,7 @@ ConcreteFactory::~ConcreteFactory(void){
 
 
 
-Bestiole ConcreteFactory::createBestiole(Milieu & milieu);
-{
+Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 	nbBestiole = milieu.getListeBestiole().lenght();
     std::random_device rd;
     std::default_random_engine eng(rd());
@@ -53,29 +52,32 @@ Bestiole ConcreteFactory::createBestiole(Milieu & milieu);
     float randomVariable = distr(eng)/MAX;
     if (randomVariable <= propGregaire) {
 
-    	milieu.addMember(new Bestiole(nbBestiole, milieu.getStratGregaire, false, std::Vector<accessories>)) // Gregaire
+    	return new Bestiole() // Gregaire
 
     } else { if (randomVariable <= propKamikaze) {
 
-    	milieu.addMember(new Bestiole(nbBestiole, milieu.getStratKamikaze, false, std::Vector<accessories>)) // Kamikaze
+    	return new Bestiole() // Kamikaze
 
     } else { if (randomVariable <= propPeureuse) {
 
-    	milieu.addMember(new Bestiole(nbBestiole, milieu.getStratPeureuse, false, std::Vector<accessories>)) // Peureuse
+    	return new Bestiole() // Peureuse
 
     } else { if (randomVariable <= propPrevoyante) {
 
-    	milieu.addMember(new Bestiole(nbBestiole, milieu.getStratPrevoyante, false, std::Vector<accessories>)) // Prevoyante
+    	return new Bestiole() // Prevoyante
 
     } else {
-    	milieu.addMember(new Bestiole(nbBestiole, milieu.getStratMultiple, true, std::Vector<accessories>)) // multiple
+    	return new Bestiole() // multiple
     			}
    			 }
 		}
     }
 };
 
-Bestiole ConcreteFactory::cloneBestiole()
-{
+Bestiole ConcreteFactory::cloneBestiole(const Milieu & milieu, const Bestiole & bestiole){
+	return new Bestiole(bestiole);
+};
 
+Bestiole ConcreteFactory::createExtBestiole(const Milieu & milieu) {
+	return new Bestiole(bestiole);
 };

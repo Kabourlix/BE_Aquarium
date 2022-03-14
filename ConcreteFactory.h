@@ -18,8 +18,9 @@ class ConcreteFactory : public Factory
 		ConcreteFactory(Milieu & milieu);
 		~ConcreteFactory();
 
-		Bestiole createBestiole(Milieu & milieu);
-		Bestiole cloneBestiole(Milieu & milieu, Bestiole bestiole);
+		Bestiole createBestiole(const Milieu & milieu);
+		Bestiole cloneBestiole(const Milieu & milieu, const Bestiole & bestiole);
+		Bestiole createExtBestiole(const Milieu & milieu);
 }
 
 #endif
