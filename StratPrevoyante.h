@@ -5,6 +5,8 @@
 
 class StratPrevoyante
 {
+	private :
+		static const std::string name;
 	
 	public : 
 		StratPrevoyante();
