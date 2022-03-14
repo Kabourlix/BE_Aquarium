@@ -1,5 +1,8 @@
 #include "ConcreteFactory.h"
 #include <random>
+#include "Accessory.h"
+#include "Eyes.h"
+#include "Ears.h"
 
 int MIN = 0;
 int MAX = 100;
@@ -11,20 +14,20 @@ ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
 	for (Bestiole bestiole : milieu.getListeBestiole()) {
 		if (bestiole.getMutliple()) {
 			++propMultiple;
-		} else { if  (bestiole.getStrat().getName() == "Gregaire") {
+		} else { if  (*(bestiole.getStrat()) -> getName() == "Gregaire") {
 				++propGregaire;
-		} else { if (bestiole.getStrat().getName() == "Peureuse") {
+		} else { if (*(bestiole.getStrat()) -> getName() == "Peureuse") {
 					++propPeureuse;
-			}
-		} else { if (bestiole.getStrat().getName() == "Kamikaze") {
+		} else { if (*(bestiole.getStrat()) -> getName() == "Kamikaze") {
 					++propKamikaze;
-			}
-		} else { if (bestiole.getStrat().getName() == "Prevoyante") {
+		} else { if (*(bestiole.getStrat()) -> getName() == "Prevoyante") {
 					++propPrevoyante;
+						}
+					}
 				}
 			}
 		}
-	}
+	}			
 	propPrevoyante /= nbBestiole;
 	propGregaire /= nbBestiole;
 	propKamikaze /= nbBestiole;
