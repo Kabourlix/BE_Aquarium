@@ -4,8 +4,9 @@
 #include "BestioleStrategy.h"
 
 class StratKamikaze
-{	
-
+{
+	private :
+		static const std::string name;
 	public : 
 		StratKamikaze();
 		~StratKamikaze();
