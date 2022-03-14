@@ -5,6 +5,8 @@
 
 class StratPeureuse
 {
+	private :
+		static const std::string name;
 	
 	public : 
 		StratPeureuse();
