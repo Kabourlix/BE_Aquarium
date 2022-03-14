@@ -3,6 +3,8 @@
 
 #include "StratGregaire.h"
 
+const std::string  StratGregaire::NAME = "Gregaire";
+
 void StratGregaire::action(Bestiole b){
     std::vector<Bestiole> neighbors = b.getNearbyNeighbor();
     if (neighbors.size() >= 1)
