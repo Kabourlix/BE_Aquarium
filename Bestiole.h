@@ -62,6 +62,7 @@ public :                                           // Forme canonique :
    inline double getOrientation() const {return orientation;};
    inline double getVitesse() const {return vitesse;};
    inline bool getMultiple() const {return MULTIPLE;};
+   inline bool getStrat() const {return *BestioleStrat;};
    inline std::vector<Accessory> getAccessories() const {return listeAccessories;};
    inline void setStrategy(const BestioleStrategy & newStrat){*bestioleStrat = newStrat;};
    inline void setOrientation(double newOrientation){orientation = newOrientation;};
