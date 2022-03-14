@@ -51,10 +51,33 @@ Bestiole::Bestiole( const Bestiole & b )
 }
 
 
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory> listeAccessories_, std::vector<Sensors>   listeSensors_ )
+{
+
+   identite =  identite_;
+
+   x = x_;
+   y = y_;
+   cumulX = cumulY = 0.;
+   orientation = orientation_;
+   vitesse = vitesse_;
+   *bestioleStrat = *bestioleStrat_;
+   listeAccessories = listeAccessories_ ;
+   listeSensors = listeSensors_;
+   
+   couleur = new T[ 3 ];
+   memcpy( couleur, b.couleur, 3*sizeof(T) );
+
+}
+
+
 Bestiole::~Bestiole( void )
 {
 
    delete[] couleur;
+   delete[] *bestioleStrat; 
+   //iterate over the lists of Accessories and sensors and delete every of them ?
+   // deleted by the range so no need ? 
 
    cout << "dest Bestiole" << endl;
 
