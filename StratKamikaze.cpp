@@ -4,6 +4,8 @@
 #include "StratKamikaze.h"
 #include <cmath>
 
+const std::string  StratGregaire::NAME = "Kamikaze";
+
 void StratKamikaze::action(Bestiole b){
     // Check if there is any nearby Bestiole detected :
     if (b.getNearbyNeighbor().size()>0)
