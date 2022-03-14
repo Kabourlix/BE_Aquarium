@@ -6,12 +6,13 @@
 class StratKamikaze
 {
 	private :
-		static const std::string name;
+		static const std::string NAME;
 	public : 
 		StratKamikaze();
 		~StratKamikaze();
 
 		void action(Bestiole bestiole);
+		inline std::string getNale() const{return NAME};;
 };
 
 #endif
