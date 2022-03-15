@@ -8,7 +8,7 @@ class Sensors
 {
 	protected : 
 	
-	float detectionCapacity;
+	float probaDetection;
 	float angle; // Carefull with the borns of the values angle and distance
 	float distance;
 
