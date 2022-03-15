@@ -49,15 +49,13 @@ Bestiole::Bestiole( const Bestiole & b )
    couleur = new T[ 3 ];
    memcpy( couleur, b.couleur, 3*sizeof(T) );
    bestioleStrat = b.bestioleStrat;
+   listeAccessories = b.listeAccessories;
+   listeSensors = b.listeSensors;
 
-
-  // add    BestioleStrategy  *bestioleStrat;
-   // std::vector<Accessory>   listeAccessories;
-   // std::vector<Sensors*>   listeSensors;
 }
 
 
-Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory> listeAccessories_, std::vector<Sensors*>   listeSensors_ )
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_ )
 {
 
    identite =  identite_;
@@ -72,7 +70,9 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    listeSensors = listeSensors_;
    
    couleur = new T[ 3 ];
-   memcpy( couleur, couleur, 3*sizeof(T) ); // to do 
+   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
 
 }
 
@@ -81,8 +81,17 @@ Bestiole::~Bestiole( void )
 {
 
    delete[] couleur;
-   //iterate over the lists of Accessories and sensors and delete every of them ?
-   // deleted by the range so no need ? 
+   
+   for ( std::vector<Accessory*>::iterator it = listeAccessories.begin() ; it != listeAccessories.end() ; ++it )
+   { 
+      delete * it;
+      *it=nullptr;
+   }
+   for ( std::vector<Sensors*>::iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
+   { 
+      delete * it;
+      *it=nullptr;
+   }
 
    cout << "dest Bestiole" << endl;
 
@@ -168,7 +177,6 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 
    double         dist;
 
-
    dist = std::sqrt( (x-b.x)*(x-b.x) + (y-b.y)*(y-b.y) );
    return ( dist <= LIMITE_VUE );
 
@@ -177,9 +185,9 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 bool Bestiole::detect(const Bestiole *b) const
 { bool detected = false;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
-   for ( std::vector<Sensors*>::iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
+   for ( std::vector<Sensors*>::const_iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
    {
-      if (*it->detection(this,b)){ detected = true; }
+      if (it->detection(this,b)){ detected = true; }
    }
   return detected;
 }

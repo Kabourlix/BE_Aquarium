@@ -35,7 +35,7 @@ private :
    double            orientation;
    double            vitesse;
    BestioleStrategy  *bestioleStrat;
-   std::vector<Accessory>   listeAccessories;
+   std::vector<Accessory*>   listeAccessories;
    std::vector<Sensors*>   listeSensors;
 
    T               * couleur;
@@ -46,7 +46,7 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
    Bestiole( const Bestiole & b );                 // Constructeur de copies
-   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory> listeAccessories_, std::vector<Sensors*>   listeSensors_ );
+   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_ );
 
    ~Bestiole( void );                              // Destructeur
                                                    // Operateur d'affectation binaire par defaut
@@ -66,7 +66,7 @@ public :                                           // Forme canonique :
    inline double getVitesse() const {return vitesse;};
    inline bool getMultiple() const {return MULTIPLE;};
    inline BestioleStrategy *getStrat() const {return bestioleStrat;};
-   inline std::vector<Accessory> getAccessories() const {return listeAccessories;};
+   inline std::vector<Accessory*> getAccessories() const {return listeAccessories;};
    inline void setStrategy(const BestioleStrategy & newStrat){*bestioleStrat = newStrat;};
    inline void setOrientation(double newOrientation){orientation = newOrientation;};
    inline void setVitesse(double newVitesse){vitesse = newVitesse;};
