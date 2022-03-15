@@ -12,7 +12,7 @@ class StratKamikaze
 		~StratKamikaze();
 
 		void action(Bestiole bestiole);
-		inline std::string getNale() const{return NAME};;
+		inline std::string getName() const{return NAME};;
 };
 
 #endif
