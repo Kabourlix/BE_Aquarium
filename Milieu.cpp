@@ -31,8 +31,9 @@ Milieu::~Milieu( void )
 {
    //Go through listBestioles and delete them.
    for ( std::vector<Bestiole>::iterator it = listeBestioles.begin(); it != listeBestioles.end(); ++it )
-      static_cast<Bestiole*>( &(*it) )->~Bestiole();
-
+   {
+      it->~Bestiole();
+   }
    delete singleton; //Delete the only instance of the class.
    cout << "Milieu & dependencies have been destroyed." << endl;
 
@@ -58,6 +59,12 @@ void Milieu::step( void )
       it->draw( *this );
 
    } // for
+
+   //Go through the strat vector and delete the strategies.
+   for ( std::vector<StratPtr>::iterator it = stratVector.begin(); it != stratVector.end(); ++it )
+   {
+      delete *it;
+   }
 
 }
 
