@@ -45,6 +45,8 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
    Bestiole( const Bestiole & b );                 // Constructeur de copies
+   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory> listeAccessories_, std::vector<Sensors>   listeSensors_ )
+
    ~Bestiole( void );                              // Destructeur
                                                    // Operateur d'affectation binaire par defaut
    void action( Milieu & monMilieu );
