@@ -64,7 +64,7 @@ public :                                           // Forme canonique :
    inline double getOrientation() const {return orientation;};
    inline double getVitesse() const {return vitesse;};
    inline bool getMultiple() const {return MULTIPLE;};
-   inline BestioleStrategy *getStrat() const {return BestioleStrat;};
+   inline BestioleStrategy *getStrat() const {return bestioleStrat;};
    inline std::vector<Accessory> getAccessories() const {return listeAccessories;};
    inline void setStrategy(const BestioleStrategy & newStrat){*bestioleStrat = newStrat;};
    inline void setOrientation(double newOrientation){orientation = newOrientation;};
@@ -72,7 +72,7 @@ public :                                           // Forme canonique :
    
    std::vector<Bestiole> getNearbyNeighbor();
    Bestiole getNearestBestiole();
-   bool detect(const Bestiole & b ) const;
+   bool detect(const Bestiole *b ) const;
 };
 
 #endif
