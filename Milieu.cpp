@@ -60,11 +60,6 @@ void Milieu::step( void )
 
    } // for
 
-   //Go through the strat vector and delete the strategies.
-   for ( std::vector<StratPtr>::iterator it = stratVector.begin(); it != stratVector.end(); ++it )
-   {
-      delete *it;
-   }
 
 }
 
