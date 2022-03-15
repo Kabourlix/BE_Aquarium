@@ -66,7 +66,7 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    listeSensors = listeSensors_;
    
    couleur = new T[ 3 ];
-   memcpy( couleur, b.couleur, 3*sizeof(T) );
+   memcpy( couleur, couleur, 3*sizeof(T) ); // to do 
 
 }
 
@@ -75,7 +75,6 @@ Bestiole::~Bestiole( void )
 {
 
    delete[] couleur;
-   delete[] *bestioleStrat; 
    //iterate over the lists of Accessories and sensors and delete every of them ?
    // deleted by the range so no need ? 
 
@@ -169,12 +168,12 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 
 }
 
-bool Bestiole::detect(const Bestiole & b) const
+bool Bestiole::detect(const Bestiole *b) const
 { bool detected = false;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
    for ( std::vector<Sensors>::iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
    {
-      if (it->detection(*this,b)){ detected = true; }
+      if (it->detection(this,*b)){ detected = true; }
    }
   return detected;
 }
