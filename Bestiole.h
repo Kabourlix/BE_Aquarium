@@ -26,6 +26,7 @@ private :
    static const bool       MULTIPLE;
 
    static int              next;
+   Milieu* milieu;
 
 private :
    int               identite;
@@ -35,7 +36,7 @@ private :
    double            vitesse;
    BestioleStrategy  *bestioleStrat;
    std::vector<Accessory>   listeAccessories;
-   std::vector<Sensors>   listeSensors;
+   std::vector<Sensors*>   listeSensors;
 
    T               * couleur;
 
@@ -45,7 +46,7 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
    Bestiole( const Bestiole & b );                 // Constructeur de copies
-   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory> listeAccessories_, std::vector<Sensors>   listeSensors_ )
+   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory> listeAccessories_, std::vector<Sensors*>   listeSensors_ );
 
    ~Bestiole( void );                              // Destructeur
                                                    // Operateur d'affectation binaire par defaut

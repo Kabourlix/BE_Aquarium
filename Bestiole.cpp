@@ -17,7 +17,7 @@ Bestiole::Bestiole( void )
 {
 
    identite = ++next;
-
+   milieu = Milieu::getInstance();
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
    x = y = 0;
@@ -29,7 +29,7 @@ Bestiole::Bestiole( void )
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-
+   
 }
 
 
@@ -37,6 +37,7 @@ Bestiole::Bestiole( const Bestiole & b )
 {
 
    identite = ++next;
+   milieu = Milieu::getInstance();
 
    cout << "const Bestiole (" << identite << ") par copie" << endl;
 
@@ -47,15 +48,20 @@ Bestiole::Bestiole( const Bestiole & b )
    vitesse = b.vitesse;
    couleur = new T[ 3 ];
    memcpy( couleur, b.couleur, 3*sizeof(T) );
+   bestioleStrat = b.bestioleStrat;
 
+
+  // add    BestioleStrategy  *bestioleStrat;
+   // std::vector<Accessory>   listeAccessories;
+   // std::vector<Sensors*>   listeSensors;
 }
 
 
-Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory> listeAccessories_, std::vector<Sensors>   listeSensors_ )
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory> listeAccessories_, std::vector<Sensors*>   listeSensors_ )
 {
 
    identite =  identite_;
-
+   milieu = Milieu::getInstance();
    x = x_;
    y = y_;
    cumulX = cumulY = 0.;
@@ -171,17 +177,17 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 bool Bestiole::detect(const Bestiole *b) const
 { bool detected = false;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
-   for ( std::vector<Sensors>::iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
+   for ( std::vector<Sensors*>::iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
    {
-      if (it->detection(this,*b)){ detected = true; }
+      if (*it->detection(this,b)){ detected = true; }
    }
   return detected;
 }
 
 std::vector<Bestiole> Bestiole::getNearbyNeighbor() 
 { std::vector<Bestiole> neighbors;
-   for ( std::vector<Bestiole>::iterator it = Milieu.singleton.getBestioles.begin() ; it != Milieu.singleton.getBestioles.end() ; ++it )
-   { if (!(*this == *it) && this->detect(*it))
+   for ( std::vector<Bestiole>::iterator it = milieu->getBestioles().begin() ; it != milieu->getBestioles().end() ; ++it )
+   { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) ) ))
       {
          neighbors.push_back(*it);
       }
@@ -194,8 +200,8 @@ Bestiole Bestiole::getNearestBestiole()
 { Bestiole nearestBestiole;
   double currentMinDist2 = 0; 
   int n = 0;
-   for ( std::vector<Bestiole>::iterator it = Milieu.singleton.getBestioles.begin() ; it != Milieu.singleton.getBestioles.end() ; ++it )
-   { if (!(*this == *it) && this->detect(*it))
+   for ( std::vector<Bestiole>::iterator it = milieu->getBestioles().begin() ; it != milieu->getBestioles().end() ; ++it )
+   { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) )))
       { 
          if ( n==0 || (pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2) ) < currentMinDist2)
          {
