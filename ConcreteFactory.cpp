@@ -83,11 +83,11 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 	std::vector<Sensors*> sensorVector;
 	int eyes = rand() % 2;
 	int ears = rand() % 2;
-	if(eyes) {
-		sensorVector.push_back(ConcreteFactory::createEars());
+	if (eyes) {
+		sensorVector.push_back(this -> createEars());
 	};
 	if (ears) {
-		sensorVector.push_back(ConcreteFactory::createEars());
+		sensorVector.push_back(this -> createEars());
 	};
 
 
@@ -96,14 +96,14 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 	int nageoires = rand() % 2;
 	int carapace = rand() % 2;
 	int camouflage = rand() % 2;
-	if(nageoires) {
-		accessoryVector.push_back(ConcreteFactory::createNageoire());
+	if (nageoires) {
+		accessoryVector.push_back(this -> createNageoire());
 	};
 	if (carapace) {
-		accessoryVector.push_back(ConcreteFactory::createCarapace());
+		accessoryVector.push_back(this -> createCarapace());
 	};
 	if (camouflage) {
-		accessoryVector.push_back(ConcreteFactory::createCamouflage());
+		accessoryVector.push_back(this -> createCamouflage());
 	};
 
 	
@@ -142,7 +142,7 @@ Sensors ConcreteFactory::createEyes(){
 	float probaDetection = static_cast<double>( rand() )/RAND_MAX*MAX_PROB_DETECTION;
 	float angle = static_cast<double>( rand() )/RAND_MAX*(MAX_ANGLE-MIN_ANGLE) + MIN_ANGLE;
 	float distanceEyes = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EYES-MIN_DIST_EYES) + MIN_DIST_EYES;
-	Sensor *eyes = new Eyes(probaDetection, angle, distanceEyes);
+	Sensors *eyes = new Eyes(probaDetection, angle, distanceEyes);
 	return *eyes;
 	
 };
@@ -150,7 +150,7 @@ Sensors ConcreteFactory::createEyes(){
 Sensors ConcreteFactory::createEars(){
 	float detectionCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_DETEC_CAPA;
 	float distanceEars = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EARS-MIN_DIST_EARS) + MIN_DIST_EARS;
-	Sensor *ears = new Ears(detectionCapacity, distanceEars);
+	Sensors *ears = new Ears(detectionCapacity, distanceEars);
 	return *ears;
 };
 
