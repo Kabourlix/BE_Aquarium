@@ -22,7 +22,7 @@ const float		ConcreteFactory::MAX_COEF_CAMOUFLAGE = 1.;
 
 
 ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
-	nbBestiole = milieu.getListeBestiole().size()
+	nbBestiole = milieu.getBestioles().size()
 	id = nbBestiole + 1;
 	float propGregaire;
 	float propPeureuse;
@@ -71,7 +71,7 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 		// Prevoyante
 		bestioleStrat = milieu.getStrategy("Prevoyante");
     } else {	
-		// multiple
+		// Multiple
 		bestioleStrat = milieu.getRandomStrategy();
     			}
    			 }
