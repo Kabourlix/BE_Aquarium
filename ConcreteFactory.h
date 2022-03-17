@@ -17,6 +17,19 @@ class ConcreteFactory : public Factory
 		float propPeureuse;
 		float propKamikaze;
 		float propPrevoyante;
+
+		static const int 		MIN;
+		static const int 		MAX;
+		static const float		MAX_VITESSE;
+		static const float		LIMITE_VUE;
+		static const float		MAX_PROB_DETECTION;
+		static const float		MAX_ANGLE;
+		static const float		MAX_DIST_EYES;
+		static const float		MAX_DETEC_CAPA;
+		static const float		MAX_DIST_EARS;
+		static const float		MIN_ANGLE;
+		static const float		MIN_DIST_EYES;
+		static const float		MIN_DIST_EARS;
 	
 	public : 
 		ConcreteFactory(Milieu & milieu);
@@ -25,6 +38,8 @@ class ConcreteFactory : public Factory
 		Bestiole createBestiole(const Milieu & milieu);
 		Bestiole cloneBestiole(const Milieu & milieu, const Bestiole & bestiole);
 		Bestiole createExtBestiole(const Milieu & milieu);
+		Sensors ConcreteFactory::createEars();
+		Sensors ConcreteFactory::createEyes();
 }
 
 #endif
