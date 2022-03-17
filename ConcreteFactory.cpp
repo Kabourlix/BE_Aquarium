@@ -61,7 +61,7 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
     } else {
 		
 		// multiple
-		BestioleStrategy* bestioleStrat = milieu.getStrategy();
+		BestioleStrategy* bestioleStrat = milieu.getRandomStrategy();
 
     			}
    			 }
