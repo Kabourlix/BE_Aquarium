@@ -10,39 +10,14 @@ int MAX = 100;
 
 ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
 	nbBestiole = milieu.getListeBestiole().size()
-	propGregaire, propPeureuse, propKamikaze, propPrevoyante, propMultiple =0, 0, 0, 0, 0;
-	for (Bestiole bestiole : milieu.getListeBestiole()) {
-		if (bestiole.getMutliple()) {
-			++propMultiple;
-		} else { if  (*(bestiole.getStrat()) -> getName() == "Gregaire") {
-				++propGregaire;
-		} else { if (*(bestiole.getStrat()) -> getName() == "Peureuse") {
-					++propPeureuse;
-		} else { if (*(bestiole.getStrat()) -> getName() == "Kamikaze") {
-					++propKamikaze;
-		} else { if (*(bestiole.getStrat()) -> getName() == "Prevoyante") {
-					++propPrevoyante;
-						}
-					}
-				}
-			}
-		}
-	}			
-	propPrevoyante /= nbBestiole;
-	propGregaire /= nbBestiole;
-	propKamikaze /= nbBestiole;
-	propPeureuse /= nbBestiole
-	propMultiple /= nbBestiole;
+	id = nbBestiole + 1;
+
 };
 
 
 ConcreteFactory::~ConcreteFactory(void){
 	delete nbBestiole;
-	delete propMultiple;
-	delete propPeureuse;
-	delete propKamikaze;
-	delete propGregaire;
-	delete propPrevoyante;
+	delete id;
 };
 
 
@@ -75,12 +50,15 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
    			 }
 		}
     }
+	id++;
 };
 
 Bestiole ConcreteFactory::cloneBestiole(const Milieu & milieu, const Bestiole & bestiole){
+	id++;
 	return new Bestiole(bestiole);
 };
 
 Bestiole ConcreteFactory::createExtBestiole(const Milieu & milieu) {
+	id++;
 	return new Bestiole(bestiole);
 };

@@ -7,12 +7,9 @@
 class ConcreteFactory : public Factory
 {
 	private:
-		float propGregaire;
-		float propPeureuse;
-		float propKamikaze;
-		float propPrevoyante;
-		float propMultiple;
-		int nbBestiole;
+
+	int id;
+	int nbBestiole;
 	
 	public : 
 		ConcreteFactory(Milieu & milieu);
