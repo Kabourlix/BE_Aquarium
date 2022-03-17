@@ -10,6 +10,10 @@ class ConcreteFactory : public Factory
 
 	int id;
 	int nbBestiole;
+	float propGregaire;
+	float propPeureuse;
+	float propKamikaze;
+	float propPrevoyante;
 	
 	public : 
 		ConcreteFactory(Milieu & milieu);
