@@ -104,15 +104,11 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 	};
 	if (camouflage) {
 		accessoryVector.push_back(ConcreteFactory::createCamouflage());
-	}
+	};
 
 	
 
-	Accessory *nageoires = 
-	Accessory *carapace = new accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
-	Accessory *camouflage = new accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
-
-
+	// BESTIOLE
 	Bestiole bestiole = new Bestiole(id, 
 						x,
 						y, 
@@ -167,13 +163,13 @@ Accessory ConcreteFactory::createNageoire(){
 
 
 Accessory ConcreteFactory::createCamouflage(){
-	float hidingCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_SPEED;
+	float hidingCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_CAMOUFLAGE;
 	Accessory *camouflage = new accessory("camouflage", 0, 0, hidingCapacity);
 	return *camouflage;
 };
 
 Accessory ConcreteFactory::createCarapace(){
-	float coeffRes = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_SPEED;
+	float coeffRes = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_RES;
 	Accessory *carapace = new accessory("carapace", 0, coeffRes, 0);
 	return *carapace;
 };

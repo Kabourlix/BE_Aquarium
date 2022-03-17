@@ -30,6 +30,9 @@ class ConcreteFactory : public Factory
 		static const float		MIN_ANGLE;
 		static const float		MIN_DIST_EYES;
 		static const float		MIN_DIST_EARS;
+		static const float		MAX_COEF_SPEED;
+		static const float		MAX_COEF_RES;
+		static const float		MAX_COEF_CAMOUFLAGE;
 	
 	public : 
 		ConcreteFactory(Milieu & milieu);
@@ -40,6 +43,9 @@ class ConcreteFactory : public Factory
 		Bestiole createExtBestiole(const Milieu & milieu);
 		Sensors ConcreteFactory::createEars();
 		Sensors ConcreteFactory::createEyes();
+		Accessory ConcreteFactory::createNageoire();
+		Accessory ConcreteFactory::createCamouflage();
+		Accessory ConcreteFactory::createCarapace();
 }
 
 #endif
