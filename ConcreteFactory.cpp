@@ -69,8 +69,8 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
     }
 	id++;
 
-	Sensor *eyes = new Eyes(float detectionCapacity, float distance);
-	Sensor *ears = new Ears();
+	Sensor *eyes = new Eyes(float probaDetection, float angle, float distance);
+	Sensor *ears = new Ears(float detectionCapacity, float distance);
 
 	std::vector<Sensors*> sensorVector;
 	sensorVector.push_back(*eyes);
