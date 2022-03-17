@@ -76,9 +76,9 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 	sensorVector.push_back(*eyes);
 	sensorVector.push_back(*ears);
 
-	Accessory *nageoires = new accessory();
-	Accessory *carapace = new accessory();
-	Accessory *camouflage = new accessory();
+	Accessory *nageoires = new accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
+	Accessory *carapace = new accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
+	Accessory *camouflage = new accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
 
 	std::vector<Accessory*> accessoryVector;
 	accessoryVector.push_back(*nageoires);
