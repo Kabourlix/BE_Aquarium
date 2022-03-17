@@ -69,14 +69,30 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
     }
 	id++;
 
+	Sensor *eyes = new Eyes();
+	Sensor *ears = new Ears();
+
+	std::vector<Sensors*> sensorVector;
+	sensorVector.push_back(*eyes);
+	sensorVector.push_back(*ears);
+
+	Accessory *nageoires = new accessory();
+	Accessory *carapace = new accessory();
+	Accessory *camouflage = new accessory();
+
+	std::vector<Accessory*> accessoryVector;
+	accessoryVector.push_back(*nageoires);
+	accessoryVector.push_back(*carapace);
+	accessoryVector.push_back(*camouflage);
+	
 	return new Bestiole(id, 
 						x,
 						y, 
 						orientation,
 						vitesse, 
 						bestioleStrat,
-						std::vector<Accessory*> listeAccessories_, 
-						std::vector<Sensors*>   listeSensors_ );
+						accessoryVector, 
+						sensorVector);
 };
 
 Bestiole ConcreteFactory::cloneBestiole(const Milieu & milieu, const Bestiole & bestiole){
@@ -86,6 +102,5 @@ Bestiole ConcreteFactory::cloneBestiole(const Milieu & milieu, const Bestiole & 
 };
 
 Bestiole ConcreteFactory::createExtBestiole(const Milieu & milieu) {
-	id++;
-	return new Bestiole(bestiole);
+	return ConcreteFactory;;createBestiole(milieu);
 };

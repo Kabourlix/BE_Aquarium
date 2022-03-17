@@ -6,7 +6,7 @@
 #include "BestioleStrategy.h"
 #include "Eyes.h"
 #include "Ears.h"
-
+#include "Sensors.h"
 
 class ConcreteFactory : public Factory
 {
