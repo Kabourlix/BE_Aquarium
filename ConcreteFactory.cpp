@@ -11,6 +11,10 @@ int MAX = 100;
 ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
 	nbBestiole = milieu.getListeBestiole().size()
 	id = nbBestiole + 1;
+	float propGregaire;
+	float propPeureuse;
+	float propKamikaze;
+	float propPrevoyante;
 
 };
 
@@ -30,22 +34,68 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
     float randomVariable = distr(eng)/MAX;
     if (randomVariable <= propGregaire) {
 
-    	return new Bestiole() // Gregaire
+		 // Gregaire
+
+    	return new Bestiole(int identite_, 
+							int x_,
+							int y_, 
+							double orientation_,
+							double vitesse_, 
+							BestioleStrategy  *bestioleStrat_,
+							std::vector<Accessory*> listeAccessories_, 
+							std::vector<Sensors*>   listeSensors_ )
 
     } else { if (randomVariable <= propKamikaze) {
 
-    	return new Bestiole() // Kamikaze
+		// Kamikaze
+
+    	return new Bestiole(int identite_, 
+							int x_,
+							int y_, 
+							double orientation_,
+							double vitesse_, 
+							BestioleStrategy  *bestioleStrat_,
+							std::vector<Accessory*> listeAccessories_, 
+							std::vector<Sensors*>   listeSensors_ )
 
     } else { if (randomVariable <= propPeureuse) {
 
-    	return new Bestiole() // Peureuse
+		// Peureuse
+
+    	return new Bestiole(int identite_, 
+							int x_,
+							int y_, 
+							double orientation_,
+							double vitesse_, 
+							BestioleStrategy  *bestioleStrat_,
+							std::vector<Accessory*> listeAccessories_, 
+							std::vector<Sensors*>   listeSensors_ )
 
     } else { if (randomVariable <= propPrevoyante) {
 
-    	return new Bestiole() // Prevoyante
+		// Prevoyante
+
+    	return new Bestiole(int identite_, 
+							int x_,
+							int y_, 
+							double orientation_,
+							double vitesse_, 
+							BestioleStrategy  *bestioleStrat_,
+							std::vector<Accessory*> listeAccessories_, 
+							std::vector<Sensors*>   listeSensors_ )
 
     } else {
-    	return new Bestiole() // multiple
+		
+		// multiple
+
+    	return new Bestiole(int identite_, 
+							int x_,
+							int y_, 
+							double orientation_,
+							double vitesse_, 
+							BestioleStrategy  *bestioleStrat_,
+							std::vector<Accessory*> listeAccessories_, 
+							std::vector<Sensors*>   listeSensors_ )
     			}
    			 }
 		}
