@@ -2,6 +2,10 @@
 #define _CONCRETEFACTORY_H_
 
 #include "Factory.h"
+#include "Accessory.h"
+#include "BestioleStrategy.h"
+#include "Eyes.h"
+#include "Ears.h"
 
 
 class ConcreteFactory : public Factory

@@ -1,8 +1,8 @@
 #include "ConcreteFactory.h"
 #include <random>
-#include "Accessory.h"
-#include "Eyes.h"
-#include "Ears.h"
+#include <cstdlib>
+#include <ctime>
+#include <vector>
 
 int MIN = 0;
 int MAX = 100;
@@ -27,80 +27,56 @@ ConcreteFactory::~ConcreteFactory(void){
 
 
 Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
-	nbBestiole = milieu.getListeBestiole().lenght();
-    std::random_device rd;
+	    
+	std::random_device rd;
     std::default_random_engine eng(rd());
     std::uniform_int_distribution<float> distr(MIN, MAX);
     float randomVariable = distr(eng)/MAX;
+
+	int x = std::rand() % xLim;
+	int y = std::rand() % yLim;
+   	double orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
+   	double vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
+
     if (randomVariable <= propGregaire) {
 
 		 // Gregaire
-
-    	return new Bestiole(int identite_, 
-							int x_,
-							int y_, 
-							double orientation_,
-							double vitesse_, 
-							BestioleStrategy  *bestioleStrat_,
-							std::vector<Accessory*> listeAccessories_, 
-							std::vector<Sensors*>   listeSensors_ )
+		 BestioleStrategy* bestioleStrat = milieu.getStrategy("Gregaire");
 
     } else { if (randomVariable <= propKamikaze) {
 
 		// Kamikaze
-
-    	return new Bestiole(int identite_, 
-							int x_,
-							int y_, 
-							double orientation_,
-							double vitesse_, 
-							BestioleStrategy  *bestioleStrat_,
-							std::vector<Accessory*> listeAccessories_, 
-							std::vector<Sensors*>   listeSensors_ )
+		BestioleStrategy* bestioleStrat = milieu.getStrategy("Kamikaze");
 
     } else { if (randomVariable <= propPeureuse) {
 
 		// Peureuse
-
-    	return new Bestiole(int identite_, 
-							int x_,
-							int y_, 
-							double orientation_,
-							double vitesse_, 
-							BestioleStrategy  *bestioleStrat_,
-							std::vector<Accessory*> listeAccessories_, 
-							std::vector<Sensors*>   listeSensors_ )
+		BestioleStrategy* bestioleStrat = milieu.getStrategy("Peureuse");
 
     } else { if (randomVariable <= propPrevoyante) {
 
 		// Prevoyante
-
-    	return new Bestiole(int identite_, 
-							int x_,
-							int y_, 
-							double orientation_,
-							double vitesse_, 
-							BestioleStrategy  *bestioleStrat_,
-							std::vector<Accessory*> listeAccessories_, 
-							std::vector<Sensors*>   listeSensors_ )
+		BestioleStrategy* bestioleStrat = milieu.getStrategy("Prevoyante");
 
     } else {
 		
 		// multiple
+		BestioleStrategy* bestioleStrat = milieu.getStrategy();
 
-    	return new Bestiole(int identite_, 
-							int x_,
-							int y_, 
-							double orientation_,
-							double vitesse_, 
-							BestioleStrategy  *bestioleStrat_,
-							std::vector<Accessory*> listeAccessories_, 
-							std::vector<Sensors*>   listeSensors_ )
     			}
    			 }
 		}
     }
 	id++;
+
+	return new Bestiole(id, 
+						x,
+						y, 
+						orientation,
+						vitesse, 
+						bestioleStrat,
+						std::vector<Accessory*> listeAccessories_, 
+						std::vector<Sensors*>   listeSensors_ );
 };
 
 Bestiole ConcreteFactory::cloneBestiole(const Milieu & milieu, const Bestiole & bestiole){
