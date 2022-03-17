@@ -173,4 +173,3 @@ Accessory ConcreteFactory::createCarapace(){
 	Accessory *carapace = new accessory("carapace", 0, coeffRes, 0);
 	return *carapace;
 };
-
