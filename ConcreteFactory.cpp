@@ -16,6 +16,9 @@ const float		ConcreteFactory::MAX_DIST_EARS = 40.;
 const float		ConcreteFactory::MIN_ANGLE = M_PI;
 const float		ConcreteFactory::MIN_DIST_EYES = 20.;
 const float		ConcreteFactory::MIN_DIST_EARS = 20.;
+const float		ConcreteFactory::MAX_COEF_SPEED = 1.;
+const float		ConcreteFactory::MAX_COEF_RES = 1.;
+const float		ConcreteFactory::MAX_COEF_CAMOUFLAGE = 1.;
 
 
 ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
@@ -43,65 +46,74 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
     std::uniform_int_distribution<float> distr(MIN, MAX);
     float randomVariable = distr(eng)/MAX;
 
+	//POSITION
 	int x = std::rand() % xLim;
 	int y = std::rand() % yLim;
+
+	//SPEED AND ORENTATION
    	double orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    	double vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
-	float probaDetection = static_cast<double>( rand() )/RAND_MAX*MAX_PROB_DETECTION;
-	float angle = 
-	float distanceEyes;
-	float detectionCapacity;
-	float distanceEars;
+	BestioleStrategy* bestioleStrat;
 
+
+	// STRATEGY
     if (randomVariable <= propGregaire) {
-
 		 // Gregaire
-		 BestioleStrategy* bestioleStrat = milieu.getStrategy("Gregaire");
-
+		bestioleStrat = milieu.getStrategy("Gregaire");
     } else { if (randomVariable <= propKamikaze) {
-
 		// Kamikaze
-		BestioleStrategy* bestioleStrat = milieu.getStrategy("Kamikaze");
-
+		bestioleStrat = milieu.getStrategy("Kamikaze");
     } else { if (randomVariable <= propPeureuse) {
-
 		// Peureuse
-		BestioleStrategy* bestioleStrat = milieu.getStrategy("Peureuse");
-
+		bestioleStrat = milieu.getStrategy("Peureuse");
     } else { if (randomVariable <= propPrevoyante) {
-
 		// Prevoyante
-		BestioleStrategy* bestioleStrat = milieu.getStrategy("Prevoyante");
-
-    } else {
-		
+		bestioleStrat = milieu.getStrategy("Prevoyante");
+    } else {	
 		// multiple
-		BestioleStrategy* bestioleStrat = milieu.getRandomStrategy();
-
+		bestioleStrat = milieu.getRandomStrategy();
     			}
    			 }
 		}
     }
-	id++;
+ 
 
-	Sensor *eyes = new Eyes(probaDetection, angle, distanceEyes);
-	Sensor *ears = new Ears(detectionCapacity, distanceEars);
-
+	// SENSORS
 	std::vector<Sensors*> sensorVector;
-	sensorVector.push_back(*eyes);
-	sensorVector.push_back(*ears);
+	int eyes = rand() % 2;
+	int ears = rand() % 2;
+	if(eyes) {
+		sensorVector.push_back(ConcreteFactory::createEars());
+	};
+	if (ears) {
+		sensorVector.push_back(ConcreteFactory::createEars());
+	};
 
-	Accessory *nageoires = new accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
+
+	// ACCESOIRIES
+	std::vector<Accessory*> accessoryVector;
+	int nageoires = rand() % 2;
+	int carapace = rand() % 2;
+	int camouflage = rand() % 2;
+	if(nageoires) {
+		accessoryVector.push_back(ConcreteFactory::createNageoire());
+	};
+	if (carapace) {
+		accessoryVector.push_back(ConcreteFactory::createCarapace());
+	};
+	if (camouflage) {
+		accessoryVector.push_back(ConcreteFactory::createCamouflage());
+	}
+
+	
+
+	Accessory *nageoires = 
 	Accessory *carapace = new accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
 	Accessory *camouflage = new accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
 
-	std::vector<Accessory*> accessoryVector;
-	accessoryVector.push_back(*nageoires);
-	accessoryVector.push_back(*carapace);
-	accessoryVector.push_back(*camouflage);
-	
-	return new Bestiole(id, 
+
+	Bestiole bestiole = new Bestiole(id, 
 						x,
 						y, 
 						orientation,
@@ -109,6 +121,14 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 						bestioleStrat,
 						accessoryVector, 
 						sensorVector);
+	
+	id++;
+	delete nageoires;
+	delete carapace;
+	delete camouflage;
+	delete eyes;
+	delete ears;
+	return bestiole;
 };
 
 Bestiole ConcreteFactory::cloneBestiole(const Milieu & milieu, const Bestiole & bestiole){
@@ -118,14 +138,43 @@ Bestiole ConcreteFactory::cloneBestiole(const Milieu & milieu, const Bestiole & 
 };
 
 Bestiole ConcreteFactory::createExtBestiole(const Milieu & milieu) {
-	return ConcreteFactory;;createBestiole(milieu);
+	return ConcreteFactory::createBestiole(milieu);
 };
 
 
 Sensors ConcreteFactory::createEyes(){
-
+	float probaDetection = static_cast<double>( rand() )/RAND_MAX*MAX_PROB_DETECTION;
+	float angle = static_cast<double>( rand() )/RAND_MAX*(MAX_ANGLE-MIN_ANGLE) + MIN_ANGLE;
+	float distanceEyes = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EYES-MIN_DIST_EYES) + MIN_DIST_EYES;
+	Sensor *eyes = new Eyes(probaDetection, angle, distanceEyes);
+	return *eyes;
+	
 };
 
 Sensors ConcreteFactory::createEars(){
-
+	float detectionCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_DETEC_CAPA;
+	float distanceEars = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EARS-MIN_DIST_EARS) + MIN_DIST_EARS;
+	Sensor *ears = new Ears(detectionCapacity, distanceEars);
+	return *ears;
 };
+
+
+Accessory ConcreteFactory::createNageoire(){
+	float coeffSpeed = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_SPEED;
+	Accessory *nageoires = new accessory("nageoires", coeffSpeed, 0 , 0);
+	return *nageoires;
+};
+
+
+Accessory ConcreteFactory::createCamouflage(){
+	float hidingCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_SPEED;
+	Accessory *camouflage = new accessory("camouflage", 0, 0, hidingCapacity);
+	return *camouflage;
+};
+
+Accessory ConcreteFactory::createCarapace(){
+	float coeffRes = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_SPEED;
+	Accessory *carapace = new accessory("carapace", 0, coeffRes, 0);
+	return *carapace;
+};
+
