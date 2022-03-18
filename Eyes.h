@@ -7,13 +7,11 @@ class Eyes : public Sensors
 {
 
 	public :
-        float detectionCapacity;
-        float angle; // Carefull with the borns of the values angle and distance
-        float distance;
-		Eyes(const Eyes& eyes);
+		Eyes(const Sensors& eyes); //TODO : Poser la question aux profs ça me parait chelou.
         Eyes(float probaDetection, float angle, float distance);
-		~Eyes();
-		virtual bool detection(Bestiole bestiole1,Bestiole bestiole2);
+		virtual ~Eyes();
+		virtual bool detection(const Bestiole * bestiole1, const Bestiole * bestiole2);
+        inline virtual std::string getName() const {return "Eyes";};
 };
 
 #endif

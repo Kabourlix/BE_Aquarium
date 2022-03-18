@@ -34,6 +34,9 @@
  		static const float		MAX_COEF_RES;
  		static const float		MAX_COEF_CAMOUFLAGE;
 
+		static const float 		xLim;
+		static const float 		yLim;
+
  	public : 
  		ConcreteFactory();
  		~ConcreteFactory();
@@ -45,9 +48,9 @@
 
  		Sensors* ConcreteFactory::createEars();
  		Sensors* ConcreteFactory::createEyes();
- 		Accessory ConcreteFactory::createNageoire();
- 		Accessory ConcreteFactory::createCamouflage();
- 		Accessory ConcreteFactory::createCarapace();
+ 		Accessory* ConcreteFactory::createNageoire();
+ 		Accessory* ConcreteFactory::createCamouflage();
+ 		Accessory* ConcreteFactory::createCarapace();
  };
 
  #endif

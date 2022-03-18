@@ -7,8 +7,8 @@ class Ears : public Sensors
 {
 
 	public :
-    
-        Ears( const Ears& ears);
+		Ears(const Ears& ears);
+        Ears( const Sensors& ears); //TODO : Poser la question aux profs ça me parait chelou.
 		Ears(float detectionCapacity, float distance);
 		virtual ~Ears();
 		virtual bool detection(const Bestiole * bestiole1, const Bestiole * bestiole2);
@@ -25,6 +25,8 @@ class Ears : public Sensors
 				this -> distance = dist;
 		}
 
-}
+		inline virtual std::string getName() const {return "Ears";};
+
+};
 
 #endif

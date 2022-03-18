@@ -15,6 +15,7 @@ class Accessory
 	
 	public : 
 		Accessory(std::string name, float coeffSpeed,float coeffRes,float hidingCapacity);
+		Accessory(const Accessory & accessory);
 		~Accessory();
 		inline std::string getName() const {return name;};
 		inline float getcoeffSpeed() const {return coeffSpeed;};
@@ -22,6 +23,6 @@ class Accessory
 		inline float gethidingCapacity() const {return hidingCapacity;};
 
 
-}
+};
 
 #endif

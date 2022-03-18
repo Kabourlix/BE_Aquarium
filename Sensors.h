@@ -16,6 +16,7 @@ class Sensors
 	Sensors();
 	virtual ~Sensors();
 	virtual bool detection(const Bestiole *bestiole1,const Bestiole *bestiole2)=0;
+	inline virtual std::string getName() const =0;
 };
 
 #endif

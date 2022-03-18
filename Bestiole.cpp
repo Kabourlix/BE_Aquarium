@@ -33,13 +33,13 @@ Bestiole::Bestiole( void )
 }
 
 
-Bestiole::Bestiole( const Bestiole & b, int identite_ )
+Bestiole::Bestiole( const Bestiole & b , int id)
 {
 
-   identite = identite_;
+   identite = id;
    milieu = Milieu::getInstance();
 
-   cout << "const Bestiole (" << identite << ") par copie" << endl;
+   cout << "const Bestiole (" << identite << ") par copie de " << b.getIdentite() << endl;
 
    x = b.x;
    y = b.y;
@@ -50,9 +50,21 @@ Bestiole::Bestiole( const Bestiole & b, int identite_ )
    ageLimite = b.ageLimite;
    couleur = new T[ 3 ];
    memcpy( couleur, b.couleur, 3*sizeof(T) );
-   bestioleStrat = b.bestioleStrat;
-   listeAccessories = b.listeAccessories;
-   listeSensors = b.listeSensors;
+   bestioleStrat = b.bestioleStrat; //Reference to the strat
+   //Copying the accessories
+   for(std::vector<Accessory*>::const_iterator it = b.listeAccessories.cbegin(); it != b.listeAccessories.cend(); ++it){
+      listeAccessories.push_back(new Accessory(**it));
+   }
+
+   for(std::vector<Sensors*>::const_iterator it = b.listeSensors.cbegin(); it != b.listeSensors.cend(); ++it){
+      //Get the type of the current item
+      if((**it).getName() == "Eyes"){
+         listeSensors.push_back(new Eyes(**it));
+      }else{
+         listeSensors.push_back(new Ears(**it));
+      }
+   }
+
    multiple = b.multiple;
 
 }
@@ -95,7 +107,7 @@ Bestiole::~Bestiole( void )
       *it=nullptr;
    }
 
-   cout << "dest Bestiole" << endl;
+   cout << "dest of Bestiole id : " << identite << endl;
 
 }
 

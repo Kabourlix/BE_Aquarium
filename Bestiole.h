@@ -49,7 +49,7 @@ private :
 public :     
    // -------- CONSTRUCTEUR ET DESTRUCTEUR --------
    Bestiole( void ); // Constructeur par defaut
-   Bestiole( const Bestiole & b, int identite_ ); // Constructeur de copies
+   Bestiole( const Bestiole & b, int id); // Constructeur de copies
    Bestiole( int identite_, int x_, int y_, 
             double orientation_, double vitesse_, 
             const BestioleStrategy  *bestioleStrat_, 
