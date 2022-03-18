@@ -146,11 +146,6 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 						limiteAge);
 	
 	id++;
-	delete nageoires;
-	delete carapace;
-	delete camouflage;
-	delete eyes;
-	delete ears;
 	return bestiole;
 };
 
