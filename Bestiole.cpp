@@ -46,6 +46,8 @@ Bestiole::Bestiole( const Bestiole & b, int identite_ )
    cumulX = cumulY = 0.;
    orientation = b.orientation;
    vitesse = b.vitesse;
+   age = b.age;
+   ageLimite = b.ageLimite;
    couleur = new T[ 3 ];
    memcpy( couleur, b.couleur, 3*sizeof(T) );
    bestioleStrat = b.bestioleStrat;
@@ -55,7 +57,7 @@ Bestiole::Bestiole( const Bestiole & b, int identite_ )
 }
 
 
-Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ )
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_)
 {
 
    identite =  identite_;
@@ -65,6 +67,8 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    cumulX = cumulY = 0.;
    orientation = orientation_;
    vitesse = vitesse_;
+   age = age_;
+   ageLimite = ageLimite_;
    *bestioleStrat = *bestioleStrat_;
    listeAccessories = listeAccessories_ ;
    listeSensors = listeSensors_;
@@ -140,7 +144,8 @@ void Bestiole::bouge( int xLim, int yLim )
 
 
 void Bestiole::action( Milieu & monMilieu )
-{
+{  
+   this->updateAge();
    bestioleStrat->action(*this);
    bouge( monMilieu.getWidth(), monMilieu.getHeight() );
 
@@ -216,5 +221,10 @@ Bestiole Bestiole::getNearestBestiole()
       }
    }
    if (n==1) { return nearestBestiole;}
+}
+
+void Bestiole::updateAge()
+{
+   age = age +1;
 }
 ;
