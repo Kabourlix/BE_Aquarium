@@ -10,12 +10,13 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
  
 
-# Make data base, printed on Fri Mar 18 16:30:46 2022
+# Make data base, printed on Fri Mar 18 16:58:16 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
+ 
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -41,13 +42,11 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/rb/qyycq0gd1vnbf173_z7d_33r0000gn/T/vscode-ipc-48e3a901-a725-4574-a273-8341cb9c0574.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/rb/qyycq0gd1vnbf173_z7d_33r0000gn/T/vscode-ipc-86a38325-9d4f-4c9c-970e-110f03556869.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /Users/hdamaia/miniconda3/bin:/Users/hdamaia/miniconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/Library/Apple/usr/bin:/Users/hdamaia/sdk/flutter/bin
-# environment
-LaunchInstanceID = 35DD7A33-A0E7-4EBA-95BA-91C359474562
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -140,8 +139,6 @@ MAKEFILES :=
 LC_ALL = C
 # environment
 CONDA_PYTHON_EXE = /Users/hdamaia/miniconda3/bin/python
-# environment
-SECURITYSESSIONID = 186b2
 # automatic
 ^F = $(notdir $^)
 # default
@@ -155,13 +152,14 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/hdamaia/miniconda3
 # environment
-VSCODE_PID = 579
+ 
+VSCODE_PID = 2295
 # environment
 _CE_CONDA = 
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=73/1024=7%, Rehash=0, Collisions=2/97=2%
+# Load=71/1024=7%, Rehash=0, Collisions=2/95=2%
 
 # Pattern-specific Variable Values
 
@@ -304,6 +302,6 @@ main: main.cpp Aquarium.o Bestiole.o Milieu.o
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Mar 18 16:30:46 2022
+# Finished Make data base on Fri Mar 18 16:58:16 2022
 
  

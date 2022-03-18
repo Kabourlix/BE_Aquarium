@@ -5,13 +5,10 @@
 
 class BestioleStrategy
 {
-	
 	public : 
-
-	virtual ~BestioleStrategy();
-	
-	virtual void action(Bestiole bestiole)=0;
-
+		virtual ~BestioleStrategy();
+		virtual void action(Bestiole bestiole) const =0;
+		virtual std::string getName() const =0;
 };
 
 #endif

@@ -58,7 +58,7 @@ Bestiole::Bestiole( const Bestiole & b, int identite_ )
 }
 
 
-Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_, bool multiple_)
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, const BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_, bool multiple_)
 {
 
    identite =  identite_;
@@ -70,10 +70,10 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    vitesse = vitesse_;
    age = age_;
    ageLimite = ageLimite_;
-   *bestioleStrat = *bestioleStrat_;
+   bestioleStrat = bestioleStrat_;
    listeAccessories = listeAccessories_ ;
    listeSensors = listeSensors_;
-   couleur = couleur_;
+   couleur = &couleur_;
    multiple = multiple_;
 
 }
@@ -153,6 +153,7 @@ void Bestiole::action( Milieu & monMilieu )
          this->setStrategy(Milieu::getInstance()->getRandomStrategy(bestioleStrat->getName()));
       }
    }
+   //Execute bestioleStrat (const pointer) action
    bestioleStrat->action(*this);
    bouge( monMilieu.getWidth(), monMilieu.getHeight() );
 
@@ -165,7 +166,7 @@ void Bestiole::draw( UImg & support )
    double         xt = x + cos( orientation )*AFF_SIZE/2.1;
    double         yt = y - sin( orientation )*AFF_SIZE/2.1;
 
-
+   //TODO : Vérifier comment régler l'erreur
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
 
@@ -235,6 +236,7 @@ bool Bestiole::checkCollision(const Bestiole & b)
    return ( this->sqrDist(b) <= 0.01*0.01 );
 }
 
+//TODO : À modifier
 Bestiole* Bestiole::checkCollision(const std::vector<Bestiole> & b)
 {
    for ( std::vector<Bestiole>::const_iterator it = b.cbegin() ; it != b.cend() ; ++it )

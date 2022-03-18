@@ -15,7 +15,7 @@ class StratGregaire
 
 		void action(Bestiole bestiole);
 		
-		inline std::string getName() const{return NAME;};
+		virtual inline std::string getName() const{return NAME;};
 };
 
 #endif

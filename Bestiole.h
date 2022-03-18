@@ -36,11 +36,12 @@ private :
    int               age;
    int               ageLimite;
    bool              multiple;
-   BestioleStrategy  *bestioleStrat;
+
+   const BestioleStrategy * bestioleStrat;
    std::vector<Accessory*>   listeAccessories;
    std::vector<Sensors*>   listeSensors;
-
-   T                couleur;
+   //! Attention à ce type, je ne suis pas sûr que ça marche.
+   T*                couleur;
 
 private :
    void bouge( int xLim, int yLim );
@@ -51,7 +52,7 @@ public :
    Bestiole( const Bestiole & b, int identite_ ); // Constructeur de copies
    Bestiole( int identite_, int x_, int y_, 
             double orientation_, double vitesse_, 
-            BestioleStrategy  *bestioleStrat_, 
+            const BestioleStrategy  *bestioleStrat_, 
             std::vector<Accessory*> listeAccessories_, 
             std::vector<Sensors*>   listeSensors_ , 
             T couleur_, int age_, int ageLimite_, bool multiple_);
@@ -79,9 +80,9 @@ public :
    inline int getAge() const {return age;};
    inline int getAgeLimite() const {return ageLimite;};
    inline bool getMultiple() const {return multiple;};
-   inline BestioleStrategy *getStrat() const {return bestioleStrat;};
+   inline const BestioleStrategy * getStrat() const {return bestioleStrat;};
    inline std::vector<Accessory*> getAccessories() const {return listeAccessories;};
-   inline void setStrategy(const BestioleStrategy * newStrat){*bestioleStrat = newStrat;};
+   inline void setStrategy(const BestioleStrategy * newStrat){bestioleStrat = newStrat;};
    inline void setOrientation(double newOrientation){orientation = newOrientation;};
    inline void setVitesse(double newVitesse){vitesse = newVitesse;};
    // -----------------------------------
