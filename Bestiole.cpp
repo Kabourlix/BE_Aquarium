@@ -17,7 +17,7 @@ Bestiole::Bestiole( void )
 {
 
    identite = ++next;
-
+   milieu = Milieu::getInstance();
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
    x = y = 0;
@@ -29,14 +29,15 @@ Bestiole::Bestiole( void )
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-
+   
 }
 
 
-Bestiole::Bestiole( const Bestiole & b )
+Bestiole::Bestiole( const Bestiole & b, int identite_ )
 {
 
-   identite = ++next;
+   identite = identite_;
+   milieu = Milieu::getInstance();
 
    cout << "const Bestiole (" << identite << ") par copie" << endl;
 
@@ -45,8 +46,35 @@ Bestiole::Bestiole( const Bestiole & b )
    cumulX = cumulY = 0.;
    orientation = b.orientation;
    vitesse = b.vitesse;
+   age = b.age;
+   ageLimite = b.ageLimite;
    couleur = new T[ 3 ];
    memcpy( couleur, b.couleur, 3*sizeof(T) );
+   bestioleStrat = b.bestioleStrat;
+   listeAccessories = b.listeAccessories;
+   listeSensors = b.listeSensors;
+   multiple = b.multiple;
+
+}
+
+
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_, bool multiple)
+{
+
+   identite =  identite_;
+   milieu = Milieu::getInstance();
+   x = x_;
+   y = y_;
+   cumulX = cumulY = 0.;
+   orientation = orientation_;
+   vitesse = vitesse_;
+   age = age_;
+   ageLimite = ageLimite_;
+   *bestioleStrat = *bestioleStrat_;
+   listeAccessories = listeAccessories_ ;
+   listeSensors = listeSensors_;
+   couleur = couleur_;
+   multiple = multiple_;
 
 }
 
@@ -55,6 +83,17 @@ Bestiole::~Bestiole( void )
 {
 
    delete[] couleur;
+   
+   for ( std::vector<Accessory*>::iterator it = listeAccessories.begin() ; it != listeAccessories.end() ; ++it )
+   { 
+      delete * it;
+      *it=nullptr;
+   }
+   for ( std::vector<Sensors*>::iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
+   { 
+      delete * it;
+      *it=nullptr;
+   }
 
    cout << "dest Bestiole" << endl;
 
@@ -107,8 +146,14 @@ void Bestiole::bouge( int xLim, int yLim )
 
 
 void Bestiole::action( Milieu & monMilieu )
-{
-
+{  
+   this->updateAge();
+   if (multiple) {
+      if (rand()<0.25) {
+         this->setStrategy(Milieu::getInstance()->getRandomStrategy(bestioleStrat->getName()));
+      }
+   }
+   bestioleStrat->action(*this);
    bouge( monMilieu.getWidth(), monMilieu.getHeight() );
 
 }
@@ -140,8 +185,53 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 
    double         dist;
 
-
    dist = std::sqrt( (x-b.x)*(x-b.x) + (y-b.y)*(y-b.y) );
    return ( dist <= LIMITE_VUE );
 
 }
+
+bool Bestiole::detect(const Bestiole *b) const
+{ bool detected = false;
+// Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
+   for ( std::vector<Sensors*>::const_iterator it = listeSensors.cbegin() ; it != listeSensors.cend() ; ++it )
+   {
+      if ((*it)->detection(this,b)){ detected = true; }
+   }
+  return detected;
+}
+
+std::vector<Bestiole> Bestiole::getNearbyNeighbor() 
+{ std::vector<Bestiole> neighbors;
+   for ( std::vector<Bestiole>::iterator it = milieu->getBestioles().begin() ; it != milieu->getBestioles().end() ; ++it )
+   { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) ) ))
+      {
+         neighbors.push_back(*it);
+      }
+   }
+   return neighbors;
+}
+
+// Attention n'appeler cette méthode que si getNearbyNeighbor() ne renvoie pas une liste vide.
+Bestiole Bestiole::getNearestBestiole()
+{ Bestiole nearestBestiole;
+  double currentMinDist2 = 0; 
+  int n = 0;
+   for ( std::vector<Bestiole>::iterator it = milieu->getBestioles().begin() ; it != milieu->getBestioles().end() ; ++it )
+   { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) )))
+      { 
+         if ( n==0 || (pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2) ) < currentMinDist2)
+         {
+            nearestBestiole = *it;
+            currentMinDist2 = pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2);
+            n = 1;
+         }
+      }
+   }
+   if (n==1) { return nearestBestiole;}
+}
+
+void Bestiole::updateAge()
+{
+   age = age +1;
+}
+;

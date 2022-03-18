@@ -2,13 +2,20 @@
 #define _STRATGREGAIRE_H_
 
 #include "BestioleStrategy.h"
+# include <string> 
 
-class StratGregaire : public BestioleStrategy
-{
+class StratGregaire
+{	
+	private :
+		static const std::string NAME;
+	
 	public : 
 		StratGregaire();
 		~StratGregaire();
 
-		virtual void action(const Milieu & milieu, Bestiole bestiole);
+		void action(Bestiole bestiole);
+		
+		inline std::string getName() const{return NAME;};
 };
+
 #endif

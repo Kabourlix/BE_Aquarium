@@ -3,14 +3,17 @@
 
 #include "BestioleStrategy.h"
 
-class StratPrevoyante : public BestioleStrategy
+class StratPrevoyante
 {
+	private :
+		static const std::string NAME;
 	
 	public : 
 		StratPrevoyante();
 		~StratPrevoyante();
 
-		void action(const Milieu & milieu, Bestiole bestiole);
-}
+		void action(Bestiole bestiole);
+		inline std::string getName() const{return NAME;};
+};
 
 #endif
