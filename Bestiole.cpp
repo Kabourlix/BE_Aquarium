@@ -148,6 +148,11 @@ void Bestiole::bouge( int xLim, int yLim )
 void Bestiole::action( Milieu & monMilieu )
 {  
    this->updateAge();
+   if (multiple) {
+      if (rand()<0.25) {
+         this->setStrategy(Milieu::getInstance()->getRandomStrategy(bestioleStrat->getName()));
+      }
+   }
    bestioleStrat->action(*this);
    bouge( monMilieu.getWidth(), monMilieu.getHeight() );
 
