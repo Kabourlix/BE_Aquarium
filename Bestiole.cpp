@@ -53,11 +53,12 @@ Bestiole::Bestiole( const Bestiole & b, int identite_ )
    bestioleStrat = b.bestioleStrat;
    listeAccessories = b.listeAccessories;
    listeSensors = b.listeSensors;
+   multiple = b.multiple;
 
 }
 
 
-Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_)
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_, bool multiple)
 {
 
    identite =  identite_;
@@ -73,6 +74,7 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    listeAccessories = listeAccessories_ ;
    listeSensors = listeSensors_;
    couleur = couleur_;
+   multiple = multiple_;
 
 }
 
