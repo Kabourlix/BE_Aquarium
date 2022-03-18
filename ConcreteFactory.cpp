@@ -56,24 +56,41 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
    	double vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
 	BestioleStrategy* bestioleStrat;
+	T couleur;
+	couleur = new T[ 3 ];
 
 
 	// STRATEGY
     if (randomVariable <= propGregaire) {
-		 // Gregaire
+		 // Gregaire Rouge
 		bestioleStrat = milieu.getStrategy("Gregaire");
+		couleur[ 0 ] = 255;
+  		couleur[ 1 ] = 0;
+   		couleur[ 2 ] = 0;
     } else { if (randomVariable <= propKamikaze) {
-		// Kamikaze
+		// Kamikaze Orange
 		bestioleStrat = milieu.getStrategy("Kamikaze");
+		couleur[ 0 ] = 255;
+  		couleur[ 1 ] = 165;
+   		couleur[ 2 ] = 0;
     } else { if (randomVariable <= propPeureuse) {
-		// Peureuse
+		// Peureuse Bleu
 		bestioleStrat = milieu.getStrategy("Peureuse");
+		couleur[ 0 ] = 255;
+  		couleur[ 1 ] = 255;
+   		couleur[ 2 ] = 0;
     } else { if (randomVariable <= propPrevoyante) {
-		// Prevoyante
+		// Prevoyante Verte
 		bestioleStrat = milieu.getStrategy("Prevoyante");
+		couleur[ 0 ] = 152;
+  		couleur[ 1 ] = 251; 	
+   		couleur[ 2 ] = 152;
     } else {	
-		// Multiple
+		// Multiple Noire
 		bestioleStrat = milieu.getRandomStrategy();
+		couleur[ 0 ] = 0;
+  		couleur[ 1 ] = 0;
+   		couleur[ 2 ] = 0;
     			}
    			 }
 		}
@@ -107,6 +124,12 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 		accessoryVector.push_back(this -> createCamouflage());
 	};
 
+	//AGE
+
+	int age;
+	age = 0;
+	int ageLimite;
+	ageLimite = static_cast<int>( rand() )/RAND_MAX*(300-100) + 100;
 	
 
 	// BESTIOLE
