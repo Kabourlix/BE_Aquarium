@@ -69,11 +69,6 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    listeAccessories = listeAccessories_ ;
    listeSensors = listeSensors_;
    couleur = couleur_;
-   
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
 
 }
 
