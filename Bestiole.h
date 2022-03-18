@@ -23,7 +23,6 @@ private :
    static const double     AFF_SIZE;
    static const double     MAX_VITESSE;
    static const double     LIMITE_VUE;
-   static const bool       MULTIPLE;
 
    static int              next;
    Milieu* milieu;
@@ -36,6 +35,7 @@ private :
    double            vitesse;
    int               age;
    int               ageLimite;
+   bool              multiple;
    BestioleStrategy  *bestioleStrat;
    std::vector<Accessory*>   listeAccessories;
    std::vector<Sensors*>   listeSensors;
@@ -48,7 +48,7 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
    Bestiole( const Bestiole & b, int identite_ );                 // Constructeur de copies
-   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_ , T couleur_, int age_, int ageLimite_);
+   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_ , T couleur_, int age_, int ageLimite_, bool multiple_);
 
    ~Bestiole( void );                              // Destructeur
                                                    // Operateur d'affectation binaire par defaut
@@ -69,6 +69,7 @@ public :                                           // Forme canonique :
    inline bool getMultiple() const {return MULTIPLE;};
    inline int getAge() const {return age;};
    inline int getAgeLimite() const {return ageLimite;};
+   inline bool getMultiple() const {return multiple;};
    inline BestioleStrategy *getStrat() const {return bestioleStrat;};
    inline std::vector<Accessory*> getAccessories() const {return listeAccessories;};
    inline void setStrategy(const BestioleStrategy & newStrat){*bestioleStrat = newStrat;};
