@@ -3,24 +3,24 @@
 #include <cstdlib>
 
 KillHandler::KillHandler(){
-    
+    milieu = Milieu::getInstance();
 }
 
 KillHandler::~KillHandler(){
     
 }
 
-void KillHandler::kill(const Milieu & milieu,Bestiole bestiole){
-    if (bestiole.age >= bestiole.ageLimite) {
-        milieu.removeMemeber(bestiole);
+void KillHandler::kill(Bestiole bestiole){
+    if (bestiole.getAge >= bestiole.getAgeLimite) {
+        milieu->removeMember(bestiole);
     }
-    listeBestioles = milieu.listeBestioles;
+    listeBestioles = milieu->getListeBestioles;
     
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); it++) {
-        if (it != bestiole and it.cumulX == bestiole.cumulX and it.cumulY == bestiole.cumulY) {
+        if (it != bestiole and it.x == bestiole.x and it.y == bestiole.y) {
             if (rand() > 0.75) {
-                milieu.removeMemeber(bestiole);
-                milieu.removeMemeber(it);
+                milieu->removeMember(bestiole);
+                milieu->removeMember(it);
             }
             else {
                 bestiole.orientation = -bestiole.orientation;
@@ -30,13 +30,13 @@ void KillHandler::kill(const Milieu & milieu,Bestiole bestiole){
     }
 }
 
-void KillHandler::killExt(const Milieu & milieu, int idBestiole){
-    listeBestioles = milieu.listeBestioles;
+void KillHandler::killExt(int idBestiole){
+    listeBestioles = milieu->listeBestioles;
     bestiole = listeBestioles[0];
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); it++) {
         if (idBestiole == it.id) {
             bestiole = it;
         }
     }
-    milieu.removeMemeber(bestiole);
+    milieu->removeMember(bestiole);
 }

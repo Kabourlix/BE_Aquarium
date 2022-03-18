@@ -7,13 +7,16 @@
 
 class KillHandler 
 {
+    private :
+    Milieu * milieu;
+    
 	public : 
 	KillHandler();
 	~KillHandler();
 
-	void kill(const Milieu & milieu,Bestiole bestiole);
+	void kill(Bestiole bestiole);
 
-	void killExt(const Milieu & milieu,Bestiole bestiole);
+	void killExt(Bestiole bestiole);
 
 }
 
