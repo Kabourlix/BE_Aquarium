@@ -77,6 +77,16 @@ void Milieu::step( void )
 }
 
 
+void Milieu::removeMember(const Bestiole & b){
+   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   {
+      if(*it == b){ //When we find it, we delete it and leave.
+         listeBestioles.erase(it);
+         return; //Stop the function.
+      }
+   }
+}
+
 int Milieu::nbVoisins( const Bestiole & b )
 {
 
