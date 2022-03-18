@@ -14,7 +14,7 @@ void KillHandler::kill(Bestiole bestiole){
     if (bestiole.getAge >= bestiole.getAgeLimite) {
         milieu->removeMember(bestiole);
     }
-    listeBestioles = milieu->getListeBestioles;
+    listeBestioles = milieu->getBestioles;
     
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); it++) {
         if (it != bestiole and it.x == bestiole.x and it.y == bestiole.y) {
@@ -31,7 +31,7 @@ void KillHandler::kill(Bestiole bestiole){
 }
 
 void KillHandler::killExt(int idBestiole){
-    listeBestioles = milieu->listeBestioles;
+    listeBestioles = milieu->getBestioles;
     bestiole = listeBestioles[0];
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); it++) {
         if (idBestiole == it.id) {
