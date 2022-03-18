@@ -16,14 +16,6 @@ void StratKamikaze::action(Bestiole b){
         // à voir si position bestiole vraiment donné par x,y 
         b.setOrientation( signbit(b.getNearestBestiole().getX() - b.getX())*M_PI + atan( (b.getNearestBestiole().getY() - b.getY()) / (b.getNearestBestiole().getX() - b.getX()) ) );
     }
-    
-    if (b.getMultiple())
-    {double rdm = rand();
-        if(rdm< 0.25){b.setStrategy(Milieu::getInstance()->getStrategy("Gregaire"))}
-        if((0.25<=rdm) && (rdm< 0.5)){b.setStrategy(Milieu::getInstance()->getStrategy("Peureuse"))}
-        if((0.5<=rdm) && (rdm< 0.75)){b.setStrategy(Milieu::getInstance()->getStrategy("Prevoyante"))}
-        if(0.75<=rdm){b.setStrategy(Milieu::getInstance()->getStrategy("Kamikaze"))}
-    }
 }
 
 #endif
