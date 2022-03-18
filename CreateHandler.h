@@ -18,6 +18,6 @@ class CreateHandler
 		void cloneCreate(const Bestiole& bestiole);
 
 		void extCreate(int nb);
-}
+};
 
 #endif

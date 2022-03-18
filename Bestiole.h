@@ -69,6 +69,8 @@ public :
 
    friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
 
+
+   // -------- ACCESSEURS --------
    inline int getIdentite() const {return identite;};
    inline int getX() const {return x;};
    inline int getY() const {return y;};
@@ -82,11 +84,18 @@ public :
    inline void setStrategy(const BestioleStrategy * newStrat){*bestioleStrat = newStrat;};
    inline void setOrientation(double newOrientation){orientation = newOrientation;};
    inline void setVitesse(double newVitesse){vitesse = newVitesse;};
-   
+   // -----------------------------------
+
    std::vector<Bestiole> getNearbyNeighbor();
    Bestiole getNearestBestiole();
+
+   bool checkCollision(const Bestiole & b);
+   Bestiole* checkCollision(const std::vector<Bestiole> & b);
+
    bool detect(const Bestiole *b ) const;
    void updateAge();
+
+
    inline float dist( const Bestiole & b ) const{
       return sqrt( (b.getX()-x)*(b.getX()-x) + (b.getY()-y)*(b.getY()-y) );
    };

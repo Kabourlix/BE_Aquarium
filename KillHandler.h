@@ -2,18 +2,20 @@
 #define _KILLHANDLER_H_
 
 #include "Milieu.h"
-#include "Bestiole.h"
 
 
 class KillHandler 
 {
+	private:
+		Milieu * milieu;
+
 	public : 
-	KillHandler();
-	~KillHandler();
+		KillHandler();
+		~KillHandler();
 
-	bool kill(const Milieu & milieu,Bestiole bestiole);
+		bool kill(Bestiole bestiole);
 
-	void killExt(const Milieu & milieu,Bestiole bestiole);
+		void killExt(int idBestiole);
 
 };
 

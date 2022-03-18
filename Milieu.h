@@ -55,6 +55,8 @@ public :
    StratPtr getRandomStrategy(std::string previousStrat);
 
    inline std::vector<Bestiole> getBestioles(void) { return listeBestioles; };
+   
+
 
 };
 

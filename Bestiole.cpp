@@ -58,7 +58,7 @@ Bestiole::Bestiole( const Bestiole & b, int identite_ )
 }
 
 
-Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_, bool multiple)
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_, bool multiple_)
 {
 
    identite =  identite_;
@@ -229,6 +229,21 @@ Bestiole Bestiole::getNearestBestiole()
    }
    if (n==1) { return nearestBestiole;}
 }
+
+bool Bestiole::checkCollision(const Bestiole & b)
+{
+   return ( this->sqrDist(b) <= 0.01*0.01 );
+}
+
+Bestiole* Bestiole::checkCollision(const std::vector<Bestiole> & b)
+{
+   for ( std::vector<Bestiole>::const_iterator it = b.cbegin() ; it != b.cend() ; ++it )
+   {
+      if ( this->checkCollision(*it) ) { return &(*it); }
+   }
+   return nullptr;
+}
+
 
 void Bestiole::updateAge()
 {
