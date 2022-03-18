@@ -1,11 +1,17 @@
 #ifndef _EARS_H_
 #define _EARS_H_
 
-class Ears
+#include "Sensors.h"
+
+class Ears : public Sensors
 {
 
-	public : 
-		Ears();
+	public :
+        float detectionCapacity;
+        float distance;
+    
+        Ears( const Ears& ears);
+		Ears(float detectionCapacity, float distance);
 		~Ears();
 		bool detection(Bestiole bestiole1,Bestiole bestiole2);
 }

@@ -8,14 +8,14 @@ class Sensors
 {
 	protected : 
 	
-	float detectionCapacity;
+	float probaDetection;
 	float angle; // Carefull with the borns of the values angle and distance
 	float distance;
 
 	public :
 
 	virtual ~Sensors();
-	virtual bool detection(Bestiole bestiole1,Bestiole bestiole2)=0;
+	virtual bool detection(const Bestiole *bestiole1,const Bestiole *bestiole2)=0;
 };
 
 #endif
