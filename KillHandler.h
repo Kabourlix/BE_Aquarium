@@ -11,10 +11,10 @@ class KillHandler
 	KillHandler();
 	~KillHandler();
 
-	void kill(const Milieu & milieu,Bestiole bestiole);
+	bool kill(const Milieu & milieu,Bestiole bestiole);
 
 	void killExt(const Milieu & milieu,Bestiole bestiole);
 
-}
+};
 
 #endif

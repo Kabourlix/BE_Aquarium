@@ -1,6 +1,7 @@
 #include "Milieu.h"
 
 
+
 #include <cstdlib>
 #include <ctime>
 
@@ -22,6 +23,10 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
    stratVector.push_back(new StratPeureuse());
    stratVector.push_back(new StratPrevoyante());
    
+   //Initialiaze the createHandler and killHandler
+   createHandler = new CreateHandler();
+   killHandler   = new KillHandler();
+
    std::srand( time(NULL) );
 
 }
@@ -34,7 +39,13 @@ Milieu::~Milieu( void )
    {
       it->~Bestiole();
    }
-   delete singleton; //Delete the only instance of the class.
+
+   //Delete classes dealt by Milieu
+   delete createHandler;
+   delete killHandler;
+
+   //Lastly, delete the only instance of the class
+   delete singleton; 
    cout << "Milieu & dependencies have been destroyed." << endl;
 
 }
@@ -50,11 +61,13 @@ Milieu* Milieu::getInstance(int _width = 640, int _height = 480){
 
 void Milieu::step( void )
 {
-
+   createHandler->spontaneousCreate(*this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
+      if(killHandler->kill(*this, *it)) break;
 
+      createHandler->cloneCreate(this, *it);
       it->action( *this );
       it->draw( *this );
 

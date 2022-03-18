@@ -13,7 +13,11 @@
 #include "StratPrevoyante.h"
 #include "StratPeureuse.h"
 
+#include "CreateHandler.h"
+#include "KillHandler.h"
+
 using StratPtr = BestioleStrategy*;
+
 
 using namespace std;
 
@@ -29,6 +33,9 @@ private :
    Milieu( int _width, int _height );
    static Milieu*         singleton;
    std::vector<StratPtr> stratVector;
+
+   CreateHandler * createHandler;
+   KillHandler   * killHandler;
 
 public :
 
