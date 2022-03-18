@@ -23,6 +23,7 @@ const float		ConcreteFactory::MAX_COEF_RES = 1.;
 const float		ConcreteFactory::MAX_COEF_CAMOUFLAGE = 1.;
 
 
+//TODO : Penser à modifier le constructeur pour définir les probas de création de bestiole
 ConcreteFactory::ConcreteFactory() {
 	milieu = Milieu::getInstance();
 	nbBestiole = milieu->getBestioles().size();
