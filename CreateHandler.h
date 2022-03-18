@@ -7,16 +7,17 @@
 class CreateHandler 
 {
 	private :
+		Milieu * milieu;
 		ConcreteFactory * fact;
 	public : 
 		CreateHandler();
 		~CreateHandler();
 
-		void spontaneousCreate(Milieu & milieu);
+		void spontaneousCreate();
 
-		void cloneCreate(Milieu & milieu,Bestiole bestiole);
+		void cloneCreate(const Bestiole& bestiole);
 
-		void extCreate(Milieu & milieu, int nb);
+		void extCreate(int nb);
 }
 
 #endif

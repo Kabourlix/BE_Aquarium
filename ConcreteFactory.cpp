@@ -34,6 +34,7 @@ ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
 
 
 ConcreteFactory::~ConcreteFactory(void){
+	//TODO : Voir à quoi ça sert.
 	delete nbBestiole;
 	delete id;
 };
