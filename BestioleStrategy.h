@@ -6,6 +6,7 @@
 class BestioleStrategy
 {
 	public : 
+		BestioleStrategy();
 		virtual ~BestioleStrategy();
 		virtual void action(Bestiole bestiole) const =0;
 		virtual std::string getName() const =0;

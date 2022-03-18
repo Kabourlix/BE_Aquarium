@@ -61,13 +61,13 @@ Milieu* Milieu::getInstance(int _width = 640, int _height = 480){
 
 void Milieu::step( void )
 {
-   createHandler->spontaneousCreate(*this);
+   createHandler->spontaneousCreate();
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      if(killHandler->kill(*this, *it)) break;
+      if(killHandler->kill(*it)) break;
 
-      createHandler->cloneCreate(this, *it);
+      createHandler->cloneCreate(*it);
       it->action( *this );
       it->draw( *this );
 
@@ -77,11 +77,14 @@ void Milieu::step( void )
 }
 
 
-void Milieu::removeMember(const Bestiole & b){
+void Milieu::removeMember(Bestiole & b){
    for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       if(*it == b){ //When we find it, we delete it and leave.
          listeBestioles.erase(it);
+         // We delete the bestiole since it is not in the list anymore.
+         delete &b;
+
          return; //Stop the function.
       }
    }

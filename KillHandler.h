@@ -13,7 +13,7 @@ class KillHandler
 		KillHandler();
 		~KillHandler();
 
-		bool kill(Bestiole bestiole);
+		bool kill(Bestiole& bestiole);
 
 		void killExt(int idBestiole);
 

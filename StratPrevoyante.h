@@ -3,16 +3,16 @@
 
 #include "BestioleStrategy.h"
 
-class StratPrevoyante
+class StratPrevoyante: public BestioleStrategy
 {
 	private :
 		static const std::string NAME;
 	
 	public : 
 		StratPrevoyante();
-		~StratPrevoyante();
+		virtual ~StratPrevoyante();
 
-		void action(Bestiole bestiole);
+		virtual void action(Bestiole bestiole) const;
 		virtual inline std::string getName() const{return NAME;};
 };
 

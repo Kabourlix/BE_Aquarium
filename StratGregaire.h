@@ -4,16 +4,16 @@
 #include "BestioleStrategy.h"
 # include <string> 
 
-class StratGregaire
+class StratGregaire : public BestioleStrategy
 {	
 	private :
 		static const std::string NAME;
 	
 	public : 
 		StratGregaire();
-		~StratGregaire();
+		virtual ~StratGregaire();
 
-		void action(Bestiole bestiole);
+		virtual void action(Bestiole bestiole) const;
 		
 		virtual inline std::string getName() const{return NAME;};
 };

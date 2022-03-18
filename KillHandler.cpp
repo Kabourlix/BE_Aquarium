@@ -10,13 +10,15 @@ KillHandler::~KillHandler(){
     
 }
 
-bool KillHandler::kill(Bestiole bestiole){
+bool KillHandler::kill(Bestiole& bestiole){
     if (bestiole.getAge() >= bestiole.getAgeLimite()) {
         milieu->removeMember(bestiole);
     }
 
     //Check for collision with other bestioles
-    std::vector<Bestiole> listeBestioles = milieu->getBestioles();
+    //bestiole.checkCollision()
+
+    /*std::vector<Bestiole> listeBestioles = milieu->getBestioles();
     
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); it++) {
         if (it != bestiole and it.x == bestiole.x and it.y == bestiole.y) {
@@ -29,6 +31,7 @@ bool KillHandler::kill(Bestiole bestiole){
                 bestiole2.orientation = -bestiole2.orientation;
             }
         }
+    */
     }
 }
 
