@@ -33,10 +33,10 @@ Bestiole::Bestiole( void )
 }
 
 
-Bestiole::Bestiole( const Bestiole & b )
+Bestiole::Bestiole( const Bestiole & b, int identite_ )
 {
 
-   identite = ++next;
+   identite = identite_;
    milieu = Milieu::getInstance();
 
    cout << "const Bestiole (" << identite << ") par copie" << endl;
@@ -55,7 +55,7 @@ Bestiole::Bestiole( const Bestiole & b )
 }
 
 
-Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_ )
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ )
 {
 
    identite =  identite_;
@@ -68,6 +68,7 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    *bestioleStrat = *bestioleStrat_;
    listeAccessories = listeAccessories_ ;
    listeSensors = listeSensors_;
+   couleur = couleur_;
    
    couleur = new T[ 3 ];
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
