@@ -66,7 +66,6 @@ public :                                           // Forme canonique :
    inline int getY() const {return y;};
    inline double getOrientation() const {return orientation;};
    inline double getVitesse() const {return vitesse;};
-   inline bool getMultiple() const {return MULTIPLE;};
    inline int getAge() const {return age;};
    inline int getAgeLimite() const {return ageLimite;};
    inline bool getMultiple() const {return multiple;};
