@@ -186,9 +186,9 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 bool Bestiole::detect(const Bestiole *b) const
 { bool detected = false;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
-   for ( std::vector<Sensors*>::const_iterator it = listeSensors.begin() ; it != listeSensors.end() ; ++it )
+   for ( std::vector<Sensors*>::const_iterator it = listeSensors.cbegin() ; it != listeSensors.cend() ; ++it )
    {
-      if (it->detection(this,b)){ detected = true; }
+      if ((*it)->detection(this,b)){ detected = true; }
    }
   return detected;
 }
