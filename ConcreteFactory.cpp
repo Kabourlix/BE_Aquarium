@@ -58,6 +58,8 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 	BestioleStrategy* bestioleStrat;
 	T couleur;
 	couleur = new T[ 3 ];
+	// MULTIPLE
+	bool multiple = False;
 
 
 	// STRATEGY
@@ -91,6 +93,7 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 		couleur[ 0 ] = 0;
   		couleur[ 1 ] = 0;
    		couleur[ 2 ] = 0;
+		multiple = true;
     			}
    			 }
 		}
@@ -125,12 +128,11 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 	};
 
 	//AGE
-
 	int age;
 	age = 0;
 	int ageLimite;
 	ageLimite = static_cast<int>( rand() )/RAND_MAX*(300-100) + 100;
-	
+
 
 	// BESTIOLE
 	Bestiole bestiole = new Bestiole(id, 
@@ -143,7 +145,8 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 						sensorVector
 						couleur,
 						age,
-						limiteAge);
+						limiteAge,
+						multiple);
 	
 	id++;
 	return bestiole;
