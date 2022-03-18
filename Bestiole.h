@@ -71,7 +71,7 @@ public :                                           // Forme canonique :
    inline bool getMultiple() const {return multiple;};
    inline BestioleStrategy *getStrat() const {return bestioleStrat;};
    inline std::vector<Accessory*> getAccessories() const {return listeAccessories;};
-   inline void setStrategy(const BestioleStrategy & newStrat){*bestioleStrat = newStrat;};
+   inline void setStrategy(const BestioleStrategy * newStrat){*bestioleStrat = newStrat;};
    inline void setOrientation(double newOrientation){orientation = newOrientation;};
    inline void setVitesse(double newVitesse){vitesse = newVitesse;};
    
