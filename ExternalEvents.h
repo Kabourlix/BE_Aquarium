@@ -17,8 +17,8 @@ public:
     ~ExternalEvents();
 
     void KillBestiole(const int* id);
-    void CreateBestiole(const int* id);
-    void CreateBestiole(const int* id, const int* x, const int* y);
+    void CreateBestiole();
+    void CreateBestiole(const int* x, const int* y);
 };
 
 #endif
