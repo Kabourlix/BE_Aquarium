@@ -155,9 +155,7 @@ Bestiole ConcreteFactory::createBestiole(){
 };
 
 Bestiole ConcreteFactory::cloneBestiole(const Bestiole & bestiole){
-	Bestiole bestioleCloned = new Bestiole(bestiole, id);
-	id++;
-	return bestioleCloned;
+	return *(new Bestiole(bestiole, id++));
 };
 
 Bestiole ConcreteFactory::createExtBestiole() {
@@ -166,11 +164,12 @@ Bestiole ConcreteFactory::createExtBestiole() {
 
 
 Sensors* ConcreteFactory::createEyes(){
+	//Define the parameters of the eyes
 	float probaDetection = static_cast<double>( rand() )/RAND_MAX*MAX_PROB_DETECTION;
 	float angle = static_cast<double>( rand() )/RAND_MAX*(MAX_ANGLE-MIN_ANGLE) + MIN_ANGLE;
 	float distanceEyes = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EYES-MIN_DIST_EYES) + MIN_DIST_EYES;
-	Sensors *eyes = new Eyes(probaDetection, angle, distanceEyes);
-	return eyes;
+
+	return new Eyes(probaDetection, angle, distanceEyes);
 	
 };
 

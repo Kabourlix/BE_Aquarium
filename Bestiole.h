@@ -45,13 +45,21 @@ private :
 private :
    void bouge( int xLim, int yLim );
 
-public :                                           // Forme canonique :
-   Bestiole( void );                               // Constructeur par defaut
-   Bestiole( const Bestiole & b, int identite_ );                 // Constructeur de copies
-   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_ , T couleur_, int age_, int ageLimite_, bool multiple_);
+public :     
+   // -------- CONSTRUCTEUR ET DESTRUCTEUR --------
+   Bestiole( void ); // Constructeur par defaut
+   Bestiole( const Bestiole & b, int identite_ ); // Constructeur de copies
+   Bestiole( int identite_, int x_, int y_, 
+            double orientation_, double vitesse_, 
+            BestioleStrategy  *bestioleStrat_, 
+            std::vector<Accessory*> listeAccessories_, 
+            std::vector<Sensors*>   listeSensors_ , 
+            T couleur_, int age_, int ageLimite_, bool multiple_);
 
    ~Bestiole( void );                              // Destructeur
-                                                   // Operateur d'affectation binaire par defaut
+   // ---------------------------------------------
+
+
    void action( Milieu & monMilieu );
    void draw( UImg & support );
 
