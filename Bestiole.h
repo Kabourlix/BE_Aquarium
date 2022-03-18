@@ -38,7 +38,7 @@ private :
    std::vector<Accessory*>   listeAccessories;
    std::vector<Sensors*>   listeSensors;
 
-   T               * couleur;
+   T                couleur;
 
 private :
    void bouge( int xLim, int yLim );
