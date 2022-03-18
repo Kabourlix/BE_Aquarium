@@ -8,13 +8,13 @@ class Factory
 {
 	public : 
 	
-	virtual ~Factory();
+		virtual ~Factory();
 
-	virtual Bestiole cloneBestiole(Bestiole bestiole)=0;
+		virtual Bestiole cloneBestiole(const Milieu & milieu,const Bestiole & bestiole)=0;
 
-	virtual Bestiole createBestiole()=0;
+		virtual Bestiole createBestiole(const Milieu & milieu)=0;
 
-	virtual Bestiole createExtBestiole()=0;
+		virtual Bestiole createExtBestiole(const Milieu & milieu)=0;
 
 };
 

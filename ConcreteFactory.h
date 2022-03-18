@@ -2,6 +2,7 @@
 #define _CONCRETEFACTORY_H_
 
 #include "Factory.h"
+#include <iostream>
 
 
 class ConcreteFactory : public Factory
