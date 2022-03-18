@@ -6,15 +6,17 @@
 
 class Factory
 {
+	protected :
+		Milieu * milieu;
 	public : 
 	
 		virtual ~Factory();
 
-		virtual Bestiole cloneBestiole(const Milieu & milieu,const Bestiole & bestiole)=0;
+		virtual Bestiole cloneBestiole(const Bestiole & bestiole)=0;
 
-		virtual Bestiole createBestiole(const Milieu & milieu)=0;
+		virtual Bestiole createBestiole()=0;
 
-		virtual Bestiole createExtBestiole(const Milieu & milieu)=0;
+		virtual Bestiole createExtBestiole()=0;
 
 };
 

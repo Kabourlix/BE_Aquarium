@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include "Milieu.h"
 
 
 const int 		ConcreteFactory::MIN = 0;
@@ -22,8 +23,9 @@ const float		ConcreteFactory::MAX_COEF_RES = 1.;
 const float		ConcreteFactory::MAX_COEF_CAMOUFLAGE = 1.;
 
 
-ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
-	nbBestiole = milieu.getBestioles().size()
+ConcreteFactory::ConcreteFactory() {
+	milieu = Milieu::getInstance();
+	nbBestiole = milieu->getBestioles().size();
 	id = nbBestiole + 1;
 	float propGregaire;
 	float propPeureuse;
@@ -34,14 +36,11 @@ ConcreteFactory::ConcreteFactory(const Milieu & milieu) {
 
 
 ConcreteFactory::~ConcreteFactory(void){
-	//TODO : Voir à quoi ça sert.
-	delete nbBestiole;
-	delete id;
 };
 
 
 
-Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
+Bestiole ConcreteFactory::createBestiole(){
 	    
 	std::random_device rd;
     std::default_random_engine eng(rd());
@@ -49,6 +48,7 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
     float randomVariable = distr(eng)/MAX;
 
 	//POSITION
+	//TODO : Définir xLim et yLim
 	int x = std::rand() % xLim;
 	int y = std::rand() % yLim;
 
@@ -57,7 +57,7 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
    	double vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
 	BestioleStrategy* bestioleStrat;
-	T couleur;
+	T * couleur;
 	couleur = new T[ 3 ];
 	// MULTIPLE
 	bool multiple = False;
@@ -66,31 +66,31 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 	// STRATEGY
     if (randomVariable <= propGregaire) {
 		 // Gregaire Rouge
-		bestioleStrat = milieu.getStrategy("Gregaire");
+		bestioleStrat = milieu->getStrategy("Gregaire");
 		couleur[ 0 ] = 255;
   		couleur[ 1 ] = 0;
    		couleur[ 2 ] = 0;
     } else { if (randomVariable <= propKamikaze) {
 		// Kamikaze Orange
-		bestioleStrat = milieu.getStrategy("Kamikaze");
+		bestioleStrat = milieu->getStrategy("Kamikaze");
 		couleur[ 0 ] = 255;
   		couleur[ 1 ] = 165;
    		couleur[ 2 ] = 0;
     } else { if (randomVariable <= propPeureuse) {
 		// Peureuse Bleu
-		bestioleStrat = milieu.getStrategy("Peureuse");
+		bestioleStrat = milieu->getStrategy("Peureuse");
 		couleur[ 0 ] = 255;
   		couleur[ 1 ] = 255;
    		couleur[ 2 ] = 0;
     } else { if (randomVariable <= propPrevoyante) {
 		// Prevoyante Verte
-		bestioleStrat = milieu.getStrategy("Prevoyante");
+		bestioleStrat = milieu->getStrategy("Prevoyante");
 		couleur[ 0 ] = 152;
   		couleur[ 1 ] = 251; 	
    		couleur[ 2 ] = 152;
     } else {	
 		// Multiple Noire
-		bestioleStrat = milieu.getRandomStrategy();
+		bestioleStrat = milieu->getRandomStrategy(bestioleStrat->getName());
 		couleur[ 0 ] = 0;
   		couleur[ 1 ] = 0;
    		couleur[ 2 ] = 0;
@@ -164,38 +164,38 @@ Bestiole ConcreteFactory::createExtBestiole(const Milieu & milieu) {
 };
 
 
-Sensors ConcreteFactory::createEyes(){
+Sensors* ConcreteFactory::createEyes(){
 	float probaDetection = static_cast<double>( rand() )/RAND_MAX*MAX_PROB_DETECTION;
 	float angle = static_cast<double>( rand() )/RAND_MAX*(MAX_ANGLE-MIN_ANGLE) + MIN_ANGLE;
 	float distanceEyes = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EYES-MIN_DIST_EYES) + MIN_DIST_EYES;
 	Sensors *eyes = new Eyes(probaDetection, angle, distanceEyes);
-	return *eyes;
+	return eyes;
 	
 };
 
-Sensors ConcreteFactory::createEars(){
+Sensors* ConcreteFactory::createEars(){
 	float detectionCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_DETEC_CAPA;
 	float distanceEars = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EARS-MIN_DIST_EARS) + MIN_DIST_EARS;
 	Sensors *ears = new Ears(detectionCapacity, distanceEars);
-	return *ears;
+	return ears;
 };
 
 
 Accessory ConcreteFactory::createNageoire(){
 	float coeffSpeed = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_SPEED;
-	Accessory *nageoires = new accessory("nageoires", coeffSpeed, 0 , 0);
+	Accessory *nageoires = new Accessory("nageoires", coeffSpeed, 0 , 0);
 	return *nageoires;
 };
 
 
 Accessory ConcreteFactory::createCamouflage(){
 	float hidingCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_CAMOUFLAGE;
-	Accessory *camouflage = new accessory("camouflage", 0, 0, hidingCapacity);
+	Accessory *camouflage = new Accessory("camouflage", 0, 0, hidingCapacity);
 	return *camouflage;
 };
 
 Accessory ConcreteFactory::createCarapace(){
 	float coeffRes = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_RES;
-	Accessory *carapace = new accessory("carapace", 0, coeffRes, 0);
+	Accessory *carapace = new Accessory("carapace", 0, coeffRes, 0);
 	return *carapace;
 };

@@ -35,16 +35,16 @@
  		static const float		MAX_COEF_CAMOUFLAGE;
 
  	public : 
- 		ConcreteFactory(Milieu & milieu);
+ 		ConcreteFactory();
  		~ConcreteFactory();
 
- 		virtual Bestiole createBestiole(const Milieu & milieu);
- 		virtual Bestiole cloneBestiole(const Milieu & milieu, const Bestiole & bestiole);
- 		virtual Bestiole createExtBestiole(const Milieu & milieu);
+ 		virtual Bestiole createBestiole();
+ 		virtual Bestiole cloneBestiole(const Bestiole & bestiole);
+ 		virtual Bestiole createExtBestiole();
 
 
- 		Sensors ConcreteFactory::createEars();
- 		Sensors ConcreteFactory::createEyes();
+ 		Sensors* ConcreteFactory::createEars();
+ 		Sensors* ConcreteFactory::createEyes();
  		Accessory ConcreteFactory::createNageoire();
  		Accessory ConcreteFactory::createCamouflage();
  		Accessory ConcreteFactory::createCarapace();
