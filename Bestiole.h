@@ -79,6 +79,12 @@ public :                                           // Forme canonique :
    Bestiole getNearestBestiole();
    bool detect(const Bestiole *b ) const;
    void updateAge();
+   inline float dist( const Bestiole & b ) const{
+      return sqrt( (b.getX()-x)*(b.getX()-x) + (b.getY()-y)*(b.getY()-y) );
+   };
+   inline float sqrDist( const Bestiole & b ) const{
+      return (b.getX()-x)*(b.getX()-x) + (b.getY()-y)*(b.getY()-y);
+   };
 };
 
 #endif
