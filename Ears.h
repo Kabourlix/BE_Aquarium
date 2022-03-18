@@ -7,13 +7,24 @@ class Ears : public Sensors
 {
 
 	public :
-        float detectionCapacity;
-        float distance;
     
         Ears( const Ears& ears);
 		Ears(float detectionCapacity, float distance);
-		~Ears();
-		bool detection(Bestiole bestiole1,Bestiole bestiole2);
+		virtual ~Ears();
+		virtual bool detection(const Bestiole * bestiole1, const Bestiole * bestiole2);
+
+		inline float getProbaDetection() {
+			return this -> probaDetection;
+		}
+		inline float getDistance() {
+			return this -> distance;
+		}
+
+		inline void setDistance(float dist) {
+			if (dist >= 0)
+				this -> distance = dist;
+		}
+
 }
 
 #endif

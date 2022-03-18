@@ -153,14 +153,14 @@ Bestiole ConcreteFactory::createBestiole(){
 	return bestiole;
 };
 
-Bestiole ConcreteFactory::cloneBestiole(const Milieu & milieu, const Bestiole & bestiole){
+Bestiole ConcreteFactory::cloneBestiole(const Bestiole & bestiole){
 	Bestiole bestioleCloned = new Bestiole(bestiole, id);
 	id++;
 	return bestioleCloned;
 };
 
-Bestiole ConcreteFactory::createExtBestiole(const Milieu & milieu) {
-	return ConcreteFactory::createBestiole(milieu);
+Bestiole ConcreteFactory::createExtBestiole() {
+	return this->createBestiole();
 };
 
 

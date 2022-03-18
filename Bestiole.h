@@ -49,6 +49,12 @@ public :                                           // Forme canonique :
 
    friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
 
+   inline float dist( const Bestiole & b ) const{
+      return sqrt( (b.x-x)*(b.x-x) + (b.y-y)*(b.y-y) );
+   };
+   inline float sqrDist( const Bestiole & b ) const{
+      return (b.x-x)*(b.x-x) + (b.y-y)*(b.y-y);
+   };
 };
 
 

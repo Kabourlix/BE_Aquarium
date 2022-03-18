@@ -13,7 +13,7 @@ class Sensors
 	float distance;
 
 	public :
-
+	Sensors();
 	virtual ~Sensors();
 	virtual bool detection(const Bestiole *bestiole1,const Bestiole *bestiole2)=0;
 };
