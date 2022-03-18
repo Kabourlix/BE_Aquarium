@@ -4,6 +4,7 @@
 #include <ctime>
 #include <vector>
 
+
 const int 		ConcreteFactory::MIN = 0;
 const int 		ConcreteFactory::MAX = 100;
 const float		ConcreteFactory::MAX_VITESSE = 10.;
@@ -116,7 +117,10 @@ Bestiole ConcreteFactory::createBestiole(const Milieu & milieu){
 						vitesse, 
 						bestioleStrat,
 						accessoryVector, 
-						sensorVector);
+						sensorVector
+						couleur,
+						age,
+						limiteAge);
 	
 	id++;
 	delete nageoires;
