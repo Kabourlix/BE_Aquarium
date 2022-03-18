@@ -12,8 +12,9 @@ class ConcreteFactory : public Factory
 		ConcreteFactory();
 		~ConcreteFactory();
 
-		Bestiole createBestiole();
-		Bestiole cloneBestiole();
-}
+		virtual Bestiole createBestiole();
+		virtual Bestiole cloneBestiole();
+		virtual Bestiole createExtBestiole();
+};
 
 #endif

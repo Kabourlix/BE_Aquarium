@@ -2,12 +2,12 @@
 #define _CREATEHANDLER_H_
 
 #include "Milieu.h"
-#include "CreateFactory.h"
+#include "ConcreteFactory.h"
 
 class CreateHandler 
 {
 	private :
-		CreateFactory fact;
+		ConcreteFactory * fact;
 	public : 
 		CreateHandler();
 		~CreateHandler();
