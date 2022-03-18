@@ -80,6 +80,7 @@ void Milieu::step( void )
 void Milieu::removeMember(Bestiole & b){
    for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
+      //! This might cause error when b is null.
       if(*it == b){ //When we find it, we delete it and leave.
          listeBestioles.erase(it);
          // We delete the bestiole since it is not in the list anymore.
@@ -88,6 +89,31 @@ void Milieu::removeMember(Bestiole & b){
          return; //Stop the function.
       }
    }
+   //Print an error message if the bestiole is not found.
+   cout << "Error: Bestiole with id " << b.getIdentite() << " not found." << endl;
+}
+
+void Milieu::removeMember(int idBestiole){
+   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   {
+      if (it->getIdentite() == idBestiole){
+         listeBestioles.erase(it);
+         delete &*it;
+         return;
+      }
+   }
+   //Print an error message if the bestiole is not found.
+   cout << "Error: Bestiole with id " << idBestiole << " not found." << endl;
+}
+
+Bestiole& Milieu::checkCollision(Bestiole& b){
+   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   {
+      if(b.checkCollision(*it)){
+         return *it;
+      }
+   }
+   return;
 }
 
 int Milieu::nbVoisins( const Bestiole & b )

@@ -49,6 +49,8 @@ public :
 
    void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
    void removeMember(Bestiole & b);
+   void removeMember(int idBestiole);
+   Bestiole & checkCollision(Bestiole& b);
    
    int nbVoisins( const Bestiole & b );
 

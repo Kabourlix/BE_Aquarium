@@ -91,7 +91,7 @@ public :
    Bestiole getNearestBestiole();
 
    bool checkCollision(const Bestiole & b);
-   Bestiole* checkCollision(const std::vector<Bestiole> & b);
+
 
    bool detect(const Bestiole *b ) const;
    void updateAge();

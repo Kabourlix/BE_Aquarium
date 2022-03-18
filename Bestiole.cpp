@@ -236,15 +236,6 @@ bool Bestiole::checkCollision(const Bestiole & b)
    return ( this->sqrDist(b) <= 0.01*0.01 );
 }
 
-//TODO : À modifier
-Bestiole* Bestiole::checkCollision(const std::vector<Bestiole> & b)
-{
-   for ( std::vector<Bestiole>::const_iterator it = b.cbegin() ; it != b.cend() ; ++it )
-   {
-      if ( this->checkCollision(*it) ) { return &(*it); }
-   }
-   return nullptr;
-}
 
 
 void Bestiole::updateAge()
