@@ -1,7 +1,6 @@
 #ifndef __EXTERNALEVENTS_H__
 #define __EXTERNALEVENTS_H__
 
-#include "EventListener.h"
 
 /*This class should deal with the providing function 
 working on the system and called from external events.
@@ -9,10 +8,12 @@ working on the system and called from external events.
 
 class ExternalEvents
 {
-private:
-    EventListener* eventListener;
+    private :
+        static ExternalEvents* listener;
+        ExternalEvents();
+
 public:
-    ExternalEvents(/* args */);
+    static ExternalEvents *getInstance();
     ~ExternalEvents();
 
     void KillBestiole(const int* id);
