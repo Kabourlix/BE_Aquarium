@@ -12,7 +12,7 @@ Ext::~ExternalEvents(){
 }
 
 Ext* Ext::getInstance(){
-    if(Ext::listener == NULL){
+    if(Ext::listener == nullptr){ //TODO : vérifier si ça génère un problème
         Ext::listener = new Ext();
     }
 
