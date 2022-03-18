@@ -34,6 +34,8 @@ private :
    double            cumulX, cumulY;
    double            orientation;
    double            vitesse;
+   int               age;
+   int               ageLimite;
    BestioleStrategy  *bestioleStrat;
    std::vector<Accessory*>   listeAccessories;
    std::vector<Sensors*>   listeSensors;
@@ -45,8 +47,8 @@ private :
 
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
-   Bestiole( const Bestiole & b );                 // Constructeur de copies
-   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_ );
+   Bestiole( const Bestiole & b, int identite_ );                 // Constructeur de copies
+   Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_ , T couleur_, int age_, int ageLimite_);
 
    ~Bestiole( void );                              // Destructeur
                                                    // Operateur d'affectation binaire par defaut
@@ -65,6 +67,8 @@ public :                                           // Forme canonique :
    inline double getOrientation() const {return orientation;};
    inline double getVitesse() const {return vitesse;};
    inline bool getMultiple() const {return MULTIPLE;};
+   inline int getAge() const {return age;};
+   inline int getAgeLimite() const {return ageLimite;};
    inline BestioleStrategy *getStrat() const {return bestioleStrat;};
    inline std::vector<Accessory*> getAccessories() const {return listeAccessories;};
    inline void setStrategy(const BestioleStrategy & newStrat){*bestioleStrat = newStrat;};
@@ -74,6 +78,7 @@ public :                                           // Forme canonique :
    std::vector<Bestiole> getNearbyNeighbor();
    Bestiole getNearestBestiole();
    bool detect(const Bestiole *b ) const;
+   void updateAge();
 };
 
 #endif
