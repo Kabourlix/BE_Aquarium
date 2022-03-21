@@ -4,7 +4,7 @@ main : main.cpp Aquarium.o Bestiole.o Milieu.o
 Aquarium.o : Aquarium.h Aquarium.cpp
 	g++ -Wall -std=c++11  -c Aquarium.cpp -I . -I /opt/X11/include
 
-Bestiole.o : Bestiole.h Bestiole.cpp
+Bestiole.o : Bestiole.h BestioleStrategy.h Accessory.h Sensors.h Bestiole.cpp
 	g++ -Wall -std=c++11  -c Bestiole.cpp -I . -I /opt/X11/include
 
 Milieu.o : Milieu.h Milieu.cpp

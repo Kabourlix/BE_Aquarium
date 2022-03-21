@@ -5,7 +5,7 @@
 CreateHandler::CreateHandler() {
 
 	milieu = Milieu::getInstance();
-	fact = new ConcreteFactory(*milieu);
+	fact = new ConcreteFactory();
 };
 
 
@@ -16,16 +16,16 @@ CreateHandler::~CreateHandler(void){
 
 
 void CreateHandler::spontaneousCreate(){
-	milieu->addMember(fact->createBestiole(*milieu));
+	milieu->addMember(fact->createBestiole());
 };
 
 void CreateHandler::cloneCreate(const Bestiole & bestiole){
-	milieu->addMember(fact->cloneBestiole(*milieu,bestiole));
+	milieu->addMember(fact->cloneBestiole(bestiole));
 };
 
 void CreateHandler::extCreate(int nb) {
 	for (int i = 0; i< nb; i++) {
-		milieu->addMember(fact->createExtBestiole(*milieu));
+		milieu->addMember(fact->createExtBestiole());
 	}
 };
 
