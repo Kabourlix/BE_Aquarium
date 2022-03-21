@@ -1,7 +1,7 @@
 #ifndef _CREATEHANDLER_H_
 #define _CREATEHANDLER_H_
 
-#include "Milieu.h"
+class Milieu;
 #include "ConcreteFactory.h"
 
 class CreateHandler 

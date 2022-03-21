@@ -1,7 +1,6 @@
 #ifndef _ACCESSORY_H_
 #define _ACCESSORY_H_
 
-#include "Bestiole.h"
 #include <string>
 
 class Accessory

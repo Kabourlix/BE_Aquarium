@@ -1,7 +1,7 @@
 #ifndef _SENSORS_H_
 #define _SENSORS_H_
 
-#include "Bestiole.h"
+class Bestiole;
 
 
 class Sensors

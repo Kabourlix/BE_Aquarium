@@ -50,7 +50,7 @@ Milieu::~Milieu( void )
 
 }
 
-Milieu* Milieu::getInstance(int _width = 640, int _height = 480){
+Milieu* Milieu::getInstance(int _width, int _height){
    if(Milieu::singleton == NULL){ // If it doesn't exist, create it.
       Milieu::singleton = new Milieu(_width, _height);
    }
@@ -113,7 +113,7 @@ Bestiole& Milieu::checkCollision(Bestiole& b){
          return *it;
       }
    }
-   return;
+   //TODO : return a null bestiole to define.
 }
 
 int Milieu::nbVoisins( const Bestiole & b )

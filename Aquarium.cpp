@@ -44,9 +44,9 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             //Create a new bestiole with the associated strategy.
             BestioleStrategy* strat = flotte->getStrategy(i);
             toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
-            Bestiole b(strat);
+            Bestiole* b = new Bestiole(); //TODO : add the correct constructor.
             //Add it to the ecosystem.
-            flotte->addMember(b);
+            flotte->addMember(*b);
          }
       }
       cout << "Initialize population with" + std::to_string(nbBestiole) + " bestioles." << endl;

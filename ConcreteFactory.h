@@ -6,7 +6,7 @@
  #include "BestioleStrategy.h"
  #include "Eyes.h"
  #include "Ears.h"
- #include "Sensors.h"
+
 
  class ConcreteFactory : public Factory
  {
@@ -46,11 +46,11 @@
  		virtual Bestiole createExtBestiole();
 
 
- 		Sensors* ConcreteFactory::createEars();
- 		Sensors* ConcreteFactory::createEyes();
- 		Accessory* ConcreteFactory::createNageoire();
- 		Accessory* ConcreteFactory::createCamouflage();
- 		Accessory* ConcreteFactory::createCarapace();
+ 		Sensors* createEars();
+ 		Sensors* createEyes();
+ 		Accessory* createNageoire();
+ 		Accessory* createCamouflage();
+ 		Accessory* createCarapace();
  };
 
  #endif

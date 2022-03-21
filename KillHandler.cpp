@@ -1,4 +1,6 @@
 #include "KillHandler.h"
+#include "Milieu.h"
+#include "Bestiole.h"
 #include <stdlib.h>
 #include <cstdlib>
 

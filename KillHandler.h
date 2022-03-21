@@ -1,7 +1,8 @@
 #ifndef _KILLHANDLER_H_
 #define _KILLHANDLER_H_
 
-#include "Milieu.h"
+class Milieu;
+class Bestiole;
 
 
 class KillHandler 

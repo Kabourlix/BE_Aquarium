@@ -1,7 +1,7 @@
 #ifndef _BESTIOLESTRATEGY_H_
 #define _BESTIOLESTRATEGY_H_
 
-#include "Bestiole.h"
+class Bestiole;
 
 class BestioleStrategy
 {
