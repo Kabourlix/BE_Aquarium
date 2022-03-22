@@ -17,7 +17,7 @@ Eyes::~Eyes( void )
 
 };
 
-bool Eyes::detection(Bestiole * b1,Bestiole * b2)
+bool Eyes::detection(const Bestiole * b1,const Bestiole * b2)
 {
     if (b2->getX() >= b1->getX() and b2->getX() <= distance) {
         return ((b2->getY() >= -b1->getX()*tan(angle) and b2->getY() <= b1->getX()*tan(angle)) && (rand()/RAND_MAX <= probaDetection));
