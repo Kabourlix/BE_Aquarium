@@ -4,7 +4,6 @@
 #include "StratKamikaze.h"
 #include <cmath>
 #include <cstdlib>
-#include "Milieu.h"
 
 const std::string  StratGregaire::NAME = "Kamikaze";
 
