@@ -13,7 +13,7 @@ class StratPeureuse : public BestioleStrategy
 		StratPeureuse();
 		virtual ~StratPeureuse() {};
 
-		virtual void action(Bestiole bestiole) const;
+		virtual void action(Bestiole bestiole, Milieu & monMilieu ) const;
 		virtual inline std::string getName() const{return NAME;};
 };
 

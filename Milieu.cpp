@@ -16,6 +16,7 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
                                             width(_width), height(_height)
 {
 
+   singleton = NULL;
    cout << "const Milieu" << endl;
    //Create an instance of each strat and add it to the stratVector
    stratVector.push_back(new StratGregaire());
@@ -51,11 +52,11 @@ Milieu::~Milieu( void )
 }
 
 Milieu* Milieu::getInstance(int _width, int _height){
-   if(Milieu::singleton == NULL){ // If it doesn't exist, create it.
-      Milieu::singleton = new Milieu(_width, _height);
+   if(singleton == NULL){ // If it doesn't exist, create it.
+      singleton = new Milieu(_width, _height);
    }
    
-   return Milieu::singleton; //Return the pointer to the singleton.
+   return singleton; //Return the pointer to the singleton.
 }
 
 

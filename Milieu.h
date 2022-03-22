@@ -31,7 +31,7 @@ private :
    int                     width, height;
    std::vector<Bestiole>   listeBestioles;
    Milieu( int _width, int _height );
-   static Milieu*         singleton;
+   Milieu*         singleton;
    std::vector<StratPtr> stratVector;
 
    CreateHandler * createHandler;
@@ -39,7 +39,7 @@ private :
 
 public :
 
-   static Milieu* getInstance(int _width = 640, int _height = 480); // Initialize the Milieu safely.
+   Milieu* getInstance(int _width = 640, int _height = 480); // Initialize the Milieu safely.
    ~Milieu( void );
 
    int getWidth( void ) const { return width; };

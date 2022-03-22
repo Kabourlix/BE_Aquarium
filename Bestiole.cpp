@@ -17,7 +17,6 @@ Bestiole::Bestiole( void )
 {
 
    identite = ++next;
-   milieu = Milieu::getInstance();
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
    x = y = 0;
@@ -37,8 +36,6 @@ Bestiole::Bestiole( const Bestiole & b , int id)
 {
 
    identite = id;
-   milieu = Milieu::getInstance();
-
    cout << "const Bestiole (" << identite << ") par copie de " << b.getIdentite() << endl;
 
    x = b.x;
@@ -74,7 +71,6 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
 {
 
    identite =  identite_;
-   milieu = Milieu::getInstance();
    x = x_;
    y = y_;
    cumulX = cumulY = 0.;
@@ -162,11 +158,11 @@ void Bestiole::action( Milieu & monMilieu )
    this->updateAge();
    if (multiple) {
       if (rand()<0.25) {
-         this->setStrategy(Milieu::getInstance()->getRandomStrategy(bestioleStrat->getName()));
+         this->setStrategy(monMilieu.getInstance()->getRandomStrategy(bestioleStrat->getName()));
       }
    }
    //Execute bestioleStrat (const pointer) action
-   bestioleStrat->action(*this);
+   bestioleStrat->action(*this, monMilieu);
    bouge( monMilieu.getWidth(), monMilieu.getHeight() );
 
 }
@@ -213,9 +209,9 @@ bool Bestiole::detect(const Bestiole *b) const
   return detected;
 }
 
-std::vector<Bestiole> Bestiole::getNearbyNeighbor() 
+std::vector<Bestiole> Bestiole::getNearbyNeighbor( Milieu & monMilieu ) 
 { std::vector<Bestiole> neighbors;
-   for ( std::vector<Bestiole>::iterator it = milieu->getBestioles().begin() ; it != milieu->getBestioles().end() ; ++it )
+   for ( std::vector<Bestiole>::iterator it = monMilieu.getInstance()->getBestioles().begin() ; it != monMilieu.getInstance()->getBestioles().end() ; ++it )
    { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) ) ))
       {
          neighbors.push_back(*it);
@@ -225,11 +221,11 @@ std::vector<Bestiole> Bestiole::getNearbyNeighbor()
 }
 
 // Attention n'appeler cette méthode que si getNearbyNeighbor() ne renvoie pas une liste vide.
-Bestiole Bestiole::getNearestBestiole()
+Bestiole Bestiole::getNearestBestiole(Milieu & monMilieu)
 { Bestiole nearestBestiole;
   double currentMinDist2 = 0; 
   int n = 0;
-   for ( std::vector<Bestiole>::iterator it = milieu->getBestioles().begin() ; it != milieu->getBestioles().end() ; ++it )
+   for ( std::vector<Bestiole>::iterator it = monMilieu.getInstance()->getBestioles().begin() ; it != monMilieu.getInstance()->getBestioles().end() ; ++it )
    { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) )))
       { 
          if ( n==0 || (pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2) ) < currentMinDist2)

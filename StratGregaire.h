@@ -15,7 +15,7 @@ class StratGregaire : public BestioleStrategy
 		StratGregaire();
 		virtual ~StratGregaire() {};
 
-		virtual void action(Bestiole bestiole) const;
+		virtual void action(Bestiole bestiole, Milieu & monMilieu ) const;
 		
 		virtual inline std::string getName() const{return NAME;};
 };

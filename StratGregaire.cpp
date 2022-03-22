@@ -6,9 +6,9 @@ StratGregaire::StratGregaire() {
 };
 
 
-void StratGregaire::action(Bestiole b) const{
+void StratGregaire::action(Bestiole b, Milieu & monMilieu ) const{
     //Check for nearby bestioles (i.e. visible)
-    std::vector<Bestiole> neighbors = b.getNearbyNeighbor();
+    std::vector<Bestiole> neighbors = b.getNearbyNeighbor(monMilieu);
     if (neighbors.size() >= 1)
     {
         //Compute mean orientation of neighbors
