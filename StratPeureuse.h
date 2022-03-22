@@ -11,7 +11,7 @@ class StratPeureuse : public BestioleStrategy
 	
 	public : 
 		StratPeureuse();
-		virtual ~StratPeureuse();
+		virtual ~StratPeureuse() {};
 
 		virtual void action(Bestiole bestiole) const;
 		virtual inline std::string getName() const{return NAME;};

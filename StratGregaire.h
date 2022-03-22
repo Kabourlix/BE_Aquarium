@@ -13,7 +13,7 @@ class StratGregaire : public BestioleStrategy
 	
 	public : 
 		StratGregaire();
-		virtual ~StratGregaire();
+		virtual ~StratGregaire() {};
 
 		virtual void action(Bestiole bestiole) const;
 		

@@ -10,7 +10,7 @@ class StratKamikaze : public BestioleStrategy
 		std::string NAME;
 	public : 
 		StratKamikaze();
-		virtual ~StratKamikaze();
+		virtual ~StratKamikaze() {};
 
 		virtual void action(Bestiole bestiole) const;
 		virtual inline std::string getName() const{return NAME;};

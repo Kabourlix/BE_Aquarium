@@ -10,7 +10,7 @@ class Factory
 		Milieu * milieu;
 	public : 
 	
-		virtual ~Factory();
+		virtual ~Factory() =0;
 
 		virtual Bestiole cloneBestiole(const Bestiole & bestiole)=0;
 

@@ -56,14 +56,14 @@ Bestiole::Bestiole( const Bestiole & b , int id)
       listeAccessories.push_back(new Accessory(**it));
    }
 
-   for(std::vector<Sensors*>::const_iterator it = b.listeSensors.cbegin(); it != b.listeSensors.cend(); ++it){
+   /*for(std::vector<Sensors*>::const_iterator it = b.listeSensors.cbegin(); it != b.listeSensors.cend(); ++it){
       //Get the type of the current item
       if((**it).getName() == "Eyes"){
          listeSensors.push_back(new Eyes(**it));
       }else{
          listeSensors.push_back(new Ears(**it));
       }
-   }
+   }*/
 
    multiple = b.multiple;
 
