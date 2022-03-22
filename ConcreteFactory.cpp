@@ -29,10 +29,10 @@ ConcreteFactory::ConcreteFactory(Milieu * singleton) {
 	milieu = singleton;
 	nbBestiole = milieu->getBestioles().size();
 	id = nbBestiole + 1;
-	float propGregaire;
-	float propPeureuse;
-	float propKamikaze;
-	float propPrevoyante;
+	float propGregaire= 0.4; 
+	float propPeureuse = 0.2;
+	float propKamikaze =0.2; 
+	float propPrevoyante= 0.1;
 
 };
 
