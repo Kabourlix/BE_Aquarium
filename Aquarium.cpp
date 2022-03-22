@@ -13,7 +13,9 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
 
    cout << "const Aquarium" << endl;
 
-   flotte -> getInstance( width, height );
+   //flotte->getInstance( width, height );
+   flotte = new Milieu(width, height);
+   flotte->singleton = flotte; 
    assign( *flotte, "Simulation d'ecosysteme" );
 
    move( static_cast<int>((screenWidth-width)/2), static_cast<int>((screenHeight-height)/2) );
@@ -38,13 +40,18 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
       for ( int i = 0; i < nbBestiole; ++i )
       {
          int nb = (int)(ratios[i] * nbBestiole);
-         bool multiple = (i == 0); //Multiple has to be the first ratio.
+         //bool multiple = (i == 0); //Multiple has to be the first ratio.
          for ( int j = 0; j < nb; ++j )
          {
             //Create a new bestiole with the associated strategy.
             BestioleStrategy* strat = flotte->getStrategy(i);
             toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
             Bestiole* b = new Bestiole(); //TODO : add the correct constructor.
+
+             //int identite_, int x_, int y_, double orientation_, double vitesse_, const BestioleStrategy 
+             // *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, 
+             // T couleur_ , int age_, int ageLimite_, bool multiple_
+
             //Add it to the ecosystem.
             flotte->addMember(*b);
          }
