@@ -1,6 +1,8 @@
 #ifndef _BESTIOLESTRATEGY_H_
 #define _BESTIOLESTRATEGY_H_
 
+#include <iostream>
+#include <vector>
 class Bestiole;
 
 class BestioleStrategy

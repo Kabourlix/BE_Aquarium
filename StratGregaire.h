@@ -2,7 +2,7 @@
 #define _STRATGREGAIRE_H_
 
 #include "BestioleStrategy.h"
-# include <string> 
+#include <string> 
 
 class StratGregaire : public BestioleStrategy
 {	
