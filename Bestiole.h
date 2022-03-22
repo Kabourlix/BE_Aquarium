@@ -48,7 +48,7 @@ private :
 
 public :     
    // -------- CONSTRUCTEUR ET DESTRUCTEUR --------
-   Bestiole( void ); // Constructeur par defaut
+   Bestiole(); // Constructeur par defaut
    Bestiole( const Bestiole & b, int id); // Constructeur de copies
    Bestiole( int identite_, int x_, int y_, 
             double orientation_, double vitesse_, 
@@ -57,7 +57,7 @@ public :
             std::vector<Sensors*>   listeSensors_ , 
             T couleur_, int age_, int ageLimite_, bool multiple_);
 
-   ~Bestiole( void );                              // Destructeur
+   ~Bestiole();                              // Destructeur
    // ---------------------------------------------
 
 
