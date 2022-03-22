@@ -4,7 +4,11 @@
 #include "StratPeureuse.h"
 #include <cmath>
 
-const std::string  StratGregaire::NAME = "Peureuse";
+StratPeureuse::StratPeureuse() {
+    NAME = "Peureuse";
+};
+
+
 
 void StratPeureuse::action(Bestiole b) const {
     int time = 0;

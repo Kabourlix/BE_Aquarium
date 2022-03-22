@@ -5,7 +5,11 @@
 #include <cmath>
 #include <cstdlib>
 
-const std::string  StratGregaire::NAME = "Kamikaze";
+
+
+StratKamikaze::StratKamikaze() {
+    NAME = "Kamikaze";
+};
 
 void StratKamikaze::action(Bestiole b) const{
     // Check if there is any nearby Bestiole detected :

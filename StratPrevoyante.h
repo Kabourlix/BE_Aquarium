@@ -6,7 +6,7 @@
 class StratPrevoyante: public BestioleStrategy
 {
 	private :
-		static const std::string NAME;
+		std::string NAME;
 	
 	public : 
 		StratPrevoyante();

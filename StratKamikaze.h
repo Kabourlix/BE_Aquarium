@@ -7,7 +7,7 @@ class Bestiole;
 class StratKamikaze : public BestioleStrategy
 {
 	private :
-		static const std::string NAME;
+		std::string NAME;
 	public : 
 		StratKamikaze();
 		virtual ~StratKamikaze();

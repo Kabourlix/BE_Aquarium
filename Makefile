@@ -1,5 +1,5 @@
-all: main.o Aquarium.o Bestiole.o Milieu.o StratGregaire.o StratKamikaze.o StratPeureuse.o StratPrevoyante.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o Milieu.o
-	g++ -o main main.o Aquarium.o Bestiole.o Bestiole.o Milieu.o StratGregaire.o StratKamikaze.o StratPeureuse.o StratPrevoyante.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o Milieu.o
+all: main.o Aquarium.o Bestiole.o Milieu.o StratGregaire.o StratKamikaze.o StratPeureuse.o  KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o Milieu.o
+	g++ -o main main.o Aquarium.o Bestiole.o Bestiole.o Milieu.o StratGregaire.o StratKamikaze.o StratPeureuse.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o Milieu.o
 
 main.o : main.cpp Aquarium.o Bestiole.o Milieu.o 
 	g++ -Wall -std=c++11 -c main.cpp Aquarium.o Bestiole.o Milieu.o -I . -I /opt/X11/include -L /opt/X11/lib -lX11 -lpthread
@@ -26,8 +26,6 @@ StratKamikaze.o : StratKamikaze.h StratKamikaze.cpp
 StratPeureuse.o : StratPeureuse.h StratPeureuse.cpp
 	g++ -Wall -std=c++11  -c StratPeureuse.cpp -I . -I /opt/X11/include
 
-StratPrevoyante.o : StratPrevoyante.h StratPrevoyante.cpp
-	g++ -Wall -std=c++11  -c StratPrevoyante.cpp -I . -I /opt/X11/include
 
 
 KillHandler.o : KillHandler.h KillHandler.cpp

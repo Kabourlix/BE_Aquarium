@@ -7,7 +7,7 @@ class Bestiole;
 class StratPeureuse : public BestioleStrategy
 {
 	private :
-		static const std::string NAME;
+		std::string NAME;
 	
 	public : 
 		StratPeureuse();
