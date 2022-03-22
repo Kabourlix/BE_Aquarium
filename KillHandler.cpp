@@ -5,23 +5,22 @@
 #include <cstdlib>
 
 KillHandler::KillHandler(){
-    milieu = Milieu::getInstance();
 }
 
 KillHandler::~KillHandler(){
     
 }
 
-bool KillHandler::kill(Bestiole& bestiole){
+bool KillHandler::kill(Bestiole& bestiole, Milieu * monMilieu){
     if (bestiole.getAge() >= bestiole.getAgeLimite()) {
-        milieu->removeMember(bestiole);
+        monMilieu-> removeMember(bestiole);
     }
 
     //Check for collision with other bestioles
-    Bestiole collidedBestiole = milieu->checkCollision(bestiole);
+    Bestiole collidedBestiole = monMilieu-> checkCollision(bestiole);
     if(rand()> 0.75){ // We kill the bestioles
-        milieu->removeMember(bestiole);
-        milieu->removeMember(collidedBestiole);
+        monMilieu -> removeMember(bestiole);
+        monMilieu -> removeMember(collidedBestiole);
     }
     else{ // Otherwise we just move them away
         bestiole.setOrientation(-bestiole.getOrientation());
@@ -30,6 +29,6 @@ bool KillHandler::kill(Bestiole& bestiole){
     }
 
 
-void KillHandler::killExt(int idBestiole){
-    milieu->removeMember(idBestiole);
+void KillHandler::killExt(int idBestiole, Milieu * monMilieu){
+    monMilieu -> removeMember(idBestiole);
 }

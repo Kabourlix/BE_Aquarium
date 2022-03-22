@@ -7,16 +7,14 @@ class Bestiole;
 
 class KillHandler 
 {
-	private:
-		Milieu * milieu;
 
 	public : 
 		KillHandler();
 		~KillHandler();
 
-		bool kill(Bestiole& bestiole);
+		bool kill(Bestiole& bestiole, Milieu * monMilieu);
 
-		void killExt(int idBestiole);
+		void killExt(int idBestiole, Milieu * monMilieu);
 
 };
 
