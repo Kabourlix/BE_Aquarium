@@ -4,10 +4,6 @@
 #include <cmath>
 #include <math.h>
 
-Eyes::Eyes( const Eyes& eyes )
-{
-    
-};
 
 Eyes::Eyes( float probaDetection, float angle, float distance )
 {
@@ -23,8 +19,8 @@ Eyes::~Eyes( void )
 
 bool Eyes::detection(Bestiole * b1,Bestiole * b2)
 {
-    if (b2->getX() >= b1->getX() and b2->getX() <= this->distance) {
-        return ((b2->getY() >= -b1->getX()*tan(this->angle) and b2->getY() <= b1->getX()*tan(this->angle)) && (rand()/RAND_MAX <= thi->probaDetection));
+    if (b2->getX() >= b1->getX() and b2->getX() <= distance) {
+        return ((b2->getY() >= -b1->getX()*tan(angle) and b2->getY() <= b1->getX()*tan(angle)) && (rand()/RAND_MAX <= probaDetection));
     }
     return false;
 
@@ -33,19 +29,13 @@ bool Eyes::detection(Bestiole * b1,Bestiole * b2)
 
 
 void Eyes::setProbaDetection(float probDetec) {
-    if (probDetec >= GAMMA_EYES_MIN && probDetec <= GAMMA_EYES_MAX) {
-        probaDetection = probDetec;
-    }      
+    probaDetection = probDetec;     
 };
 
 void Eyes::setAngle(float ang) {
-    if (ang >= ANGLE_MIN && ang <= ANGLE_MAX) {
-        angle = ang;
-    }
+    angle = ang;
 };
 
 void Eyes::setDistance(float dist) {
-    if (dist >= 0) {
-        distance = dist;
-    }
+    distance = dist;
 };
