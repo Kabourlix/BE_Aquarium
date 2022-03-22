@@ -1,7 +1,10 @@
 
 #include "StratGregaire.h"
 
-const std::string  StratGregaire::NAME = "Gregaire";
+StratGregaire::StratGregaire() {
+    NAME = "Gregaire";
+};
+
 
 void StratGregaire::action(Bestiole b) const{
     //Check for nearby bestioles (i.e. visible)
