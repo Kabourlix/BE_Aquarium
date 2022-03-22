@@ -1,9 +1,16 @@
 #include "Milieu.h"
-#include "Ears.h"
+#include "Eyes.h"
 #include <cstdlib>
 #include <cmath>
 #include <math.h>
 
+
+Eyes::Eyes( const Eyes& eyes)
+{
+    probaDetection = eyes.probaDetection;
+    distance = eyes.distance;
+    angle = eyes.angle;
+}
 
 Eyes::Eyes( float probaDetection, float angle, float distance )
 {

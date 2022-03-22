@@ -12,7 +12,8 @@ class Eyes : public Sensors
     	float distance;
 
 	public :
-		//Eyes(const Sensors& eyes); //TODO : Poser la question aux profs ça me parait chelou. USE NOWHERE
+		//Eyes(const Sensors& eyes); //TODO : Poser la question aux profs ça me parait chelou. 
+		Eyes(const Eyes& eyes);
         Eyes(float probaDetection, float angle, float distance);
 		virtual ~Eyes();
 		virtual bool detection(const Bestiole * bestiole1, const Bestiole * bestiole2);

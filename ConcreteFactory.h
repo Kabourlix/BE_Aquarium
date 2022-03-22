@@ -39,10 +39,9 @@
 
  	public : 
  		ConcreteFactory();
- 		~ConcreteFactory();
-
- 		virtual Bestiole createBestiole();
+ 		virtual ~ConcreteFactory();
  		virtual Bestiole cloneBestiole(const Bestiole & bestiole);
+ 		virtual Bestiole createBestiole();
  		virtual Bestiole createExtBestiole();
 
 
