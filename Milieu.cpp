@@ -25,7 +25,7 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
    //stratVector.push_back(new StratPrevoyante());
    
    //Initialiaze the createHandler and killHandler
-   createHandler = new CreateHandler();
+   createHandler = new CreateHandler(this -> getInstance());
    killHandler   = new KillHandler();
 
    std::srand( time(NULL) );
@@ -62,13 +62,13 @@ Milieu* Milieu::getInstance(int _width, int _height){
 
 void Milieu::step( void )
 {
-   createHandler->spontaneousCreate();
+   createHandler->spontaneousCreate(this -> getInstance());
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      if(killHandler->kill(*it, singleton)) break;
+      if(killHandler->kill(*it, this -> getInstance())) break;
 
-      createHandler->cloneCreate(*it);
+      createHandler->cloneCreate(this -> getInstance(), *it);
       it->action( *this );
       it->draw( *this );
 
