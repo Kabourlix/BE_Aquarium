@@ -21,7 +21,7 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
    stratVector.push_back(new StratGregaire());
    stratVector.push_back(new StratKamikaze());
    stratVector.push_back(new StratPeureuse());
-   stratVector.push_back(new StratPrevoyante());
+   //stratVector.push_back(new StratPrevoyante());
    
    //Initialiaze the createHandler and killHandler
    createHandler = new CreateHandler();

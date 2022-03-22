@@ -25,6 +25,9 @@ StratPeureuse.o : StratPeureuse.h StratPeureuse.cpp
 	g++ -Wall -std=c++11  -c StratPeureuse.cpp -I . -I /opt/X11/include
 
 
+StratPrevoyante.o : StratPrevoyante.h StratPrevoyante.cpp
+	g++ -Wall -std=c++11  -c StratPrevoyante.cpp -I . -I /opt/X11/include
+
 
 KillHandler.o : KillHandler.h KillHandler.cpp
 	g++ -Wall -std=c++11  -c KillHandler.cpp -I . -I /opt/X11/include

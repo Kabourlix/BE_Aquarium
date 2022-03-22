@@ -3,7 +3,7 @@
 
 
 #include "StratPrevoyante.h"
-#include <cmath>
+
 
 StratPrevoyante::StratPrevoyante() {
 };
