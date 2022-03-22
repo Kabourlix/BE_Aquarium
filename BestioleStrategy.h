@@ -12,7 +12,7 @@ class BestioleStrategy
 		BestioleStrategy();
 		virtual ~BestioleStrategy();
 		virtual void action(Bestiole bestiole) const =0;
-		virtual std::string getName() const =0;
+		virtual inline std::string getName() const =0;
 };
 
 #endif
