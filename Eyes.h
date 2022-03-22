@@ -20,9 +20,9 @@ class Eyes : public Sensors
 		inline float getProbaDetection() {return probaDetection;};
 		inline float getAngle() {return angle;};
 		inline float getDistance() {return distance;};
-		void Eyes::setProbaDetection(float ang);
-		void Eyes::setAngle(float probDetec);
-		void Eyes::setDistance(float dist);
+		void setProbaDetection(float ang);
+		void setAngle(float probDetec);
+		void setDistance(float dist);
 
 
 
