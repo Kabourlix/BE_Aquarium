@@ -3,6 +3,7 @@
 
 #include "BestioleStrategy.h"
 
+class Bestiole;
 class StratKamikaze : public BestioleStrategy
 {
 	private :

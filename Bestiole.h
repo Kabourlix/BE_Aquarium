@@ -6,15 +6,15 @@
 
 #include <iostream>
 #include <vector>
-#include "BestioleStrategy.h"
 #include "Accessory.h"
 #include "Sensors.h"
 
 using namespace std;
 
 
-class Milieu;
 
+class Milieu;
+class BestioleStrategy;
 
 class Bestiole
 {

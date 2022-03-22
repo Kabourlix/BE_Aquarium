@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <vector>
-class Bestiole;
+
+#include "Bestiole.h"
 
 class BestioleStrategy
 {

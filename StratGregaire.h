@@ -4,6 +4,8 @@
 #include "BestioleStrategy.h"
 #include <string> 
 
+class Bestiole;
+
 class StratGregaire : public BestioleStrategy
 {	
 	private :

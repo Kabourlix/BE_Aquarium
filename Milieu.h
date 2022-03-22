@@ -4,7 +4,7 @@
 
 #include "UImg.h"
 #include "Bestiole.h"
-
+#include "BestioleStrategy.h"
 #include <iostream>
 #include <vector>
 
