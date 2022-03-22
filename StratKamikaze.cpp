@@ -7,7 +7,7 @@
 
 const std::string  StratGregaire::NAME = "Kamikaze";
 
-void StratKamikaze::action(Bestiole b){
+void StratKamikaze::action(Bestiole b) const{
     // Check if there is any nearby Bestiole detected :
     if (b.getNearbyNeighbor().size()>0)
     {

@@ -6,7 +6,7 @@
 
 const std::string  StratGregaire::NAME = "Peureuse";
 
-void StratPeureuse::action(Bestiole b){
+void StratPeureuse::action(Bestiole b) const {
     int time = 0;
     if (time==0)
     {

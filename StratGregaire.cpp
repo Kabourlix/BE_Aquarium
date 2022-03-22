@@ -3,7 +3,7 @@
 
 const std::string  StratGregaire::NAME = "Gregaire";
 
-void StratGregaire::action(Bestiole b){
+void StratGregaire::action(Bestiole b) const{
     //Check for nearby bestioles (i.e. visible)
     std::vector<Bestiole> neighbors = b.getNearbyNeighbor();
     if (neighbors.size() >= 1)
