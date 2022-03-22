@@ -12,7 +12,6 @@ class StratPrevoyante: public BestioleStrategy
 		StratPrevoyante();
 		virtual ~StratPrevoyante() {};
 
-		virtual void action(Bestiole bestiole) const;
 		virtual inline std::string getName() const{return NAME;};
 };
 
