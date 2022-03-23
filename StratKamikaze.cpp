@@ -29,7 +29,6 @@ void StratKamikaze::action(Bestiole * b, Milieu * monMilieu ) const{
             new_angle = new_angle + M_PI/2;
         }
         }
-        cout << "In StratKamikaze::action, new orientation = " << new_angle << endl;
         b -> setOrientation(new_angle);
     }
 

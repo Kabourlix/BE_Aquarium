@@ -19,7 +19,6 @@ void CreateHandler::spontaneousCreate(Milieu * milieu){
 	int nb = rand() % 100;
 	if (nb < 10)
 	{
-		std::cout << "CreateHandler::spontaneousCreate" << std::endl;
 		milieu->addMember(fact->createBestiole());
 	}
 };

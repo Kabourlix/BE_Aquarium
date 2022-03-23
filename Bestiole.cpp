@@ -184,8 +184,9 @@ void Bestiole::action( Milieu * monMilieu )
 {  
    this->updateAge();
    if (multiple) {
-      if (rand()<0.25) {
+      if ((rand()%100)<5) {
          this->setStrategy(monMilieu->getRandomStrategy(bestioleStrat->getName()));
+         
          if (bestioleStrat->getName() == "Gregaire") 
          {
             couleur[ 0 ] = 0;

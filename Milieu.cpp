@@ -74,9 +74,6 @@ Milieu* Milieu::getInstance(int _width, int _height){
 
 void Milieu::step( void )
 {
-   cout << "We are entering step of Milieu." << endl;
-   std::ofstream myFile("data/age.csv"); //type id ageMort
-
    createHandler->spontaneousCreate(this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
@@ -84,11 +81,9 @@ void Milieu::step( void )
       if(killHandler->kill(*it, this)) break;
       popFile << (*it)->getIdentite() << "," << pasDeTemps << "," << (*it)->getStrat()->getName() << "," << 1 << "\n";
       //createHandler->cloneCreate(this, *it);
-      //print type of iterator
-      (*it)->action( this );
-      //cout << "We get out of action of Bestiole " << (*it)->getIdentite() << endl;
-      (*it)->draw( *this );
 
+      (*it)->action( this );
+      (*it)->draw( *this );
    }
    pasDeTemps++; // for
 
@@ -97,7 +92,6 @@ void Milieu::step( void )
 
 
 void Milieu::removeMember(Bestiole * b){
-   std::cout << "We are removing a member of the list. It is bestiole " << b->getIdentite() << std::endl;
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       //! This might cause error when b is null.
