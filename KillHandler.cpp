@@ -27,7 +27,7 @@ bool KillHandler::kill(Bestiole* bestiole, Milieu * monMilieu){
     
     if (collidedBestiole != nullptr) {
         cout << "We get in the collided != nullptr" << endl;
-        if(rand()> 0.75){ // We kill the bestioles
+        if(rand()> 0.0){ // We kill the bestioles
             monMilieu -> removeMember(bestiole);
             monMilieu -> removeMember(collidedBestiole);
             return true;

@@ -13,12 +13,26 @@ StratKamikaze::StratKamikaze() {
 
 void StratKamikaze::action(Bestiole * b, Milieu * monMilieu ) const{
     // Check if there is any nearby Bestiole detected :
+    float deltax;
+    float deltay;
+    float new_angle;
     if (b->getNearbyNeighbor(monMilieu).size()>0)
     {
-        // Define the orientation of the bestiole such as it will be directed towards the current position of the nearest bestiole
-        // à voir si position bestiole vraiment donné par x,y 
-        b->setOrientation( signbit(b->getNearestBestiole(monMilieu).getX() - b->getX())*M_PI + atan( (b->getNearestBestiole(monMilieu).getY() - b->getY()) / (b->getNearestBestiole(monMilieu).getX() - b->getX()) ) );
+        deltax = (*(b->getNearbyNeighbor(monMilieu)).begin()) ->getX() - (b -> getX());
+        deltay = (*(b->getNearbyNeighbor(monMilieu)).begin()) ->getY() - (b -> getY());
+        new_angle = atan (deltay/deltax) * 180 / M_PI;
+        if (deltax >0 && deltay < 0) {
+            new_angle = -new_angle;
+        } else { if (deltax <0 && deltay < 0) {
+            new_angle = -new_angle - M_PI/2;
+        } else { if (deltax <0 && deltay > 0)
+            new_angle = new_angle + M_PI/2;
+        }
+        }
+        cout << "In StratKamikaze::action, new orientation = " << new_angle << endl;
+        b -> setOrientation(new_angle);
     }
+
 }
 
 #endif

@@ -272,7 +272,7 @@ Bestiole Bestiole::getNearestBestiole(Milieu * monMilieu)
 
 bool Bestiole::checkCollision(Bestiole * b)
 {
-   return ( this->sqrDist(b) <= 0.1*0.1 );
+   return ( this->sqrDist(b) <= 2*2 );
 }
 
 
