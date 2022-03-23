@@ -17,6 +17,38 @@ We have a few parameters to launch the simulation :
 
 # Implemented functionnalities
 
+## Scénario Gregaire : 
+
+<color="green"> !!!! </color>
+Commenter spontaneous create dans la méthode step de milieu 
+Commenter kill dans la méthode step de milieu
+
+Exécuter ./main 10 0 1 0 0
+
+## Scénario Multiple :
+
+<color="green"> !!!! </color>
+Commenter spontaneous create dans la méthode step de milieu
+Commenter kill dans step de milieu
+
+Exécuter ./main 10 1 0 0 0 
+
+
+## Scénario création : 
+<color="green"> !!!! </color>
+Commenter kill dans la méthode step de milieu
+
+Exécuter ./main 10 0 0 0 1 
+
+
+
+## Scénario mort : 
+<color="green"> !!!! </color>
+Commenter spontaneous create dans la méthode step de milieu
+
+Exécuter ./main 10 0 0.5 0.5 0
+
+
 
 
 On doit avoir : 
