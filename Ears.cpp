@@ -9,10 +9,10 @@ Ears::Ears( const Ears& ears)
     distance = ears.distance;
 }
 
-Ears::Ears( float probaDetection, float distance)
+Ears::Ears( float _probaDetection, float _distance)
 {
-    probaDetection = probaDetection;
-    distance = distance;
+    probaDetection = _probaDetection;
+    distance = _distance;
 }
 Ears::~Ears( void )
 {

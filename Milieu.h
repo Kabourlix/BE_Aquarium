@@ -30,15 +30,17 @@ private :
 
    int                     width, height;
    std::vector<Bestiole>   listeBestioles;
-   Milieu( int _width, int _height );
-   Milieu*         singleton;
+   
+   
    std::vector<StratPtr> stratVector;
 
    CreateHandler * createHandler;
    KillHandler   * killHandler;
 
 public :
-
+   Milieu*         singleton;
+   
+   Milieu( int _width, int _height );
    Milieu* getInstance(int _width = 640, int _height = 480); // Initialize the Milieu safely.
    ~Milieu( void );
 

@@ -12,11 +12,11 @@ Eyes::Eyes( const Eyes& eyes)
     angle = eyes.angle;
 }
 
-Eyes::Eyes( float probaDetection, float angle, float distance )
+Eyes::Eyes( float _probaDetection, float _angle, float _distance )
 {
-    probaDetection = probaDetection;
-    angle = angle;
-    distance = distance;
+    probaDetection = _probaDetection;
+    angle = _angle;
+    distance = _distance;
 };
 
 Eyes::~Eyes( void )

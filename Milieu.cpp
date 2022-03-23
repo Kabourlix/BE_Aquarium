@@ -114,6 +114,7 @@ Bestiole& Milieu::checkCollision(Bestiole& b){
          return *it;
       }
    }
+   // return BestioleNULL
    //TODO : return a null bestiole to define.
 }
 
@@ -139,6 +140,8 @@ StratPtr Milieu::getStrategy(std::string name){
          return *it;
       }
    }
+   std::cout << "incorrect strategy name -> A strategy has been chosen by default" ;
+   return stratVector[1];
 }  
 
 StratPtr Milieu::getStrategy(int index){

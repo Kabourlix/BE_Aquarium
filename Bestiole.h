@@ -25,7 +25,7 @@ private :
    static const double     LIMITE_VUE;
 
    static int              next;
-   Milieu* milieu;
+   //Milieu* milieu;
 
 private :
    int               identite;
