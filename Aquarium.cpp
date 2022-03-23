@@ -85,7 +85,7 @@ void Aquarium::run( void )
 
    cout << "running Aquarium" << endl;
 
-   /*while ( ! is_closed() )
+   while ( ! is_closed() )
    {
 
       // cout << "iteration de la simulation" << endl;
@@ -101,13 +101,7 @@ void Aquarium::run( void )
 
       wait( delay );
 
-   } // while*/
-
-
-   flotte->step();
-   display( *flotte );
-
-   wait( delay );
+   } 
 
    
 
