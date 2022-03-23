@@ -10,12 +10,13 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
  
 
-# Make data base, printed on Mon Mar 21 21:19:28 2022
+# Make data base, printed on Wed Mar 23 17:09:21 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
+ 
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -41,7 +42,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/rb/qyycq0gd1vnbf173_z7d_33r0000gn/T/vscode-ipc-9c4f992f-55a9-44ca-bfd5-740382b4007c.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/rb/qyycq0gd1vnbf173_z7d_33r0000gn/T/vscode-ipc-a3e9ae81-e438-47e4-aac4-99438f93dca0.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -151,7 +152,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/hdamaia/miniconda3
 # environment
-VSCODE_PID = 47595
+VSCODE_PID = 1942
 # environment
 _CE_CONDA = 
 # environment
@@ -165,9 +166,9 @@ LANG = C
 
 # Directories
 
-# . (device 16777233, inode 12877284): 51 files, no impossibilities.
+# . (device 16777233, inode 12877284): 62 files, no impossibilities.
 
-# 51 files, no impossibilities in 1 directories.
+# 62 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -185,7 +186,7 @@ Milieu.o: Milieu.h Bestiole.h StratGregaire.h StratKamikaze.h StratPrevoyante.h 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 46):
+#  commands to execute (from `Makefile', line 48):
 	g++ -Wall -std=c++11  -c Milieu.cpp -I . -I /opt/X11/include
 	
 
@@ -193,7 +194,7 @@ StratPeureuse.o: StratPeureuse.h StratPeureuse.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 24):
+#  commands to execute (from `Makefile', line 25):
 	g++ -Wall -std=c++11  -c StratPeureuse.cpp -I . -I /opt/X11/include
 	
 
@@ -222,7 +223,7 @@ Bestiole.o: Bestiole.h BestioleStrategy.h Accessory.h Sensors.h Bestiole.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 9):
+#  commands to execute (from `Makefile', line 10):
 	g++ -Wall -std=c++11  -c Bestiole.cpp -I . -I /opt/X11/include
 	
 
@@ -236,7 +237,7 @@ CreateHandler.o: CreateHandler.h ConcreteFactory.h CreateHandler.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 34):
+#  commands to execute (from `Makefile', line 36):
 	g++ -Wall -std=c++11  -c CreateHandler.cpp -I . -I /opt/X11/include
 	
 
@@ -250,7 +251,7 @@ Eyes.o: Eyes.h Sensors.h Eyes.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 40):
+#  commands to execute (from `Makefile', line 42):
 	g++ -Wall -std=c++11  -c Eyes.cpp -I . -I /opt/X11/include
 	
 
@@ -264,7 +265,7 @@ StratGregaire.o: StratGregaire.h StratGregaire.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 18):
+#  commands to execute (from `Makefile', line 19):
 	g++ -Wall -std=c++11  -c StratGregaire.cpp -I . -I /opt/X11/include
 	
 
@@ -272,7 +273,7 @@ KillHandler.o: KillHandler.h KillHandler.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 31):
+#  commands to execute (from `Makefile', line 33):
 	g++ -Wall -std=c++11  -c KillHandler.cpp -I . -I /opt/X11/include
 	
 
@@ -286,16 +287,16 @@ StratKamikaze.o: StratKamikaze.h StratKamikaze.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 21):
+#  commands to execute (from `Makefile', line 22):
 	g++ -Wall -std=c++11  -c StratKamikaze.cpp -I . -I /opt/X11/include
 	
 
 # Not a target:
 Makefile:
- 
 #  Implicit rule search has been done.
-#  Last modified 2022-03-21 21:19:09
+#  Last modified 2022-03-23 16:52:28
 #  File has been updated.
+ 
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -304,18 +305,12 @@ ConcreteFactory.o: ConcreteFactory.h Factory.h Accessory.h BestioleStrategy.h Ey
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 37):
+#  commands to execute (from `Makefile', line 39):
 	g++ -Wall -std=c++11  -c ConcreteFactory.cpp -I . -I /opt/X11/include
 	
 
 # Not a target:
 Sensors.h:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main.cpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -336,7 +331,7 @@ Ears.o: Ears.h Sensors.h Ears.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 45):
 	g++ -Wall -std=c++11  -c Ears.cpp -I . -I /opt/X11/include
 	
 
@@ -368,7 +363,7 @@ Accessory.o: Accessory.h Accessory.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 12):
+#  commands to execute (from `Makefile', line 13):
 	g++ -Wall -std=c++11  -c Accessory.cpp -I . -I /opt/X11/include
 	
 
@@ -406,7 +401,7 @@ Aquarium.o: Aquarium.h Aquarium.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 5):
+#  commands to execute (from `Makefile', line 6):
 	g++ -Wall -std=c++11  -c Aquarium.cpp -I . -I /opt/X11/include
 	
 
@@ -420,8 +415,8 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 49):
-	rm -f main Aquarium.o Bestiole.o Milieu.o
+#  commands to execute (from `Makefile', line 51):
+	rm -f main main.o Aquarium.o Bestiole.o Milieu.o StratGregaire.o StratKamikaze.o StratPeureuse.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o
 	
 
 # Not a target:
@@ -478,13 +473,19 @@ KillHandler.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
-main: main.cpp Aquarium.o Bestiole.o Milieu.o
+main: main.o Aquarium.o Bestiole.o Milieu.o Accessory.o StratGregaire.o StratKamikaze.o StratPeureuse.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o Milieu.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 2):
-	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o Bestiole.o Milieu.o -I . -I /opt/X11/include -L /opt/X11/lib -lX11 -lpthread
+	g++ -Wall -std=c++11 -o main main.o Aquarium.o  Accessory.o Bestiole.o Milieu.o StratGregaire.o StratKamikaze.o StratPeureuse.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o -I . -I /opt/X11/include -L /opt/X11/lib -lX11 -lpthread
 	
+
+# Not a target:
+main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 StratKamikaze.cpp:
@@ -502,12 +503,12 @@ StratPrevoyante.o: StratPrevoyante.h StratPrevoyante.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 27):
+#  commands to execute (from `Makefile', line 29):
 	g++ -Wall -std=c++11  -c StratPrevoyante.cpp -I . -I /opt/X11/include
 	
 
 # files hash-table stats:
-# Load=49/1024=5%, Rehash=0, Collisions=1/109=1%
+# Load=49/1024=5%, Rehash=0, Collisions=1/119=1%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -519,6 +520,6 @@ StratPrevoyante.o: StratPrevoyante.h StratPrevoyante.cpp
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Mar 21 21:19:28 2022
+# Finished Make data base on Wed Mar 23 17:09:21 2022
 
  
