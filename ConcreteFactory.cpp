@@ -42,7 +42,7 @@ ConcreteFactory::~ConcreteFactory(void){
 
 
 
-Bestiole ConcreteFactory::createBestiole(){
+Bestiole* ConcreteFactory::createBestiole(){
 	    
 	std::random_device rd;
     std::default_random_engine eng(rd());
@@ -127,7 +127,7 @@ Bestiole ConcreteFactory::createBestiole(){
 
 
 	// Return the bestiole to be created.
-	return *(new Bestiole(id++, 
+	return new Bestiole(id++, 
 						x,
 						y, 
 						orientation,
@@ -137,15 +137,15 @@ Bestiole ConcreteFactory::createBestiole(){
 						sensorVector,
 						age,
 						ageLimite,
-						multiple));
+						multiple);
 	
 };
 
-Bestiole ConcreteFactory::cloneBestiole(const Bestiole & bestiole){
-	return *(new Bestiole(bestiole));
+Bestiole* ConcreteFactory::cloneBestiole(const Bestiole & bestiole){
+	return new Bestiole(bestiole);
 };
 
-Bestiole ConcreteFactory::createExtBestiole() {
+Bestiole* ConcreteFactory::createExtBestiole() {
 	return this->createBestiole();
 };
 

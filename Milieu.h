@@ -29,7 +29,7 @@ private :
    static const T          white[];
 
    int                     width, height;
-   std::vector<Bestiole>   listeBestioles;
+   std::vector<Bestiole*>   listeBestioles;
    
    
    std::vector<StratPtr> stratVector;
@@ -49,7 +49,7 @@ public :
 
    void step( void );
 
-   void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
+   void addMember(Bestiole * b );
    void removeMember(Bestiole & b);
    void removeMember(int idBestiole);
    Bestiole & checkCollision(Bestiole& b);
@@ -63,7 +63,7 @@ public :
    StratPtr getRandomStrategy(std::string previousStrat);
    inline CreateHandler getCreateHandler() {return *createHandler;};
 
-   inline std::vector<Bestiole> getBestioles(void) { return listeBestioles; };
+   inline std::vector<Bestiole*> getBestioles(void) { return listeBestioles; };
    
 
 

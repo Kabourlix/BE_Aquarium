@@ -40,9 +40,9 @@
  	public : 
  		ConcreteFactory(Milieu * singleton);
  		virtual ~ConcreteFactory();
- 		virtual Bestiole cloneBestiole(const Bestiole & bestiole);
- 		virtual Bestiole createBestiole();
- 		virtual Bestiole createExtBestiole();
+ 		virtual Bestiole* cloneBestiole(const Bestiole & bestiole);
+ 		virtual Bestiole* createBestiole();
+ 		virtual Bestiole* createExtBestiole();
 
 
  		Sensors* createEars();

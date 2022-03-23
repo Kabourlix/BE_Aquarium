@@ -82,33 +82,34 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    listeAccessories = listeAccessories_ ;
    listeSensors = listeSensors_;
    couleur = couleur = new T[ 3 ];
-   if (bestioleStrat_->getName() == "Grégaire") {
-      	couleur[ 0 ] = 255;
-  		   couleur[ 1 ] = 0;
-   		couleur[ 2 ] = 0;
-   } else { if (bestioleStrat_->getName() == "Kamikze" ) {
-      	couleur[ 0 ] = 255;
-  		   couleur[ 1 ] = 165;
-   		couleur[ 2 ] = 0;
-      } else { if (bestioleStrat_->getName() == "Peureuse" ) {
+   multiple = multiple_;
+   if (!multiple) {
+      if (bestioleStrat_->getName() == "Gregaire") {
             couleur[ 0 ] = 255;
-  		      couleur[ 1 ] = 255;
-   		   couleur[ 2 ] = 0;
-         } else { if (bestioleStrat_->getName() == "Prevoyante" ) {
-               couleur[ 0 ] = 152;
-  		         couleur[ 1 ] = 251; 	
-   		      couleur[ 2 ] = 152;
-            
-            } else {
-               	couleur[ 0 ] = 0;
-  		            couleur[ 1 ] = 0;
-   		         couleur[ 2 ] = 0;
-
+            couleur[ 1 ] = 0;
+            couleur[ 2 ] = 0;
+      } else { if (bestioleStrat_->getName() == "Kamikaze" ) {
+            couleur[ 0 ] = 0;
+            couleur[ 1 ] = 255;
+            couleur[ 2 ] = 0;
+         } else { if (bestioleStrat_->getName() == "Peureuse" ) {
+               couleur[ 0 ] = 0;
+               couleur[ 1 ] = 0;
+               couleur[ 2 ] = 255;
+            } else { if (bestioleStrat_->getName() == "Prevoyante" ) {
+                  couleur[ 0 ] = 152;
+                  couleur[ 1 ] = 251; 	
+                  couleur[ 2 ] = 152;
+               
+               } 
             }
          }
       }
-   }
-   multiple = multiple_;
+   } else {
+      couleur[ 0 ] = 0;
+      couleur[ 1 ] = 0;
+      couleur[ 2 ] = 0;
+         }
 
 }
 
@@ -227,6 +228,7 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 
 bool Bestiole::detect(const Bestiole *b) const
 { bool detected = false;
+cout << "TESTDe" << endl;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
    for ( std::vector<Sensors*>::const_iterator it = listeSensors.cbegin() ; it != listeSensors.cend() ; ++it )
    {  
@@ -237,13 +239,14 @@ bool Bestiole::detect(const Bestiole *b) const
 }
 
 std::vector<Bestiole> Bestiole::getNearbyNeighbor( Milieu & monMilieu ) 
-{ std::vector<Bestiole> neighbors;
-   for ( std::vector<Bestiole>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )
+{ 
+   std::vector<Bestiole> neighbors;
+   for ( std::vector<Bestiole*>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )
    { 
       cout << "TESTDNNN" << endl;
-      if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) ) ))
+      if (!(*this == **it) && this->detect(static_cast<Bestiole*>( &(**it) ) ))
       {
-         neighbors.push_back(*it);
+         neighbors.push_back(**it);
       }
    }
    return neighbors;
@@ -254,13 +257,13 @@ Bestiole Bestiole::getNearestBestiole(Milieu & monMilieu)
 { Bestiole nearestBestiole;
   double currentMinDist2 = 0; 
   int n = 0;
-   for ( std::vector<Bestiole>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )
-   { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) )))
+   for ( std::vector<Bestiole*>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )
+   { if (!(*this == **it) && this->detect(static_cast<Bestiole*>( &(**it) )))
       { 
-         if ( n==0 || (pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2) ) < currentMinDist2)
+         if ( n==0 || (pow(((*this).x-(**it).x),2)+pow(((*this).y-(**it).y),2) ) < currentMinDist2)
          {
-            nearestBestiole = *it;
-            currentMinDist2 = pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2);
+            nearestBestiole = **it;
+            currentMinDist2 = pow(((*this).x-(**it).x),2)+pow(((*this).y-(**it).y),2);
             n = 1;
          }
       }

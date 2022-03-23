@@ -36,9 +36,9 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
 Milieu::~Milieu( void )
 {
    //Go through listBestioles and delete them.
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin(); it != listeBestioles.end(); ++it )
+   for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin(); it != listeBestioles.end(); ++it )
    {
-      it->~Bestiole();
+      (*it)->~Bestiole();
    }
 
    //Delete classes dealt by Milieu
@@ -65,13 +65,13 @@ void Milieu::step( void )
    cout << "test step" << endl;
    // createHandler->spontaneousCreate(this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       //if(killHandler->kill(*it, this -> getInstance())) break;
 
       //createHandler->cloneCreate(this, *it);
-      it->action( *this );
-      it->draw( *this );
+      (*it)->action( *this );
+      (*it)->draw( *this );
 
    } // for
 
@@ -80,10 +80,10 @@ void Milieu::step( void )
 
 
 void Milieu::removeMember(Bestiole & b){
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       //! This might cause error when b is null.
-      if(*it == b){ //When we find it, we delete it and leave.
+      if((**it) == b){ //When we find it, we delete it and leave.
          listeBestioles.erase(it);
          // We delete the bestiole since it is not in the list anymore.
          delete &b;
@@ -96,9 +96,9 @@ void Milieu::removeMember(Bestiole & b){
 }
 
 void Milieu::removeMember(int idBestiole){
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      if (it->getIdentite() == idBestiole){
+      if ((*it)->getIdentite() == idBestiole){
          listeBestioles.erase(it);
          delete &*it;
          return;
@@ -109,10 +109,10 @@ void Milieu::removeMember(int idBestiole){
 }
 
 Bestiole& Milieu::checkCollision(Bestiole& b){
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      if(b.checkCollision(*it)){
-         return *it;
+      if(b.checkCollision(**it)){
+         return **it;
       }
    }
    // return BestioleNULL
@@ -125,8 +125,8 @@ int Milieu::nbVoisins( const Bestiole & b )
    int         nb = 0;
 
 
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
-      if ( !(b == *it) && b.jeTeVois(*it) )
+   for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+      if ( !(b == **it) && b.jeTeVois(**it) )
          ++nb;
 
    return nb;
@@ -158,4 +158,10 @@ StratPtr Milieu::getRandomStrategy(std::string previousStrat){
       toReturn = stratVector[random];
    }
    return toReturn;
+}
+
+
+void Milieu::addMember(Bestiole * b) 
+{ 
+   listeBestioles.push_back(b); listeBestioles.back()->initCoords(width, height); 
 }

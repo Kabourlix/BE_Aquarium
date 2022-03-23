@@ -19,8 +19,8 @@ int main(int argc, char** argv)
    Aquarium       ecosysteme( 640, 480, 30 );
    
    //Multiple, Gregaire, Kamikaze, Peureuse, Prevoyante
-   float ratios[] = { 0, 0.5 , 0.5 ,0 , 0}; 
-   ecosysteme.createInitialPopulation( ratios, 15);
+   float ratios[] = { 0.3, 0.4 , 0.2 , 0.1 , 0}; 
+   ecosysteme.createInitialPopulation( ratios, 10);
 
    
    ecosysteme.run();

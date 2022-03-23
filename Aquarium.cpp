@@ -39,17 +39,24 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
 
       std::string toDisp = "ratios : ";
       //Go through each ratio and get the associated proportion of the population.
-      for ( int i = 0; i < nbBestiole; ++i )
+      for ( int i = 0; i < 4; ++i )
       {
          int nb = (int)(ratios[i] * nbBestiole);
-         //bool multiple = (i == 0); //Multiple has to be the first ratio.
+         cout <<  nb << endl;
+         bool multiple = (i == 0); //Multiple has to be the first ratio.
          for ( int j = 0; j < nb; ++j )
          {
             //Create a new bestiole with the associated strategy.
             cout << " TEST" << i+j  << endl;
-            BestioleStrategy* strat = flotte->getStrategy(i);
-            cout << " TEST" << i+j  << endl;
-            toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
+            BestioleStrategy* strat;
+            if (multiple) {
+               strat = flotte->getStrategy(0);
+            } else {
+               strat = flotte->getStrategy(i-1);
+            }
+            
+            cout <<  strat->getName() << endl;
+            //toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
             cout << " TEST" << i+j  << endl;
             std::vector<Accessory*> accessories;
             cout << " TEST" << i+j  << endl;
@@ -65,12 +72,12 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
                                        sensors,
                                        0,
                                        300,
-                                       false);
+                                       multiple);
             
-                                       //TODO : add the correct constructor.
+            //TODO : add the correct constructor.
                                        
             //Add it to the ecosystem.
-            flotte->addMember(*b);
+            flotte->addMember(b);
          }
       }
       cout << "Initialize population with" + std::to_string(nbBestiole) + " bestioles." << endl;
