@@ -25,7 +25,7 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
    //stratVector.push_back(new StratPrevoyante());
    
    //Initialiaze the createHandler and killHandler
-   createHandler = new CreateHandler(this -> getInstance());
+   createHandler = new CreateHandler(this);
    killHandler   = new KillHandler();
 
    std::srand( time(NULL) );
