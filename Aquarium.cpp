@@ -44,17 +44,15 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
          //bool multiple = (i == 0); //Multiple has to be the first ratio.
          for ( int j = 0; j < nb; ++j )
          {
-            cout << " TEST2"  << endl;
+            cout << " TEST" << i+j  << endl;
             //Create a new bestiole with the associated strategy.
             BestioleStrategy* strat = flotte->getStrategy(i);
             toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
             std::vector<Accessory*> accessories;
             std::vector<Sensors*> sensors;
-	         T[ 3 ]* couleur ;
-            couleur[ 0 ] = 255;
-  		      couleur[ 1 ] = 0;
-   		   couleur[ 2 ] = 0;
-            Bestiole* b = new Bestiole(i+j, 
+            int id; 
+            id = flotte ->getBestioles().size();
+            Bestiole* b = new Bestiole(id, 
                                        0,
                                        0,
                                        3.14/3,
@@ -62,7 +60,6 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
                                        strat,
                                        accessories, 
                                        sensors,
-                                       *couleur,
                                        0,
                                        300,
                                        false);
@@ -75,7 +72,6 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             //Add it to the ecosystem.
             std::cout <<  b  << std::endl;
             std::cout <<  strat  << std::endl;
-            std::cout <<  couleur  << std::endl;
             flotte->addMember(*b);
          }
       }
@@ -89,7 +85,7 @@ void Aquarium::run( void )
 
    cout << "running Aquarium" << endl;
 
-   while ( ! is_closed() )
+   /*while ( ! is_closed() )
    {
 
       // cout << "iteration de la simulation" << endl;
@@ -105,7 +101,13 @@ void Aquarium::run( void )
 
       wait( delay );
 
-   } // while
+   } // while*/
+
+
+   flotte->step();
+   display( *flotte );
+
+   wait( delay );
 
    
 

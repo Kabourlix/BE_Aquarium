@@ -55,7 +55,7 @@ public :
             const BestioleStrategy  *bestioleStrat_, 
             std::vector<Accessory*> listeAccessories_, 
             std::vector<Sensors*>   listeSensors_ , 
-            T couleur_, int age_, int ageLimite_, bool multiple_);
+            int age_, int ageLimite_, bool multiple_);
 
    ~Bestiole();                              // Destructeur
    // ---------------------------------------------

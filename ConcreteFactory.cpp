@@ -60,8 +60,6 @@ Bestiole ConcreteFactory::createBestiole(){
    	double vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
 	BestioleStrategy* bestioleStrat;
-	T * couleur;
-	couleur = new T[ 3 ];
 	// MULTIPLE
 	bool multiple = False;
 
@@ -71,37 +69,27 @@ Bestiole ConcreteFactory::createBestiole(){
 	{
 		 // Gregaire Rouge
 		bestioleStrat = milieu->getStrategy("Gregaire");
-		couleur[ 0 ] = 255;
-  		couleur[ 1 ] = 0;
-   		couleur[ 2 ] = 0;
+
     } else if (randomVariable <= propKamikaze) 
 	{
 		// Kamikaze Orange
 		bestioleStrat = milieu->getStrategy("Kamikaze");
-		couleur[ 0 ] = 255;
-  		couleur[ 1 ] = 165;
-   		couleur[ 2 ] = 0;
+
     } else if (randomVariable <= propPeureuse) 
 	{
 		// Peureuse Bleu
 		bestioleStrat = milieu->getStrategy("Peureuse");
-		couleur[ 0 ] = 255;
-  		couleur[ 1 ] = 255;
-   		couleur[ 2 ] = 0;
+
     } else if (randomVariable <= propPrevoyante) 
 	{
 		// Prevoyante Verte
 		bestioleStrat = milieu->getStrategy("Prevoyante");
-		couleur[ 0 ] = 152;
-  		couleur[ 1 ] = 251; 	
-   		couleur[ 2 ] = 152;
+
     } else 
 	{	
 		// Multiple Noire
 		bestioleStrat = milieu->getRandomStrategy(bestioleStrat->getName());
-		couleur[ 0 ] = 0;
-  		couleur[ 1 ] = 0;
-   		couleur[ 2 ] = 0;
+
 		multiple = true;
     }
  
@@ -147,7 +135,6 @@ Bestiole ConcreteFactory::createBestiole(){
 						bestioleStrat,
 						accessoryVector, 
 						sensorVector,
-						*couleur,
 						age,
 						ageLimite,
 						multiple));

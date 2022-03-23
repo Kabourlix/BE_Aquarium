@@ -67,7 +67,7 @@ Bestiole::Bestiole( const Bestiole & b , int id)
 }
 
 
-Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, const BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, T couleur_ , int age_, int ageLimite_, bool multiple_)
+Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double vitesse_, const BestioleStrategy  *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, int age_, int ageLimite_, bool multiple_)
 {
 
    identite =  identite_;
@@ -81,7 +81,33 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    bestioleStrat = bestioleStrat_;
    listeAccessories = listeAccessories_ ;
    listeSensors = listeSensors_;
-   couleur = &couleur_;
+   couleur = couleur = new T[ 3 ];
+   if (bestioleStrat_->getName() == "Grégaire") {
+      	couleur[ 0 ] = 255;
+  		   couleur[ 1 ] = 0;
+   		couleur[ 2 ] = 0;
+   } else { if (bestioleStrat_->getName() == "Kamikze" ) {
+      	couleur[ 0 ] = 255;
+  		   couleur[ 1 ] = 165;
+   		couleur[ 2 ] = 0;
+      } else { if (bestioleStrat_->getName() == "Peureuse" ) {
+            couleur[ 0 ] = 255;
+  		      couleur[ 1 ] = 255;
+   		   couleur[ 2 ] = 0;
+         } else { if (bestioleStrat_->getName() == "Prevoyante" ) {
+               couleur[ 0 ] = 152;
+  		         couleur[ 1 ] = 251; 	
+   		      couleur[ 2 ] = 152;
+            
+            } else {
+               	couleur[ 0 ] = 0;
+  		            couleur[ 1 ] = 0;
+   		         couleur[ 2 ] = 0;
+
+            }
+         }
+      }
+   }
    multiple = multiple_;
 
 }

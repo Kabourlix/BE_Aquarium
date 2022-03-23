@@ -62,17 +62,18 @@ Milieu* Milieu::getInstance(int _width, int _height){
 
 void Milieu::step( void )
 {
-   createHandler->spontaneousCreate(this -> getInstance());
+   cout << "test step" << endl;
+   // createHandler->spontaneousCreate(this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   /*for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      if(killHandler->kill(*it, this -> getInstance())) break;
+      //if(killHandler->kill(*it, this -> getInstance())) break;
 
-      createHandler->cloneCreate(this -> getInstance(), *it);
+      createHandler->cloneCreate(this, *it);
       it->action( *this );
       it->draw( *this );
 
-   } // for
+   } // for*/
 
 
 }
