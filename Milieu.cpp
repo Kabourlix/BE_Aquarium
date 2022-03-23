@@ -103,7 +103,6 @@ void Milieu::step( void )
 void Milieu::removeMember(Bestiole * b){
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      //! This might cause error when b is null.
       if((*it) == b){ //When we find it, we delete it and leave.
          
          ageFile << b->getStrat()->getName() << "," << b->getIdentite() << "," << b->getAge() << "\n";
