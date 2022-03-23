@@ -11,9 +11,9 @@ StratKamikaze::StratKamikaze() {
     NAME = "Kamikaze";
 };
 
-void StratKamikaze::action(Bestiole * b, Milieu & monMilieu ) const{
+void StratKamikaze::action(Bestiole * b, Milieu * monMilieu ) const{
     // Check if there is any nearby Bestiole detected :
-    if (b->getNearbyNeighbor(&monMilieu).size()>0)
+    if (b->getNearbyNeighbor(monMilieu).size()>0)
     {
         // Define the orientation of the bestiole such as it will be directed towards the current position of the nearest bestiole
         // à voir si position bestiole vraiment donné par x,y 

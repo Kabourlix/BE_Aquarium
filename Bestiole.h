@@ -56,12 +56,11 @@ public :
             std::vector<Accessory*> listeAccessories_, 
             std::vector<Sensors*>   listeSensors_ , 
             int age_, int ageLimite_, bool multiple_);
-
    ~Bestiole();                              // Destructeur
    // ---------------------------------------------
 
 
-   void action( Milieu & monMilieu );
+   void action( Milieu * monMilieu );
    void draw( UImg & support );
 
    bool jeTeVois( const Bestiole & b ) const;
@@ -88,20 +87,20 @@ public :
    // -----------------------------------
 
    std::vector<Bestiole*> getNearbyNeighbor(Milieu * monMilieu);
-   Bestiole getNearestBestiole(Milieu & monMilieu);
+   Bestiole getNearestBestiole(Milieu * monMilieu);
 
-   bool checkCollision(const Bestiole & b);
+   bool checkCollision(Bestiole * b);
 
 
-   bool detect(const Bestiole *b ) const;
+   bool detect(Bestiole *b );
    void updateAge();
 
 
-   inline float dist( const Bestiole & b ) const{
-      return sqrt( (b.getX()-x)*(b.getX()-x) + (b.getY()-y)*(b.getY()-y) );
+   inline float dist(Bestiole * b ) const{
+      return sqrt( (b->getX()-x)*(b->getX()-x) + (b->getY()-y)*(b->getY()-y) );
    };
-   inline float sqrDist( const Bestiole & b ) const{
-      return (b.getX()-x)*(b.getX()-x) + (b.getY()-y)*(b.getY()-y);
+   inline float sqrDist( Bestiole * b ) const{
+      return (b->getX()-x)*(b->getX()-x) + (b->getY()-y)*(b->getY()-y);
 
    };
 };

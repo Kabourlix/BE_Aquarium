@@ -21,9 +21,9 @@ Ears::~Ears( void )
     cout << "Destruct de Ears" << endl;
 }
 
-bool Ears::detection(const Bestiole * b1, const Bestiole * b2)
+bool Ears::detection(Bestiole * b1,Bestiole * b2)
 {
     double dist;
-    dist = b1->sqrDist(*b2); //TODO : vérifier l'intérêt des références.
+    dist = b1->sqrDist(b2);
     return ((dist <= distance*distance) && (rand()/RAND_MAX <= probaDetection));
 }

@@ -180,17 +180,17 @@ void Bestiole::bouge( int xLim, int yLim )
 }
 
 
-void Bestiole::action( Milieu & monMilieu )
+void Bestiole::action( Milieu * monMilieu )
 {  
    this->updateAge();
    if (multiple) {
       if (rand()<0.25) {
-         this->setStrategy(monMilieu.getInstance()->getRandomStrategy(bestioleStrat->getName()));
+         this->setStrategy(monMilieu->getRandomStrategy(bestioleStrat->getName()));
       }
    }
    //Execute bestioleStrat (const pointer) action
    bestioleStrat->action(this, monMilieu);
-   bouge( monMilieu.getWidth(), monMilieu.getHeight() );
+   bouge( monMilieu->getWidth(), monMilieu->getHeight() );
 
 }
 
@@ -226,7 +226,7 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 
 }
 
-bool Bestiole::detect(const Bestiole *b) const
+bool Bestiole::detect(Bestiole *b) 
 { 
    bool detected = false;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
@@ -251,12 +251,12 @@ std::vector<Bestiole*> Bestiole::getNearbyNeighbor( Milieu * monMilieu )
 }
 
 // Attention n'appeler cette méthode que si getNearbyNeighbor() ne renvoie pas une liste vide.
-Bestiole Bestiole::getNearestBestiole(Milieu & monMilieu)
+Bestiole Bestiole::getNearestBestiole(Milieu * monMilieu)
 { 
    Bestiole nearestBestiole;
   double currentMinDist2 = 0; 
   int n = 0;
-   for ( std::vector<Bestiole*>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )
+   for ( std::vector<Bestiole*>::iterator it = monMilieu->getBestioles().begin() ; it != monMilieu->getBestioles().end() ; ++it )
    { if (!(*this == **it) && this->detect(static_cast<Bestiole*>( &(**it) )))
       { 
          if ( n==0 || (pow(((*this).x-(**it).x),2)+pow(((*this).y-(**it).y),2) ) < currentMinDist2)
@@ -270,9 +270,9 @@ Bestiole Bestiole::getNearestBestiole(Milieu & monMilieu)
    if (n==1) { return nearestBestiole;}
 }
 
-bool Bestiole::checkCollision(const Bestiole & b)
+bool Bestiole::checkCollision(Bestiole * b)
 {
-   return ( this->sqrDist(b) <= 0.01*0.01 );
+   return ( this->sqrDist(b) <= 0.1*0.1 );
 }
 
 

@@ -69,12 +69,12 @@ void Milieu::step( void )
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      //if(killHandler->kill(*it, this -> getInstance())) break;
+      if(killHandler->kill(*it, this)) break;
 
       //createHandler->cloneCreate(this, *it);
       //print type of iterator
       cout << "Type of iterator : " << typeid(it).name() << endl;
-      (*it)->action( *this );
+      (*it)->action( this );
       cout << "We get out of action of Bestiole " << (*it)->getIdentite() << endl;
       (*it)->draw( *this );
 
@@ -84,20 +84,22 @@ void Milieu::step( void )
 }
 
 
-void Milieu::removeMember(Bestiole & b){
+void Milieu::removeMember(Bestiole * b){
+   std::cout << "We are removing a member of the list. It is bestiole " << b->getIdentite() << std::endl;
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       //! This might cause error when b is null.
-      if((**it) == b){ //When we find it, we delete it and leave.
+      if((*it) == b){ //When we find it, we delete it and leave.
+         std::cout << "We have found the bestiole we want to remove." << std::endl;
          listeBestioles.erase(it);
          // We delete the bestiole since it is not in the list anymore.
-         delete &b;
+         delete b;
 
          return; //Stop the function.
       }
    }
    //Print an error message if the bestiole is not found.
-   cout << "Error: Bestiole with id " << b.getIdentite() << " not found." << endl;
+   cout << "Error: Bestiole with id " << b->getIdentite() << " not found." << endl;
 }
 
 void Milieu::removeMember(int idBestiole){
@@ -113,15 +115,14 @@ void Milieu::removeMember(int idBestiole){
    cout << "Error: Bestiole with id " << idBestiole << " not found." << endl;
 }
 
-Bestiole& Milieu::checkCollision(Bestiole& b){
+Bestiole* Milieu::checkCollision(Bestiole* b){
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      if(b.checkCollision(**it)){
-         return **it;
+      if((*it) != b && b->checkCollision(*it)){ 
+         return *it;
       }
    }
-   // return BestioleNULL
-   //TODO : return a null bestiole to define.
+   return nullptr;
 }
 
 int Milieu::nbVoisins( const Bestiole & b )

@@ -14,7 +14,7 @@ class Ears : public Sensors
         Ears( const Sensors& ears); //TODO : Poser la question aux profs ça me parait chelou.
 		Ears(float detectionCapacity, float distance);
 		virtual ~Ears();
-		virtual bool detection(const Bestiole * bestiole1, const Bestiole * bestiole2);
+		virtual bool detection(Bestiole * bestiole1,Bestiole * bestiole2);
 
 		inline void setDistance(float dist) {distance = dist;};
 

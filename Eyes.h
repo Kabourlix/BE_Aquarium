@@ -16,7 +16,7 @@ class Eyes : public Sensors
 		Eyes(const Eyes& eyes);
         Eyes(float probaDetection, float angle, float distance);
 		virtual ~Eyes();
-		virtual bool detection(const Bestiole * bestiole1, const Bestiole * bestiole2);
+		virtual bool detection(Bestiole * bestiole1,Bestiole * bestiole2);
         virtual inline std::string getName() const {return "Eyes";};
 		inline float getProbaDetection() {return probaDetection;};
 		inline float getAngle() {return angle;};

@@ -12,7 +12,7 @@ class KillHandler
 		KillHandler();
 		~KillHandler();
 
-		bool kill(Bestiole& bestiole, Milieu * monMilieu);
+		bool kill(Bestiole* bestiole, Milieu * monMilieu);
 
 		void killExt(int idBestiole, Milieu * monMilieu);
 

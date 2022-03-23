@@ -24,7 +24,7 @@ Eyes::~Eyes( void )
 
 };
 
-bool Eyes::detection(const Bestiole * b1,const Bestiole * b2)
+bool Eyes::detection(Bestiole * b1,Bestiole * b2)
 {   
     cout << "TESTD" << endl;
     if (b2->getX() >= b1->getX() and b2->getX() <= distance) {

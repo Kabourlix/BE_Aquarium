@@ -51,9 +51,9 @@ public :
    void step( void );
 
    void addMember(Bestiole * b );
-   void removeMember(Bestiole & b);
+   void removeMember(Bestiole * b);
    void removeMember(int idBestiole);
-   Bestiole & checkCollision(Bestiole& b);
+   Bestiole * checkCollision(Bestiole* b);
    
    int nbVoisins( const Bestiole & b );
 

@@ -14,7 +14,7 @@ class Sensors
 
 	public :
 		virtual ~Sensors() {};
-		virtual bool detection(const Bestiole *bestiole1,const Bestiole *bestiole2)=0;
+		virtual bool detection(Bestiole *bestiole1,Bestiole *bestiole2)=0;
 		inline virtual std::string getName() const =0;
 };
 
