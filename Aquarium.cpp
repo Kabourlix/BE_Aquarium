@@ -36,6 +36,7 @@ Aquarium::~Aquarium( void )
 void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
    {
       cout << " TEST"  << endl;
+
       std::string toDisp = "ratios : ";
       //Go through each ratio and get the associated proportion of the population.
       for ( int i = 0; i < nbBestiole; ++i )
@@ -44,15 +45,17 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
          //bool multiple = (i == 0); //Multiple has to be the first ratio.
          for ( int j = 0; j < nb; ++j )
          {
-            cout << " TEST" << i+j  << endl;
             //Create a new bestiole with the associated strategy.
+            cout << " TEST" << i+j  << endl;
             BestioleStrategy* strat = flotte->getStrategy(i);
+            cout << " TEST" << i+j  << endl;
             toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
+            cout << " TEST" << i+j  << endl;
             std::vector<Accessory*> accessories;
+            cout << " TEST" << i+j  << endl;
             std::vector<Sensors*> sensors;
-            int id; 
-            id = flotte ->getBestioles().size();
-            Bestiole* b = new Bestiole(id, 
+            cout << " TEST" << i+j  << endl;
+            Bestiole* b = new Bestiole(i+j, 
                                        0,
                                        0,
                                        3.14/3,
@@ -63,15 +66,10 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
                                        0,
                                        300,
                                        false);
+            
                                        //TODO : add the correct constructor.
-
-             //int identite_, int x_, int y_, double orientation_, double vitesse_, const BestioleStrategy 
-             // *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, 
-             // T couleur_ , int age_, int ageLimite_, bool multiple_
-
             //Add it to the ecosystem.
             std::cout <<  b  << std::endl;
-            std::cout <<  strat  << std::endl;
             flotte->addMember(*b);
          }
       }
