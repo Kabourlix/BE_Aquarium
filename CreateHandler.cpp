@@ -16,11 +16,16 @@ CreateHandler::~CreateHandler(void){
 
 
 void CreateHandler::spontaneousCreate(Milieu * milieu){
-	milieu->addMember(fact->createBestiole());
+	int nb = rand() % 100;
+	if (nb < 10)
+	{
+		std::cout << "CreateHandler::spontaneousCreate" << std::endl;
+		milieu->addMember(fact->createBestiole());
+	}
 };
 
-void CreateHandler::cloneCreate(Milieu * milieu, const Bestiole & bestiole){
-	milieu->addMember(fact->cloneBestiole(bestiole));
+void CreateHandler::cloneCreate(Milieu * milieu, Bestiole * bestiole){
+	milieu->addMember(fact->cloneBestiole(*bestiole));
 };
 
 void CreateHandler::extCreate(int nb, Milieu * milieu) {

@@ -29,10 +29,11 @@ ConcreteFactory::ConcreteFactory(Milieu * singleton) {
 	milieu = singleton;
 	nbBestiole = milieu->getBestioles().size();
 	id = nbBestiole + 1;
-	float propGregaire= 0.4; 
-	float propPeureuse = 0.2;
-	float propKamikaze =0.2; 
-	float propPrevoyante= 0.1;
+
+	propGregaire= 0.4; 
+	propPeureuse = 0.2;
+	propKamikaze =0.2; 
+	propPrevoyante= 0.1;
 
 };
 
@@ -44,10 +45,7 @@ ConcreteFactory::~ConcreteFactory(void){
 
 Bestiole* ConcreteFactory::createBestiole(){
 	    
-	std::random_device rd;
-    std::default_random_engine eng(rd());
-    std::uniform_int_distribution<float> distr(MIN, MAX);
-    float randomVariable = distr(eng)/MAX;
+	float randomVariable = std::rand();
 
 	//POSITION
 	int xLim = milieu->getWidth();
@@ -59,16 +57,17 @@ Bestiole* ConcreteFactory::createBestiole(){
    	double orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    	double vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
-	BestioleStrategy* bestioleStrat;
+	BestioleStrategy* bestioleStrat = nullptr;
 	// MULTIPLE
 	bool multiple = False;
 
-
+	std::cout << "Before the bizarre if conditions" << std::endl;
 	// STRATEGY
     if (randomVariable <= propGregaire) 
 	{
 		 // Gregaire Rouge
 		bestioleStrat = milieu->getStrategy("Gregaire");
+
 
     } else if (randomVariable <= propKamikaze) 
 	{
@@ -80,18 +79,16 @@ Bestiole* ConcreteFactory::createBestiole(){
 		// Peureuse Bleu
 		bestioleStrat = milieu->getStrategy("Peureuse");
 
-    } else if (randomVariable <= propPrevoyante) 
-	{
-		// Prevoyante Verte
-		bestioleStrat = milieu->getStrategy("Prevoyante");
-
     } else 
 	{	
+		std::cout << "We are before the getRandomStrat" << std::endl;
 		// Multiple Noire
-		bestioleStrat = milieu->getRandomStrategy(bestioleStrat->getName());
+		bestioleStrat = milieu->getRandomStrategy(" bisous ");
 
 		multiple = true;
     }
+
+	std::cout << "After the bizarre if conditions, we get " << bestioleStrat->getName() << std::endl;
  
 
 	// SENSORS

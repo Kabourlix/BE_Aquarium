@@ -14,7 +14,7 @@ class CreateHandler
 
 		void spontaneousCreate(Milieu * milieu);
 
-		void cloneCreate(Milieu * milieu, const Bestiole& bestiole);
+		void cloneCreate(Milieu * milieu, Bestiole* bestiole);
 
 		void extCreate(int nb, Milieu * milieu);
 };

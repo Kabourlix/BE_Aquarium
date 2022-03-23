@@ -13,7 +13,7 @@ KillHandler::~KillHandler(){
 
 bool KillHandler::kill(Bestiole* bestiole, Milieu * monMilieu){
     if (bestiole->getAge() >= bestiole->getAgeLimite()) {
-        std::cout << "Kill dû à l'age. Elle avait " << bestiole->getAge() << "ans et son age limite est " << bestiole->getAgeLimite() << std::endl;
+        std::cout << "Bestiole was too old. She was " << bestiole->getAge() << "y.o and her max age is " << bestiole->getAgeLimite() << std::endl;
         monMilieu-> removeMember(bestiole);
         return true;
     }
@@ -21,13 +21,9 @@ bool KillHandler::kill(Bestiole* bestiole, Milieu * monMilieu){
     //Check for collision with other bestioles
     Bestiole* collidedBestiole = monMilieu->checkCollision(bestiole);
     
-    //Print bestiole and collidedBestiole positions
-    std::cout << "Bestiole " << bestiole->getIdentite() << " is at (" << bestiole->getX() << "," << bestiole->getY() << ")."<< std::endl;
-    //std::cout << "Collided bestiole " << collidedBestiole->getIdentite() << " is at (" << collidedBestiole->getX() << "," << collidedBestiole->getY() << ")."<< std::endl;
-    
     if (collidedBestiole != nullptr) {
         cout << "We get in the collided != nullptr" << endl;
-        if(rand()> 0.0){ // We kill the bestioles
+        if((rand()%100)> 50){ // We kill the bestioles
             monMilieu -> removeMember(bestiole);
             monMilieu -> removeMember(collidedBestiole);
             return true;

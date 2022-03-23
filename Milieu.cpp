@@ -65,7 +65,7 @@ Milieu* Milieu::getInstance(int _width, int _height){
 void Milieu::step( void )
 {
    cout << "We are entering step of Milieu." << endl;
-   // createHandler->spontaneousCreate(this);
+   createHandler->spontaneousCreate(this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
@@ -73,9 +73,8 @@ void Milieu::step( void )
 
       //createHandler->cloneCreate(this, *it);
       //print type of iterator
-      cout << "Type of iterator : " << typeid(it).name() << endl;
       (*it)->action( this );
-      cout << "We get out of action of Bestiole " << (*it)->getIdentite() << endl;
+      //cout << "We get out of action of Bestiole " << (*it)->getIdentite() << endl;
       (*it)->draw( *this );
 
    } // for
@@ -141,7 +140,6 @@ int Milieu::nbVoisins( const Bestiole & b )
 
 
 StratPtr Milieu::getStrategy(std::string name){
-   //TODO : Bien penser à ajouter le getName dans chaque strat.
    for(std::vector<StratPtr>::iterator it = stratVector.begin(); it != stratVector.end(); ++it){
       if((*it)->getName() == name){
          return *it;
@@ -157,10 +155,10 @@ StratPtr Milieu::getStrategy(int index){
 
 StratPtr Milieu::getRandomStrategy(std::string previousStrat){
    //get a random int between 0 and 3 included
-   int random = std::rand() % 4;
+   int random = std::rand() % 3;
    StratPtr toReturn = stratVector[random];
    while(toReturn->getName() == previousStrat){
-      random = std::rand() % 4;
+      random = std::rand() % 3;
       toReturn = stratVector[random];
    }
    return toReturn;
