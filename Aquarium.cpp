@@ -57,12 +57,12 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             //toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
             std::vector<Accessory*> accessories;
             std::vector<Sensors*> sensors;
-            sensors.push_back(new Ears(1,2));
+            sensors.push_back(new Ears(1,20));
             Bestiole* b = new Bestiole(i+j, 
                                        0,
                                        0,
                                        3.14/3,
-                                       30., 
+                                       10., 
                                        strat,
                                        accessories, 
                                        sensors,

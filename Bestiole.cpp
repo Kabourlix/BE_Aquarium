@@ -182,7 +182,6 @@ void Bestiole::bouge( int xLim, int yLim )
 
 void Bestiole::action( Milieu & monMilieu )
 {  
-   cout << "Bestiole (" << identite << ") action" << endl;
    this->updateAge();
    if (multiple) {
       if (rand()<0.25) {
@@ -230,30 +229,24 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 bool Bestiole::detect(const Bestiole *b) const
 { 
    bool detected = false;
-cout << "We enter detect of Bestiole " << b->getIdentite() << endl;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
    for ( std::vector<Sensors*>::const_iterator it = listeSensors.cbegin() ; it != listeSensors.cend() ; ++it )
    {  
-      cout << "TESTDe" << endl;
       if ((*it)->detection(this,b)){ detected = true; }
    }
-   cout << "We leave detect of Bestiole " << b->getIdentite() << "detect is " << detected << endl;
   return detected;
 }
 
-std::vector<Bestiole> Bestiole::getNearbyNeighbor( Milieu * monMilieu ) 
+std::vector<Bestiole*> Bestiole::getNearbyNeighbor( Milieu * monMilieu ) 
 { 
-   cout << "We get in nearbyNeighbor" << endl;
-   std::vector<Bestiole> neighbors;
+   std::vector<Bestiole*> neighbors;
    for ( std::vector<Bestiole*>::iterator it = monMilieu->listeBestioles.begin() ; it != monMilieu->listeBestioles.end() ; ++it )
    { 
-      cout << "Iteration sur la liste des bestioles avec " << (*it)->getIdentite() << endl;
-      if (!(*this == **it) && this->detect(static_cast<Bestiole*>( &(**it) ) ))
+      if (!(this == *it) && this->detect(*it)) //static_cast<Bestiole*>( &(**it) ) 
       {
-         neighbors.push_back(**it);
+         neighbors.push_back(*it);
       }
    }
-   cout << "We get out of nearbyNeighbor for Bestiole " << this->getIdentite() << endl;
    return neighbors;
 }
 
