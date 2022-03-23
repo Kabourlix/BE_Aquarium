@@ -10,21 +10,12 @@ import matplotlib.pyplot as plt
 def plot_pop(csv_pop):
 
   df = pd.read_csv(csv_pop)
-  axes = plt.gca()
-
-  # pass the axes object to plot function
-  df.loc[df['type']=='Gregaire',:].plot.line(x='time',y='number',ax =axes)
-  df.loc[df['type']=='Peureuse',:].plot.line(x='time',y='number',ax =axes)
-  df.loc[df['type']=='Prevoyante',:].plot.line(x='time',y='number',ax =axes)
-  df.loc[df['type']=='Kamikaze',:].plot.line(x='time',y='number',ax =axes)
-  df.loc[df['type']=='Multiple',:].plot.line(x='time',y='number',ax =axes)
-  plt.title("Evolution of the population for each different behaviour of 'Bestiole'")
-  plt.legend(['Gregaire', 'Peureuse', 'Prevoyante', 'Kamikaze','Multiple'])
-  plt.ylabel('Number of individuals')
+  mix = pd.MultiIndex.from_product([df['time'].unique(), df['type'].unique()], names=['time','type'])
+  new = df.groupby(['time','type']).size().reindex(mix, fill_value=0).unstack().reset_index()
+  new.plot(x='time',y=df['type'].unique().tolist())
   plt.savefig('Population.png')
-  plt.show()
   
-
+  
 # csv_age : "age.csv"
 def plot_age(csv_age):
 
