@@ -85,12 +85,12 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    multiple = multiple_;
    if (!multiple) {
       if (bestioleStrat_->getName() == "Gregaire") {
-            couleur[ 0 ] = 255;
-            couleur[ 1 ] = 0;
-            couleur[ 2 ] = 0;
-      } else { if (bestioleStrat_->getName() == "Kamikaze" ) {
             couleur[ 0 ] = 0;
             couleur[ 1 ] = 255;
+            couleur[ 2 ] = 0;
+      } else { if (bestioleStrat_->getName() == "Kamikaze" ) {
+            couleur[ 0 ] = 255;
+            couleur[ 1 ] = 0;
             couleur[ 2 ] = 0;
          } else { if (bestioleStrat_->getName() == "Peureuse" ) {
                couleur[ 0 ] = 0;
