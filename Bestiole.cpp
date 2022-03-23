@@ -186,6 +186,23 @@ void Bestiole::action( Milieu * monMilieu )
    if (multiple) {
       if (rand()<0.25) {
          this->setStrategy(monMilieu->getRandomStrategy(bestioleStrat->getName()));
+         if (bestioleStrat->getName() == "Gregaire") 
+         {
+            couleur[ 0 ] = 0;
+            couleur[ 1 ] = 255;
+            couleur[ 2 ] = 0;
+         } 
+         else if (bestioleStrat->getName() == "Kamikaze" )
+         { 
+            couleur[ 0 ] = 255;
+            couleur[ 1 ] = 0;
+            couleur[ 2 ] = 0;
+         } else  if (bestioleStrat->getName() == "Peureuse" ) 
+         {
+               couleur[ 0 ] = 0;
+               couleur[ 1 ] = 0;
+               couleur[ 2 ] = 255;
+         }
       }
    }
    //Execute bestioleStrat (const pointer) action
