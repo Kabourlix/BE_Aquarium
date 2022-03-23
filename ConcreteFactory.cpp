@@ -115,7 +115,7 @@ Bestiole* ConcreteFactory::createBestiole(){
 
 	//AGE
 	int age(0);
-	int ageLimite = static_cast<int>( rand() )/RAND_MAX*(300-100) + 100;
+	int ageLimite = rand() % 500;
 
 
 	// Return the bestiole to be created.
