@@ -6,20 +6,21 @@ StratGregaire::StratGregaire() {
 };
 
 
-void StratGregaire::action(Bestiole b, Milieu & monMilieu ) const{
+void StratGregaire::action(Bestiole * b, Milieu & monMilieu ) const{
     //Check for nearby bestioles (i.e. visible)
-    std::vector<Bestiole> neighbors = b.getNearbyNeighbor(monMilieu);
+    std::vector<Bestiole> neighbors = b->getNearbyNeighbor(monMilieu);
+    cout << "In StratGregaire::action, neighbors.size() = " << neighbors.size() << endl;
     if (neighbors.size() >= 1)
     {
         //Compute mean orientation of neighbors
         double meanOrientation = 0;
         for ( std::vector<Bestiole>::iterator it = neighbors.begin() ; it != neighbors.end() ; ++it )
             {
-                meanOrientation = meanOrientation + b.getOrientation();
+                meanOrientation = meanOrientation + b->getOrientation();
             }
         meanOrientation = meanOrientation/neighbors.size();
 
         //Set as its own orientation
-        b.setOrientation(meanOrientation);
+        b->setOrientation(meanOrientation);
     }
 }

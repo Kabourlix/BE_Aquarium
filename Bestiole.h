@@ -87,7 +87,7 @@ public :
    inline void setVitesse(double newVitesse){vitesse = newVitesse;};
    // -----------------------------------
 
-   std::vector<Bestiole> getNearbyNeighbor(Milieu & monMilieu);
+   std::vector<Bestiole> getNearbyNeighbor(Milieu * monMilieu);
    Bestiole getNearestBestiole(Milieu & monMilieu);
 
    bool checkCollision(const Bestiole & b);

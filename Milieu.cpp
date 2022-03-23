@@ -51,6 +51,8 @@ Milieu::~Milieu( void )
 
 }
 
+
+
 Milieu* Milieu::getInstance(int _width, int _height){
    if(singleton == NULL){ // If it doesn't exist, create it.
       singleton = new Milieu(_width, _height);
@@ -62,7 +64,7 @@ Milieu* Milieu::getInstance(int _width, int _height){
 
 void Milieu::step( void )
 {
-   cout << "test step" << endl;
+   cout << "We are entering step of Milieu." << endl;
    // createHandler->spontaneousCreate(this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
@@ -70,7 +72,10 @@ void Milieu::step( void )
       //if(killHandler->kill(*it, this -> getInstance())) break;
 
       //createHandler->cloneCreate(this, *it);
+      //print type of iterator
+      cout << "Type of iterator : " << typeid(it).name() << endl;
       (*it)->action( *this );
+      cout << "We get out of action of Bestiole " << (*it)->getIdentite() << endl;
       (*it)->draw( *this );
 
    } // for

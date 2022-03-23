@@ -182,6 +182,7 @@ void Bestiole::bouge( int xLim, int yLim )
 
 void Bestiole::action( Milieu & monMilieu )
 {  
+   cout << "Bestiole (" << identite << ") action" << endl;
    this->updateAge();
    if (multiple) {
       if (rand()<0.25) {
@@ -189,7 +190,7 @@ void Bestiole::action( Milieu & monMilieu )
       }
    }
    //Execute bestioleStrat (const pointer) action
-   //bestioleStrat->action(*this, monMilieu);
+   bestioleStrat->action(this, monMilieu);
    bouge( monMilieu.getWidth(), monMilieu.getHeight() );
 
 }
@@ -227,34 +228,39 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 }
 
 bool Bestiole::detect(const Bestiole *b) const
-{ bool detected = false;
-cout << "TESTDe" << endl;
+{ 
+   bool detected = false;
+cout << "We enter detect of Bestiole " << b->getIdentite() << endl;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
    for ( std::vector<Sensors*>::const_iterator it = listeSensors.cbegin() ; it != listeSensors.cend() ; ++it )
    {  
       cout << "TESTDe" << endl;
       if ((*it)->detection(this,b)){ detected = true; }
    }
+   cout << "We leave detect of Bestiole " << b->getIdentite() << "detect is " << detected << endl;
   return detected;
 }
 
-std::vector<Bestiole> Bestiole::getNearbyNeighbor( Milieu & monMilieu ) 
+std::vector<Bestiole> Bestiole::getNearbyNeighbor( Milieu * monMilieu ) 
 { 
+   cout << "We get in nearbyNeighbor" << endl;
    std::vector<Bestiole> neighbors;
-   for ( std::vector<Bestiole*>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )
+   for ( std::vector<Bestiole*>::iterator it = monMilieu->listeBestioles.begin() ; it != monMilieu->listeBestioles.end() ; ++it )
    { 
-      cout << "TESTDNNN" << endl;
+      cout << "Iteration sur la liste des bestioles avec " << (*it)->getIdentite() << endl;
       if (!(*this == **it) && this->detect(static_cast<Bestiole*>( &(**it) ) ))
       {
          neighbors.push_back(**it);
       }
    }
+   cout << "We get out of nearbyNeighbor for Bestiole " << this->getIdentite() << endl;
    return neighbors;
 }
 
 // Attention n'appeler cette méthode que si getNearbyNeighbor() ne renvoie pas une liste vide.
 Bestiole Bestiole::getNearestBestiole(Milieu & monMilieu)
-{ Bestiole nearestBestiole;
+{ 
+   Bestiole nearestBestiole;
   double currentMinDist2 = 0; 
   int n = 0;
    for ( std::vector<Bestiole*>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )

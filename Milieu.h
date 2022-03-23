@@ -29,7 +29,7 @@ private :
    static const T          white[];
 
    int                     width, height;
-   std::vector<Bestiole*>   listeBestioles;
+   
    
    
    std::vector<StratPtr> stratVector;
@@ -38,6 +38,7 @@ private :
    KillHandler   * killHandler;
 
 public :
+   std::vector<Bestiole*>   listeBestioles;
    Milieu*         singleton;
    
    Milieu( int _width, int _height );

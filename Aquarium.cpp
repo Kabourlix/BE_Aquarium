@@ -11,7 +11,7 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
    int         screenHeight = 1024; //screen_height();
 
 
-   cout << "const Aquarium" << endl;
+   std::cout << "const Aquarium" << endl;
 
    //flotte->getInstance( width, height );
    flotte = new Milieu(width, height);
@@ -28,26 +28,24 @@ Aquarium::~Aquarium( void )
 
    delete flotte;
 
-   cout << "dest Aquarium" << endl;
+   std::cout << "dest Aquarium" << endl;
 
 }
 
 
 void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
    {
-      cout << " TEST"  << endl;
+      std::cout << " Creation Of initiale Pop"  << endl;
 
       std::string toDisp = "ratios : ";
       //Go through each ratio and get the associated proportion of the population.
       for ( int i = 0; i < 4; ++i )
       {
          int nb = (int)(ratios[i] * nbBestiole);
-         cout <<  nb << endl;
          bool multiple = (i == 0); //Multiple has to be the first ratio.
          for ( int j = 0; j < nb; ++j )
          {
             //Create a new bestiole with the associated strategy.
-            cout << " TEST" << i+j  << endl;
             BestioleStrategy* strat;
             if (multiple) {
                strat = flotte->getStrategy(0);
@@ -55,13 +53,11 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
                strat = flotte->getStrategy(i-1);
             }
             
-            cout <<  strat->getName() << endl;
+            std::cout <<  strat->getName() << endl;
             //toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
-            cout << " TEST" << i+j  << endl;
             std::vector<Accessory*> accessories;
-            cout << " TEST" << i+j  << endl;
             std::vector<Sensors*> sensors;
-            cout << " TEST" << i+j  << endl;
+            sensors.push_back(new Ears(1,2));
             Bestiole* b = new Bestiole(i+j, 
                                        0,
                                        0,
@@ -80,15 +76,15 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             flotte->addMember(b);
          }
       }
-      cout << "Initialize population with" + std::to_string(nbBestiole) + " bestioles." << endl;
-      cout << toDisp << endl;
+      std::cout << "Initialize population with" + std::to_string(nbBestiole) + " bestioles." << endl;
+      //cout << toDisp << endl;
 
    }
 
 void Aquarium::run( void )
 {
 
-   cout << "running Aquarium" << endl;
+   std::cout << "running Aquarium" << endl;
 
    while ( ! is_closed() )
    {
@@ -96,8 +92,8 @@ void Aquarium::run( void )
       // cout << "iteration de la simulation" << endl;
 
       if ( is_key() ) {
-         cout << "Vous avez presse la touche " << static_cast<unsigned char>( key() );
-         cout << " (" << key() << ")" << endl;
+         std::cout << "Vous avez presse la touche " << static_cast<unsigned char>( key() );
+         std::cout << " (" << key() << ")" << endl;
          if ( is_keyESC() ) close();
       }
 
