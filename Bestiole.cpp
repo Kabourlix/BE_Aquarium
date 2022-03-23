@@ -188,7 +188,7 @@ void Bestiole::action( Milieu & monMilieu )
       }
    }
    //Execute bestioleStrat (const pointer) action
-   bestioleStrat->action(*this, monMilieu);
+   //bestioleStrat->action(*this, monMilieu);
    bouge( monMilieu.getWidth(), monMilieu.getHeight() );
 
 }

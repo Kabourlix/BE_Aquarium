@@ -52,17 +52,7 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             std::vector<Sensors*> sensors;
             int id; 
             id = flotte ->getBestioles().size();
-            Bestiole* b = new Bestiole(id, 
-                                       0,
-                                       0,
-                                       3.14/3,
-                                       30., 
-                                       strat,
-                                       accessories, 
-                                       sensors,
-                                       0,
-                                       300,
-                                       false);
+
                                        //TODO : add the correct constructor.
 
              //int identite_, int x_, int y_, double orientation_, double vitesse_, const BestioleStrategy 
@@ -70,9 +60,17 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
              // T couleur_ , int age_, int ageLimite_, bool multiple_
 
             //Add it to the ecosystem.
-            std::cout <<  b  << std::endl;
-            std::cout <<  strat  << std::endl;
-            flotte->addMember(*b);
+            flotte->addMember(Bestiole(id, 
+                                    0,
+                                    0,
+                                    3.14/3,
+                                    30., 
+                                    strat,
+                                    accessories, 
+                                    sensors,
+                                    0,
+                                    300,
+                                    false));
          }
       }
       cout << "Initialize population with" + std::to_string(nbBestiole) + " bestioles." << endl;
