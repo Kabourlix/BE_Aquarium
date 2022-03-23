@@ -32,6 +32,11 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
 
    pasDeTemps = 0;
    ageFile.open("data/age.csv");
+   popFile.open("data/pop.csv");
+
+   popFile << "id,temps,type,number," << "\n";
+   ageFile << "type,id,age" << "\n";
+
 
 }
 
@@ -39,6 +44,7 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
 Milieu::~Milieu( void )
 {
    ageFile.close();
+   popFile.close();
    //Go through listBestioles and delete them.
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin(); it != listeBestioles.end(); ++it )
    {
@@ -76,7 +82,7 @@ void Milieu::step( void )
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       if(killHandler->kill(*it, this)) break;
-      
+      popFile << (*it)->getIdentite() << "," << pasDeTemps << "," << (*it)->getStrat()->getName() << "," << 1 << "\n";
       //createHandler->cloneCreate(this, *it);
       //print type of iterator
       (*it)->action( this );

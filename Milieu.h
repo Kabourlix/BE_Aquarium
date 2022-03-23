@@ -39,6 +39,7 @@ private :
    CreateHandler * createHandler;
    KillHandler   * killHandler;
    std::ofstream ageFile;
+   std::ofstream popFile;
    int pasDeTemps;
 
 public :
