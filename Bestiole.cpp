@@ -32,10 +32,10 @@ Bestiole::Bestiole( void )
 }
 
 
-Bestiole::Bestiole( const Bestiole & b , int id)
+Bestiole::Bestiole( const Bestiole & b )
 {
 
-   identite = id;
+   identite = ++next;
    cout << "const Bestiole (" << identite << ") par copie de " << b.getIdentite() << endl;
 
    x = b.x;
@@ -229,7 +229,8 @@ bool Bestiole::detect(const Bestiole *b) const
 { bool detected = false;
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
    for ( std::vector<Sensors*>::const_iterator it = listeSensors.cbegin() ; it != listeSensors.cend() ; ++it )
-   {
+   {  
+      cout << "TESTDe" << endl;
       if ((*it)->detection(this,b)){ detected = true; }
    }
   return detected;
@@ -237,8 +238,10 @@ bool Bestiole::detect(const Bestiole *b) const
 
 std::vector<Bestiole> Bestiole::getNearbyNeighbor( Milieu & monMilieu ) 
 { std::vector<Bestiole> neighbors;
-   for ( std::vector<Bestiole>::iterator it = monMilieu.getInstance()->getBestioles().begin() ; it != monMilieu.getInstance()->getBestioles().end() ; ++it )
-   { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) ) ))
+   for ( std::vector<Bestiole>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )
+   { 
+      cout << "TESTDNNN" << endl;
+      if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) ) ))
       {
          neighbors.push_back(*it);
       }
@@ -251,7 +254,7 @@ Bestiole Bestiole::getNearestBestiole(Milieu & monMilieu)
 { Bestiole nearestBestiole;
   double currentMinDist2 = 0; 
   int n = 0;
-   for ( std::vector<Bestiole>::iterator it = monMilieu.getInstance()->getBestioles().begin() ; it != monMilieu.getInstance()->getBestioles().end() ; ++it )
+   for ( std::vector<Bestiole>::iterator it = monMilieu.getBestioles().begin() ; it != monMilieu.getBestioles().end() ; ++it )
    { if (!(*this == *it) && this->detect(static_cast<Bestiole*>( &(*it) )))
       { 
          if ( n==0 || (pow(((*this).x-(*it).x),2)+pow(((*this).y-(*it).y),2) ) < currentMinDist2)

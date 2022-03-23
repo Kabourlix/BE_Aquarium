@@ -142,7 +142,7 @@ Bestiole ConcreteFactory::createBestiole(){
 };
 
 Bestiole ConcreteFactory::cloneBestiole(const Bestiole & bestiole){
-	return *(new Bestiole(bestiole, id++));
+	return *(new Bestiole(bestiole));
 };
 
 Bestiole ConcreteFactory::createExtBestiole() {

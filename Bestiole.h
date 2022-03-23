@@ -49,7 +49,7 @@ private :
 public :     
    // -------- CONSTRUCTEUR ET DESTRUCTEUR --------
    Bestiole(); // Constructeur par defaut
-   Bestiole( const Bestiole & b, int id); // Constructeur de copies
+   Bestiole( const Bestiole & b); // Constructeur de copies
    Bestiole( int identite_, int x_, int y_, 
             double orientation_, double vitesse_, 
             const BestioleStrategy  *bestioleStrat_, 
@@ -102,6 +102,7 @@ public :
    };
    inline float sqrDist( const Bestiole & b ) const{
       return (b.getX()-x)*(b.getX()-x) + (b.getY()-y)*(b.getY()-y);
+
    };
 };
 
