@@ -46,7 +46,26 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             //Create a new bestiole with the associated strategy.
             BestioleStrategy* strat = flotte->getStrategy(i);
             toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
-            Bestiole* b = new Bestiole(); //TODO : add the correct constructor.
+            std::vector<Accessory*> accessories;
+            std::vector<Sensors*> sensors;
+            T * couleur;
+	         couleur = new T[ 3 ];
+            couleur[ 0 ] = 255;
+  		      couleur[ 1 ] = 0;
+   		   couleur[ 2 ] = 0;
+            Bestiole* b = new Bestiole(i+j, 
+                                       0,
+                                       0,
+                                       3.14/3,
+                                       30., 
+                                       strat,
+                                       accessories, 
+                                       sensors,
+                                       *couleur,
+                                       0,
+                                       300,
+                                       false);
+                                       //TODO : add the correct constructor.
 
              //int identite_, int x_, int y_, double orientation_, double vitesse_, const BestioleStrategy 
              // *bestioleStrat_, std::vector<Accessory*> listeAccessories_, std::vector<Sensors*>   listeSensors_, 
