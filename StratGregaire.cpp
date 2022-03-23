@@ -8,7 +8,7 @@ StratGregaire::StratGregaire() {
 
 void StratGregaire::action(Bestiole * b, Milieu & monMilieu ) const{
     //Check for nearby bestioles (i.e. visible)
-    std::vector<Bestiole> neighbors = b->getNearbyNeighbor(monMilieu);
+    std::vector<Bestiole> neighbors = b->getNearbyNeighbor(&monMilieu);
     cout << "In StratGregaire::action, neighbors.size() = " << neighbors.size() << endl;
     if (neighbors.size() >= 1)
     {
