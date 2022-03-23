@@ -16,6 +16,8 @@
 #include "CreateHandler.h"
 #include "KillHandler.h"
 
+#include <fstream>
+
 using StratPtr = BestioleStrategy*;
 
 
@@ -36,6 +38,8 @@ private :
 
    CreateHandler * createHandler;
    KillHandler   * killHandler;
+   std::ofstream ageFile;
+   int pasDeTemps;
 
 public :
    std::vector<Bestiole*>   listeBestioles;

@@ -16,6 +16,8 @@ int main(int argc, char** argv)
    //TODO : à finir.
 
 
+   //Partie csv
+
    Aquarium       ecosysteme( 640, 480, 30 );
    
    //Multiple, Gregaire, Kamikaze, Peureuse, Prevoyante

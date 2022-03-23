@@ -30,11 +30,15 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
 
    std::srand( time(NULL) );
 
+   pasDeTemps = 0;
+   ageFile.open("data/age.csv");
+
 }
 
 
 Milieu::~Milieu( void )
 {
+   ageFile.close();
    //Go through listBestioles and delete them.
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin(); it != listeBestioles.end(); ++it )
    {
@@ -65,19 +69,22 @@ Milieu* Milieu::getInstance(int _width, int _height){
 void Milieu::step( void )
 {
    cout << "We are entering step of Milieu." << endl;
+   std::ofstream myFile("data/age.csv"); //type id ageMort
+
    createHandler->spontaneousCreate(this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       if(killHandler->kill(*it, this)) break;
-
+      
       //createHandler->cloneCreate(this, *it);
       //print type of iterator
       (*it)->action( this );
       //cout << "We get out of action of Bestiole " << (*it)->getIdentite() << endl;
       (*it)->draw( *this );
 
-   } // for
+   }
+   pasDeTemps++; // for
 
 
 }
@@ -89,7 +96,9 @@ void Milieu::removeMember(Bestiole * b){
    {
       //! This might cause error when b is null.
       if((*it) == b){ //When we find it, we delete it and leave.
-         std::cout << "We have found the bestiole we want to remove." << std::endl;
+         
+         ageFile << b->getStrat()->getName() << "," << b->getIdentite() << "," << b->getAge() << "\n";
+
          listeBestioles.erase(it);
          // We delete the bestiole since it is not in the list anymore.
          delete b;
