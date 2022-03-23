@@ -61,6 +61,7 @@ public :
    StratPtr getStrategy(std::string name);
    StratPtr getStrategy(int index);
    StratPtr getRandomStrategy(std::string previousStrat);
+   inline CreateHandler getCreateHandler() {return *createHandler;};
 
    inline std::vector<Bestiole> getBestioles(void) { return listeBestioles; };
    

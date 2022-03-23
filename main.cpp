@@ -20,7 +20,7 @@ int main(int argc, char** argv)
    
    //Multiple, Gregaire, Kamikaze, Peureuse, Prevoyante
    float ratios[] = { 1, 0, 0 , 0, 0}; 
-   ecosysteme.createInitialPopulation( ratios, 3);
+   ecosysteme.createInitialPopulation( ratios, 2);
 
    
    ecosysteme.run();

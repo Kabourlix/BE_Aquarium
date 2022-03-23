@@ -68,8 +68,8 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
                                        false);
             
                                        //TODO : add the correct constructor.
+                                       
             //Add it to the ecosystem.
-            std::cout <<  b  << std::endl;
             flotte->addMember(*b);
          }
       }
