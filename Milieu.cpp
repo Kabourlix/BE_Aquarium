@@ -12,9 +12,26 @@
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 
 
-Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
+Milieu::Milieu( int _width, int _height , float ratio[]) : UImg( _width, _height, 1, 3 ),
                                             width(_width), height(_height)
 {
+
+   for(int i=0; i<4; i++){
+      switch(i){
+         case 0:
+            propMult = ratio[i];
+            break;
+         case 1:
+            propGreg = ratio[i];
+            break;
+         case 2:
+            propKam = ratio[i];
+            break;
+         case 3:
+            propPeureuse = ratio[i];
+            break;
+      }
+   }
 
    singleton = NULL;
    cout << "const Milieu" << endl;
@@ -62,14 +79,6 @@ Milieu::~Milieu( void )
 }
 
 
-
-Milieu* Milieu::getInstance(int _width, int _height){
-   if(singleton == NULL){ // If it doesn't exist, create it.
-      singleton = new Milieu(_width, _height);
-   }
-   
-   return singleton; //Return the pointer to the singleton.
-}
 
 
 void Milieu::step( void )

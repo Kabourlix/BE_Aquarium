@@ -22,7 +22,7 @@ private :
    //Function to initalize a pop with argument an array of ratios
    
 public :
-   Aquarium( int width, int height, int _delay );
+   Aquarium( int width, int height, int _delay , float _ratio[]);
    ~Aquarium( void );
 
    Milieu & getMilieu( void ) { return *flotte; }

@@ -42,12 +42,13 @@ private :
    std::ofstream popFile;
    int pasDeTemps;
 
+   
+
 public :
    std::vector<Bestiole*>   listeBestioles;
    Milieu*         singleton;
    
-   Milieu( int _width, int _height );
-   Milieu* getInstance(int _width = 640, int _height = 480); // Initialize the Milieu safely.
+   Milieu( int _width, int _height , float ratio[]);
    ~Milieu( void );
 
    int getWidth( void ) const { return width; };
@@ -72,7 +73,10 @@ public :
    inline std::vector<Bestiole*> getBestioles(void) { return listeBestioles; };
    
 
-
+   float propMult;
+   float propGreg;
+   float propKam;
+   float propPeureuse;
 };
 
 

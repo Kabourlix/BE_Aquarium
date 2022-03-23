@@ -4,7 +4,7 @@
 
 
 
-Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
+Aquarium::Aquarium( int width, int height, int _delay , float ratio[]) : CImgDisplay(), delay( _delay )
 {
 
    int         screenWidth = 1280; //screen_width();
@@ -14,7 +14,7 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
    std::cout << "const Aquarium" << endl;
 
    //flotte->getInstance( width, height );
-   flotte = new Milieu(width, height);
+   flotte = new Milieu(width, height, ratio);
    flotte->singleton = flotte; 
    assign( *flotte, "Simulation d'ecosysteme" );
 

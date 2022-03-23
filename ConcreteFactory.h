@@ -8,7 +8,7 @@
  #include "Ears.h"
 
 
- class ConcreteFactory : public Factory
+ class  ConcreteFactory : public Factory
  {
  	private:
  		int id;
@@ -38,7 +38,7 @@
 		static const float 		yLim;
 
  	public : 
- 		ConcreteFactory(Milieu * singleton);
+ 		ConcreteFactory(Milieu * milieu);
  		virtual ~ConcreteFactory();
  		virtual Bestiole* cloneBestiole(const Bestiole & bestiole);
  		virtual Bestiole* createBestiole();

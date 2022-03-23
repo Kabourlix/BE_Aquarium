@@ -10,19 +10,27 @@ using namespace std;
 int main(int argc, char** argv)
 {
    //Dealing with arguments
-   if(argc > 11){
-      cout << "Too many arguments." << (argc-1/2) << "were given while 5 are expected." << endl;
+   int nbBestiole;
+   float ratios[4]; //Multiple, Grégaire, Kamikaze, Peureuse
+   if(argc > 6){
+      cout << "Too many arguments." << argc << "were given while 5 are expected." << endl;
+      return 0;
+   }else if (argc < 6){
+      cout << "Too few arguments." << argc << "were given while 5 are expected." << endl;
+      return 0;
+   }else{
+      nbBestiole = atoi(argv[1]);
+      
+      for(int i = 0; i < 4; i++){
+         ratios[i] = atof(argv[i+2]);
+      }
+      
    }
-   //TODO : à finir.
 
-
-   //Partie csv
-
-   Aquarium       ecosysteme( 640, 480, 30 );
+   Aquarium       ecosysteme( 640, 480, 30 , ratios);
    
    //Multiple, Gregaire, Kamikaze, Peureuse, Prevoyante
-   float ratios[] = { 0, 1 , 0 , 0 , 0}; 
-   ecosysteme.createInitialPopulation( ratios, 2);
+   ecosysteme.createInitialPopulation( ratios, nbBestiole);
 
    
    ecosysteme.run();
