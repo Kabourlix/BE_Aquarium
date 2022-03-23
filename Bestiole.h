@@ -82,7 +82,7 @@ public :
    inline const BestioleStrategy * getStrat() const {return bestioleStrat;};
    inline std::vector<Accessory*> getAccessories() const {return listeAccessories;};
    inline void setStrategy(const BestioleStrategy * newStrat){bestioleStrat = newStrat;};
-   inline void setOrientation(double newOrientation){orientation = newOrientation; std::cout << "oritentation is " << orientation << std::endl;};
+   inline void setOrientation(double newOrientation){orientation = newOrientation;};
    inline void setVitesse(double newVitesse){vitesse = newVitesse;};
    // -----------------------------------
 
