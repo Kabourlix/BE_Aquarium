@@ -13,7 +13,9 @@ def plot_pop(csv_pop):
   mix = pd.MultiIndex.from_product([df['time'].unique(), df['type'].unique()], names=['time','type'])
   new = df.groupby(['time','type']).size().reindex(mix, fill_value=0).unstack().reset_index()
   new.plot(x='time',y=df['type'].unique().tolist())
-
+  plt.savefig('Population.png')
+  
+  
 # csv_age : "age.csv"
 def plot_age(csv_age):
 
