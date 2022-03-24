@@ -58,16 +58,12 @@ void StratKamikaze::action(Bestiole * b, Milieu * monMilieu) const{
         //On calcule la nouvelle orientation
         float deltax = bestioleProche->getX() - b->getX();
         float deltay = bestioleProche->getY() - b->getY();
-        float new_angle = atan (deltay/deltax) * 180 / M_PI;
-        if (deltax >0 && deltay < 0) {
-            new_angle = -new_angle;
-        } else { if (deltax <0 && deltay < 0) {
-            new_angle = -new_angle - M_PI/2;
-        } else { if (deltax <0 && deltay > 0)
-            new_angle = new_angle + M_PI/2;
+        float new_angle = atan (deltay/deltax);
+        if (deltax <0) 
+        {
+            new_angle += M_PI;
         }
-        }
-        b -> setOrientation(new_angle);
+        b -> setOrientation(-new_angle);
     }
 }
 

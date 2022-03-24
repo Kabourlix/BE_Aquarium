@@ -33,6 +33,7 @@ private :
    double            cumulX, cumulY;
    double            orientation;
    double            vitesse;
+   double      initVitesse;
    int               age;
    int               ageLimite;
    bool              multiple;
@@ -76,6 +77,7 @@ public :
    inline int getY() const {return y;};
    inline double getOrientation() const {return orientation;};
    inline double getVitesse() const {return vitesse;};
+   inline double getInitVitesse() const {return initVitesse;}
    inline int getAge() const {return age;};
    inline int getAgeLimite() const {return ageLimite;};
    inline bool getMultiple() const {return multiple;};
@@ -83,7 +85,8 @@ public :
    inline std::vector<Accessory*> getAccessories() const {return listeAccessories;};
    inline void setStrategy(const BestioleStrategy * newStrat){bestioleStrat = newStrat;};
    inline void setOrientation(double newOrientation){orientation = newOrientation;};
-   inline void setVitesse(double newVitesse){vitesse = newVitesse;};
+   inline void setVitesse(double newVitesse){vitesse = newVitesse <10.0 ? newVitesse : MAX_VITESSE;};
+
    // -----------------------------------
 
    std::vector<Bestiole*> getNearbyNeighbor(Milieu * monMilieu);

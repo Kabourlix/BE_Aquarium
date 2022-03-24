@@ -26,13 +26,28 @@ Eyes::~Eyes( void )
 
 bool Eyes::detection(Bestiole * b1,Bestiole * b2)
 {   
-    cout << "TESTD" << endl;
-    if (b2->getX() >= b1->getX() and b2->getX() <= distance) {
-        return ((b2->getY() >= -b1->getX()*tan(angle) and b2->getY() <= b1->getX()*tan(angle)) && (rand()/RAND_MAX <= probaDetection));
-    }
-    return false;
+   if(b1->sqrDist(b2) < distance*distance){ // On est dans le rayon
+        //Calcul de l'angle entre les deux bestioles
+        float deltax = b2->getX() - b1->getX();
+        float deltay = b2->getY() - b1->getY();
+        float new_angle = atan (deltay/deltax);
+        if (deltax <0)
+        {
+            new_angle += M_PI;
+        }
+        
+        //On regarde si la bestiole est dans la bonne portion de cercle
+        if(abs(new_angle - angle) < angle)
+        {
+            if((rand()%100) < probaDetection*100)
+            {
+                return true;
+            }
+        }
+   }
+   return false;
 
-};
+}
 
 
 

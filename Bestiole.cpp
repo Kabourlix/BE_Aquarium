@@ -23,6 +23,7 @@ Bestiole::Bestiole( void )
    cumulX = cumulY = 0.;
    orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
+   initVitesse = vitesse; //Copie de la vitesse initiale
 
    couleur = new T[ 3 ];
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
@@ -43,6 +44,7 @@ Bestiole::Bestiole( const Bestiole & b )
    cumulX = cumulY = 0.;
    orientation = b.orientation;
    vitesse = b.vitesse;
+   initVitesse = b.getInitVitesse();
    age = b.age;
    ageLimite = b.ageLimite;
    couleur = new T[ 3 ];
@@ -76,6 +78,7 @@ Bestiole::Bestiole( int identite_, int x_, int y_, double orientation_, double v
    cumulX = cumulY = 0.;
    orientation = orientation_;
    vitesse = vitesse_;
+   initVitesse = vitesse; //Copie de la vitesse initiale
    age = age_;
    ageLimite = ageLimite_;
    bestioleStrat = bestioleStrat_;
@@ -227,12 +230,26 @@ void Bestiole::draw( UImg & support )
          if((*it)->getName() == "Ears"){
             support.draw_circle(x,y,(*it)->getDistance(),couleur, 0.2);
          }
+         if((*it)->getName() == "Eyes"){
+            float demiAngle = (*it)->getAngle()/2;
+            float dist = (*it)->getDistance();
+
+            float angle1 = orientation + demiAngle;
+            float x1 = x + cos(angle1)*dist;
+            float y1 = y - sin(angle1)*dist;
+
+            float angle2 = orientation - demiAngle;
+            float x2 = x + cos(angle2)*dist;
+            float y2 = y - sin(angle2)*dist;
+            support.draw_triangle(x,y,x1,y1,x2,y2,couleur, 0.2);
+         }
       }
    }
 
    //TODO : Vérifier comment régler l'erreur
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
+   //support.draw_line(x,y,x+cos(orientation)*vitesse*10,y-sin(orientation)*vitesse*10,couleur);
 
 
 }
@@ -262,7 +279,7 @@ bool Bestiole::detect(Bestiole *b)
 // Potentiellement un problème à l'itération sur listeSensors, une histoire de const mais je ne sais pas trop pourquoi
    for ( std::vector<Sensors*>::const_iterator it = listeSensors.cbegin() ; it != listeSensors.cend() ; ++it )
    {  
-      if ((*it)->detection(this,b)){ detected = true; }
+      if((*it)->detection(this,b)){ detected = true; }
    }
   return detected;
 }
@@ -272,7 +289,7 @@ std::vector<Bestiole*> Bestiole::getNearbyNeighbor( Milieu * monMilieu )
    std::vector<Bestiole*> neighbors;
    for ( std::vector<Bestiole*>::iterator it = monMilieu->listeBestioles.begin() ; it != monMilieu->listeBestioles.end() ; ++it )
    { 
-      if (!(this == *it) && this->detect(*it)) //static_cast<Bestiole*>( &(**it) ) 
+      if (this != *it && this->detect(*it)) //static_cast<Bestiole*>( &(**it) ) 
       {
          neighbors.push_back(*it);
       }

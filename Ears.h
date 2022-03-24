@@ -6,9 +6,6 @@
 class Ears : public Sensors
 {
 
-	private :
-		float probaDetection;
-    	float distance;
 	public :
 		Ears(const Ears& ears);
         Ears( const Sensors& ears); //TODO : Poser la question aux profs ça me parait chelou.
@@ -21,6 +18,7 @@ class Ears : public Sensors
 		inline virtual std::string getName() const {return "Ears";};
 		inline float getProbaDetection() {return probaDetection;};
 		inline virtual float getDistance() {return distance;};
+		inline virtual float getAngle(){return angle;};
 
 };
 

@@ -15,7 +15,7 @@ void StratGregaire::action(Bestiole * b, Milieu * monMilieu ) const{
         double meanOrientation = 0;
         for ( std::vector<Bestiole*>::iterator it = neighbors.begin() ; it != neighbors.end() ; ++it )
             {
-                meanOrientation = meanOrientation + (*it)->getOrientation();
+                meanOrientation += (*it)->getOrientation();
             }
         meanOrientation = meanOrientation/neighbors.size();
         //Set as its own orientation

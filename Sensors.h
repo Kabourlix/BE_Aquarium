@@ -17,6 +17,7 @@ class Sensors
 		virtual bool detection(Bestiole *bestiole1,Bestiole *bestiole2)=0;
 		inline virtual std::string getName() const =0;
 		inline virtual float getDistance() = 0;
+		inline virtual float getAngle() = 0;
 };
 
 #endif

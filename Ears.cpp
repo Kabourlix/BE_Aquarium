@@ -25,5 +25,5 @@ bool Ears::detection(Bestiole * b1,Bestiole * b2)
 {
     double dist;
     dist = b1->sqrDist(b2);
-    return ((dist <= distance*distance) && (rand()/RAND_MAX <= probaDetection));
+    return ((dist <= distance*distance) && (rand()%100 <= probaDetection*100));
 }
