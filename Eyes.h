@@ -20,7 +20,7 @@ class Eyes : public Sensors
         virtual inline std::string getName() const {return "Eyes";};
 		inline float getProbaDetection() {return probaDetection;};
 		inline float getAngle() {return angle;};
-		inline float getDistance() {return distance;};
+		inline virtual float getDistance() {return distance;};
 		void setProbaDetection(float ang);
 		void setAngle(float probDetec);
 		void setDistance(float dist);

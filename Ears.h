@@ -20,7 +20,7 @@ class Ears : public Sensors
 
 		inline virtual std::string getName() const {return "Ears";};
 		inline float getProbaDetection() {return probaDetection;};
-		inline float getDistance() {return distance;};
+		inline virtual float getDistance() {return distance;};
 
 };
 
