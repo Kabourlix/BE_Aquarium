@@ -30,9 +30,9 @@ ConcreteFactory::ConcreteFactory(Milieu * _milieu) {
 	nbBestiole = milieu->getBestioles().size();
 	id = nbBestiole + 1;
 
-	propGregaire= milieu->propGreg; 
-	propPeureuse = milieu->propPeureuse;
-	propKamikaze = milieu->propKam; 
+	propGregaire= 100*milieu->propGreg; 
+	propPeureuse = 100*milieu->propPeureuse;
+	propKamikaze = 100*milieu->propKam; 
 
 };
 
@@ -58,7 +58,7 @@ Bestiole* ConcreteFactory::createBestiole(){
 
 	BestioleStrategy* bestioleStrat = nullptr;
 	// MULTIPLE
-	bool multiple = False;
+	bool multiple = false;
 
 	// STRATEGY
     if (randomVariable <= propGregaire) 
@@ -153,24 +153,24 @@ Sensors* ConcreteFactory::createEyes(){
 };
 
 Sensors* ConcreteFactory::createEars(){
-	float detectionCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_DETEC_CAPA;
-	float distanceEars = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EARS-MIN_DIST_EARS) + MIN_DIST_EARS;
+	float detectionCapacity = static_cast<double>( (rand()%100)/100 )*MAX_DETEC_CAPA;
+	float distanceEars = static_cast<double>( (rand()%100)/100 )*(MAX_DIST_EARS-MIN_DIST_EARS) + MIN_DIST_EARS;
 	return new Ears(detectionCapacity, distanceEars);
 };
 
 
 Accessory* ConcreteFactory::createNageoire(){
-	float coeffSpeed = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_SPEED;
+	float coeffSpeed = static_cast<double>( (rand()%100)/100 )*MAX_COEF_SPEED;
 	return new Accessory("nageoires", coeffSpeed, 0 , 0);
 };
 
 
 Accessory* ConcreteFactory::createCamouflage(){
-	float hidingCapacity = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_CAMOUFLAGE;
+	float hidingCapacity = static_cast<double>( (rand()%100)/100 )*MAX_COEF_CAMOUFLAGE;
 	return new Accessory("camouflage", 0, 0, hidingCapacity);
 };
 
 Accessory* ConcreteFactory::createCarapace(){
-	float coeffRes = static_cast<double>( rand() )/RAND_MAX*MAX_COEF_RES;
+	float coeffRes = static_cast<double>( (rand()%100)/100 )*MAX_COEF_RES;
 	return new Accessory("carapace", 0, coeffRes, 0);
 };

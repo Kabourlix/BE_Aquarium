@@ -1,5 +1,20 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/hdamaia/IMT Atlantique/A2/S4/C++/BE/BE_Aquarium'
+c++    -c -o main.o main.cpp
+g++ -Wall -std=c++11  -c Aquarium.cpp -I . -I /opt/X11/include
+ 
+g++ -Wall -std=c++11  -c Bestiole.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c Milieu.cpp -I . -I /opt/X11/include
+ 
+g++ -Wall -std=c++11  -c Accessory.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c StratGregaire.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c StratKamikaze.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c StratPeureuse.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c KillHandler.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c CreateHandler.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c ConcreteFactory.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c Eyes.cpp -I . -I /opt/X11/include
+g++ -Wall -std=c++11  -c Ears.cpp -I . -I /opt/X11/include
 g++ -Wall -std=c++11 -o main main.o Aquarium.o  Accessory.o Bestiole.o Milieu.o StratGregaire.o StratKamikaze.o StratPeureuse.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o -I . -I /opt/X11/include -L /opt/X11/lib -lX11 -lpthread
 make: Leaving directory `/Users/hdamaia/IMT Atlantique/A2/S4/C++/BE/BE_Aquarium'
  
