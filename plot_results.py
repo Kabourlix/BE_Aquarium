@@ -10,10 +10,10 @@ import matplotlib.pyplot as plt
 def plot_pop(csv_pop):
 
   df = pd.read_csv(csv_pop)
-  mix = pd.MultiIndex.from_product([df['time'].unique(), df['type'].unique()], names=['time','type'])
-  new = df.groupby(['time','type']).size().reindex(mix, fill_value=0).unstack().reset_index()
-  new.plot(x='time',y=df['type'].unique().tolist())
-  plt.savefig('Population.png')
+  mix = pd.MultiIndex.from_product([df['temps'].unique(), df['type'].unique()], names=['temps','type'])
+  new = df.groupby(['temps','type']).size().reindex(mix, fill_value=0).unstack().reset_index()
+  new.plot(x='temps',y=df['type'].unique().tolist())
+  plt.savefig('img/Population.png')
   
   
 # csv_age : "age.csv"
@@ -45,5 +45,10 @@ def plot_age(csv_age):
   plt.title("Bar plot representing the average age of death for each different behaviour of 'Bestiole'")
   plt.xlabel('Behaviour')
   plt.ylabel('Age')
-  plt.savefig('Average_age.png')
+  plt.savefig('img/Average_age.png')
   plt.show()
+
+
+if __name__ == "__main__":
+  plot_pop('data/pop.csv')
+  plot_age('data/age.csv')
