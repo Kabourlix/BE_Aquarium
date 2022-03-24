@@ -270,7 +270,7 @@ std::vector<Bestiole*> Bestiole::getNearbyNeighbor( Milieu * monMilieu )
 }
 
 // Attention n'appeler cette méthode que si getNearbyNeighbor() ne renvoie pas une liste vide.
-Bestiole Bestiole::getNearestBestiole(Milieu * monMilieu)
+/*Bestiole Bestiole::getNearestBestiole(Milieu * monMilieu)
 { 
    Bestiole nearestBestiole;
   double currentMinDist2 = 0; 
@@ -287,7 +287,7 @@ Bestiole Bestiole::getNearestBestiole(Milieu * monMilieu)
       }
    }
    if (n==1) { return nearestBestiole;}
-}
+}*/
 
 bool Bestiole::checkCollision(Bestiole * b)
 {

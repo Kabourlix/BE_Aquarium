@@ -87,7 +87,7 @@ public :
    // -----------------------------------
 
    std::vector<Bestiole*> getNearbyNeighbor(Milieu * monMilieu);
-   Bestiole getNearestBestiole(Milieu * monMilieu);
+   //Bestiole getNearestBestiole(Milieu * monMilieu);
 
    bool checkCollision(Bestiole * b);
 
