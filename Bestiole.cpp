@@ -207,6 +207,7 @@ void Bestiole::action( Milieu * monMilieu )
       }
    }
    //Execute bestioleStrat (const pointer) action
+   //if(bestioleStrat != nullptr) pour ignorer bestioleStrat et avoir le comportement standard. (Bestiole neutre, bestiole sans bestioleStrat)
    bestioleStrat->action(this, monMilieu);
    bouge( monMilieu->getWidth(), monMilieu->getHeight() );
 
