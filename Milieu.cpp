@@ -83,7 +83,7 @@ Milieu::~Milieu( void )
 
 void Milieu::step( void )
 {
-   createHandler->spontaneousCreate(this);
+   //createHandler->spontaneousCreate(this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
@@ -179,6 +179,11 @@ StratPtr Milieu::getRandomStrategy(std::string previousStrat){
       toReturn = stratVector[random];
    }
    return toReturn;
+}
+
+
+void Milieu::createExt(int amount){
+   createHandler->extCreate(amount,this);
 }
 
 

@@ -94,6 +94,11 @@ void Aquarium::run( void )
       if ( is_key() ) {
          std::cout << "Vous avez presse la touche " << static_cast<unsigned char>( key() );
          std::cout << " (" << key() << ")" << endl;
+         //Si la touche c est pressée, on crée une bestiole avec createExt
+         if ( key() == 'c' )
+         {
+            flotte->createExt(1);
+         }
          if ( is_keyESC() ) close();
       }
 

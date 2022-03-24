@@ -72,6 +72,8 @@ public :
 
    inline std::vector<Bestiole*> getBestioles(void) { return listeBestioles; };
    
+   void createExt(int amount);
+
 
    float propMult;
    float propGreg;

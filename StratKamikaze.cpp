@@ -34,4 +34,6 @@ void StratKamikaze::action(Bestiole * b, Milieu * monMilieu ) const{
 
 }
 
+
+
 #endif
