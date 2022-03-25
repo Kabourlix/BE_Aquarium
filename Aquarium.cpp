@@ -56,7 +56,19 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             std::cout <<  strat->getName() << endl;
             std::vector<Accessory*> accessories;
             std::vector<Sensors*> sensors;
-            sensors.push_back(new Eyes(1,M_PI+1.5,120));
+            int eye = rand() % 2;
+            int ear = rand() % 2;
+            if(eye){
+               float probaDetection = static_cast<double>( rand() )/RAND_MAX*1.0;
+               float angle = static_cast<double>( rand() )/RAND_MAX*(2*M_PI-M_PI) + M_PI;
+               float distanceEyes = static_cast<double>( rand() )/RAND_MAX*(30.) + 20.;
+               sensors.push_back(new Eyes(probaDetection, angle, distanceEyes));
+            }
+            if(ear){
+               float detectionCapacity = static_cast<double>( (rand()%100)/100 )*1.;
+               float distanceEars = static_cast<double>( (rand()%100)/100 )*(30.) + 20.;
+               sensors.push_back(new Ears(detectionCapacity, distanceEars));
+            }
             int x = rand() % flotte->getWidth();
             int y = rand() % flotte->getHeight();
             float orientation = static_cast<double>( rand() )/RAND_MAX *(M_PI*2); // Compris entre 0 et 2 pi
@@ -71,7 +83,7 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
                                        accessories, 
                                        sensors,
                                        0,
-                                       ageMax,
+                                       1000,
                                        multiple);
             
             //TODO : add the correct constructor.

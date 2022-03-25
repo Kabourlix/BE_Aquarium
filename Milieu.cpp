@@ -83,11 +83,11 @@ Milieu::~Milieu( void )
 
 void Milieu::step( void )
 {
-   createHandler->spontaneousCreate(this);
+   //createHandler->spontaneousCreate(this);
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      if(killHandler->kill(*it, this)) break;
+      if(killHandler->kill(*it, this))break;
       std::string stratName = (*it)->getMultiple() ? "Multiple" : (*it)->getStrat()->getName();
       popFile << (*it)->getIdentite() << "," << pasDeTemps << "," << stratName  << "," << 1 << "\n";
       //createHandler->cloneCreate(this, *it);
