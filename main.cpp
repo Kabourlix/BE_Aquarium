@@ -20,12 +20,17 @@ int main(int argc, char** argv)
       return 0;
    }else{
       nbBestiole = atoi(argv[1]);
-      
+      float sum = 0;
       for(int i = 0; i < 4; i++){
          ratios[i] = atof(argv[i+2]);
+         sum += ratios[i];
       }
-      
+      if(abs(sum-1) > 0.01){
+         cout << "The ratios must sum to 1." << endl;
+         return 0;
+      }   
    }
+
 
    Aquarium       ecosysteme( 640, 480, 30 , ratios);
    
