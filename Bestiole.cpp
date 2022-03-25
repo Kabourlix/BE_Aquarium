@@ -237,14 +237,14 @@ void Bestiole::draw( UImg & support )
             float demiAngle = (*it)->getAngle()/2;
             float dist = (*it)->getDistance();
 
-            float angle1 = orientation + demiAngle;
+            float angle1 = M_PI + orientation + demiAngle;
             float x1 = x + cos(angle1)*dist;
             float y1 = y - sin(angle1)*dist;
 
-            float angle2 = orientation - demiAngle;
+            float angle2 = M_PI + orientation - demiAngle;
             float x2 = x + cos(angle2)*dist;
             float y2 = y - sin(angle2)*dist;
-            support.draw_triangle(x,y,x1,y1,x2,y2,couleur, 0.2);
+            support.draw_triangle(x,y,x1,y1,x2,y2,couleur, 0.5);
          }
       }
    }

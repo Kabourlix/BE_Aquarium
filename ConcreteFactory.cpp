@@ -91,7 +91,7 @@ Bestiole* ConcreteFactory::createBestiole(){
 	int eyes = rand() % 2;
 	int ears = rand() % 2;
 	if (eyes) {
-		sensorVector.push_back(this -> createEars());
+		sensorVector.push_back(this -> createEyes());
 	};
 	if (ears) {
 		sensorVector.push_back(this -> createEars());
@@ -147,7 +147,7 @@ Sensors* ConcreteFactory::createEyes(){
 	float probaDetection = static_cast<double>( rand() )/RAND_MAX*MAX_PROB_DETECTION;
 	float angle = static_cast<double>( rand() )/RAND_MAX*(MAX_ANGLE-MIN_ANGLE) + MIN_ANGLE;
 	float distanceEyes = static_cast<double>( rand() )/RAND_MAX*(MAX_DIST_EYES-MIN_DIST_EYES) + MIN_DIST_EYES;
-
+	std::cout << "Create eyes with angle" << angle << " and distance " << distanceEyes << std::endl;
 	return new Eyes(probaDetection, angle, distanceEyes);
 	
 };

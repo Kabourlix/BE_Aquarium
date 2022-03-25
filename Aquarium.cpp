@@ -56,7 +56,7 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             std::cout <<  strat->getName() << endl;
             std::vector<Accessory*> accessories;
             std::vector<Sensors*> sensors;
-            sensors.push_back(new Ears(1,60));
+            sensors.push_back(new Eyes(1,M_PI+1.5,120));
             int x = rand() % flotte->getWidth();
             int y = rand() % flotte->getHeight();
             float orientation = static_cast<double>( rand() )/RAND_MAX *(M_PI*2); // Compris entre 0 et 2 pi
