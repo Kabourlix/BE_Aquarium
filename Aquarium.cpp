@@ -15,7 +15,6 @@ Aquarium::Aquarium( int width, int height, int _delay , float ratio[]) : CImgDis
 
    //flotte->getInstance( width, height );
    flotte = new Milieu(width, height, ratio);
-   flotte->singleton = flotte; 
    assign( *flotte, "Simulation d'ecosysteme" );
 
    move( static_cast<int>((screenWidth-width)/2), static_cast<int>((screenHeight-height)/2) );

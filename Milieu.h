@@ -46,7 +46,6 @@ private :
 
 public :
    std::vector<Bestiole*>   listeBestioles;
-   Milieu*         singleton;
    
    Milieu( int _width, int _height , float ratio[]);
    ~Milieu( void );

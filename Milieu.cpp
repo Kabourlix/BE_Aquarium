@@ -32,8 +32,6 @@ Milieu::Milieu( int _width, int _height , float ratio[]) : UImg( _width, _height
             break;
       }
    }
-
-   singleton = NULL;
    cout << "const Milieu" << endl;
    //Create an instance of each strat and add it to the stratVector
    stratVector.push_back(new StratGregaire());
@@ -73,7 +71,6 @@ Milieu::~Milieu( void )
    delete killHandler;
 
    //Lastly, delete the only instance of the class
-   delete singleton; 
    cout << "Milieu & dependencies have been destroyed." << endl;
 
 }
