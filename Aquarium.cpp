@@ -54,20 +54,24 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
             }
             
             std::cout <<  strat->getName() << endl;
-            //toDisp += strat->getName() + " a " + std::to_string(ratios[i]*100) + "%, ";
             std::vector<Accessory*> accessories;
             std::vector<Sensors*> sensors;
-            sensors.push_back(new Ears(1,120));
+            sensors.push_back(new Ears(1,60));
+            int x = rand() % flotte->getWidth();
+            int y = rand() % flotte->getHeight();
+            float orientation = static_cast<double>( rand() )/RAND_MAX *(M_PI*2); // Compris entre 0 et 2 pi
+            float vitesse = static_cast<double>( rand() )/RAND_MAX * 10.0; // Compris entre 0 et 10.0
+            int ageMax = rand()%500;
             Bestiole* b = new Bestiole(i+j, 
-                                       0,
-                                       0,
-                                       3.14/3,
-                                       3., 
+                                       x,
+                                       y,
+                                       orientation,
+                                       vitesse, 
                                        strat,
                                        accessories, 
                                        sensors,
                                        0,
-                                       30000,
+                                       ageMax,
                                        multiple);
             
             //TODO : add the correct constructor.

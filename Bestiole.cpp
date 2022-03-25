@@ -9,6 +9,7 @@
 const double      Bestiole::AFF_SIZE = 8.;
 const double      Bestiole::MAX_VITESSE = 10.;
 const double      Bestiole::LIMITE_VUE = 30.;
+//Create a const black color
 
 int               Bestiole::next = 0;
 
@@ -217,6 +218,8 @@ void Bestiole::action( Milieu * monMilieu )
 }
 
 
+
+
 void Bestiole::draw( UImg & support )
 {
 
@@ -246,10 +249,19 @@ void Bestiole::draw( UImg & support )
       }
    }
 
-   //TODO : Vérifier comment régler l'erreur
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
-   //support.draw_line(x,y,x+cos(orientation)*vitesse*10,y-sin(orientation)*vitesse*10,couleur);
+
+   if(multiple){
+      //create a black color
+      //!Pas terrible, il faudrait créer une constante, couleur noire.
+      T* black = new T[3];
+      black[0] = 0;
+      black[1] = 0;
+      black[2] = 0;
+      support.draw_circle(xt,yt,AFF_SIZE/4,black);
+      delete [] black;
+   }   
 
 
 }
