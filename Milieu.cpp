@@ -88,7 +88,8 @@ void Milieu::step( void )
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       if(killHandler->kill(*it, this)) break;
-      popFile << (*it)->getIdentite() << "," << pasDeTemps << "," << (*it)->getStrat()->getName() << "," << 1 << "\n";
+      std::string stratName = (*it)->getMultiple() ? "Multiple" : (*it)->getStrat()->getName();
+      popFile << (*it)->getIdentite() << "," << pasDeTemps << "," << stratName  << "," << 1 << "\n";
       //createHandler->cloneCreate(this, *it);
 
       (*it)->action( this );
@@ -104,8 +105,8 @@ void Milieu::removeMember(Bestiole * b){
    for ( std::vector<Bestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
       if((*it) == b){ //When we find it, we delete it and leave.
-         
-         ageFile << b->getStrat()->getName() << "," << b->getIdentite() << "," << b->getAge() << "\n";
+         std::string stratName = (*it)->getMultiple() ? "Multiple" : (*it)->getStrat()->getName();
+         ageFile << stratName << "," << b->getIdentite() << "," << b->getAge() << "\n";
 
          listeBestioles.erase(it);
          // We delete the bestiole since it is not in the list anymore.
