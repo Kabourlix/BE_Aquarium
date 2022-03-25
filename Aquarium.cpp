@@ -83,7 +83,7 @@ void Aquarium::createInitialPopulation( float ratios[], int nbBestiole )
                                        accessories, 
                                        sensors,
                                        0,
-                                       1000,
+                                       ageMax,
                                        multiple);
             
             //TODO : add the correct constructor.

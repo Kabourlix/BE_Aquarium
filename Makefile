@@ -1,6 +1,8 @@
 main : main.o Aquarium.o Bestiole.o Milieu.o Accessory.o StratGregaire.o StratKamikaze.o StratPeureuse.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o Milieu.o 
 	g++ -Wall -std=c++11 -o main main.o Aquarium.o  Accessory.o Bestiole.o Milieu.o StratGregaire.o StratKamikaze.o StratPeureuse.o KillHandler.o CreateHandler.o ConcreteFactory.o Eyes.o Ears.o -I . -I /opt/X11/include -L /opt/X11/lib -lX11 -lpthread
 
+main.o : main.cpp Aquarium.o Milieu.o Bestiole.o
+	g++ -c -Wall -std=c++11 main.cpp  -I . -I /opt/X11/include
 
 Aquarium.o : Aquarium.h Aquarium.cpp
 	g++ -Wall -std=c++11  -c Aquarium.cpp -I . -I /opt/X11/include

@@ -16,7 +16,6 @@
  		float propGregaire;
  		float propPeureuse;
  		float propKamikaze;
- 		float propPrevoyante;
 
  		static const int 		MIN;
  		static const int 		MAX;
